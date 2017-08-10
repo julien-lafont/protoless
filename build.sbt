@@ -2,7 +2,7 @@ organization in ThisBuild := "io.protoless"
 name := "protoless"
 
 lazy val settings = Seq(
-  scalaVersion := "2.12.3-bin-typelevel-4",
+  scalaVersion in ThisBuild := "2.12.3-bin-typelevel-4",
   scalaOrganization := "org.typelevel",
   scalacOptions ++= Seq(
     "-deprecation",                      // Emit warning and location for usages of deprecated APIs.
@@ -55,7 +55,6 @@ lazy val settings = Seq(
   // Typelevel-4 scala options
   scalacOptions ++= Seq(
     "-Yinduction-heuristics",       // speeds up the compilation of inductive implicit resolution
-    "-Ykind-polymorphism",          // type and method definitions with type parameters of arbitrary kinds
     "-Yliteral-types",              // literals can appear in type position
     "-Xstrict-patmat-analysis",     // more accurate reporting of failures of match exhaustivity
     "-Xlint:strict-unsealed-patmat" // warn on inexhaustive matches against unsealed traits
