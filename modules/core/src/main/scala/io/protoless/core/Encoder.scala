@@ -1,6 +1,8 @@
 package io.protoless.core
 
 import scala.annotation.implicitNotFound
+import java.io.ByteArrayOutputStream
+import java.nio.ByteBuffer
 
 import com.google.protobuf.CodedOutputStream
 
@@ -14,6 +16,30 @@ trait Encoder[A] extends Serializable { self =>
     * Write the value A in the protobuf OutputStream.
     */
   def encode(a: A, output: CodedOutputStream): Unit
+
+  /**
+    * Encode the value A into an [[ByteArrayOutputStream]]
+    */
+  def encodeAsStream(a: A): ByteArrayOutputStream = {
+    val out = new ByteArrayOutputStream()
+    val cos = CodedOutputStream.newInstance(out)
+    encode(a, cos)
+    out
+  }
+
+  /**
+    * Encode the value A and return the result in Array[Byte]
+    */
+  def encodeAsBytes(a: A): Array[Byte] = {
+    encodeAsStream(a).toByteArray
+  }
+
+  /**
+    * Encode the value A and return the result as a [[ByteBuffer]]
+    */
+  def encodeAsByteBuffer(a: A): ByteBuffer = {
+    ByteBuffer.wrap(encodeAsBytes(a))
+  }
 
   /**
     * Create a new [[Encoder]] by applying a function to a value of type `B` before writing as an A.
