@@ -1,0 +1,142 @@
+package io.protoless
+
+import java.io.ByteArrayOutputStream
+import java.util.UUID
+
+import com.google.protobuf.{ByteString, CodedInputStream, CodedOutputStream}
+import org.scalacheck.{Arbitrary, Gen}
+import org.scalatest.prop.GeneratorDrivenPropertyChecks
+
+import io.protoless.core.tag._
+import io.protoless.core.fields.{FieldDecoder, FieldEncoder}
+import io.protoless.tests.instances.ArbitraryInstances
+
+class FieldEncodingCheck extends ProtolessSuite with GeneratorDrivenPropertyChecks with ArbitraryInstances {
+
+  "Field encoding must pass property testing" - {
+
+    "Int" in {
+      check[Int]
+    }
+
+    "Long" in {
+      check[Long]
+    }
+
+    "Float" in {
+      check[Float]
+    }
+
+    "Double" in {
+      check[Double]
+    }
+
+    "String" in {
+      check[String]
+    }
+
+    "Boolean" in {
+      check[Boolean]
+    }
+
+    "ByteString" in {
+      check[ByteString]
+    }
+
+    "unsigned int32" in {
+      check[Int @@ Unsigned]
+    }
+
+    "unsigned int64" in {
+      check[Long @@ Unsigned]
+    }
+
+    "signed int32" in {
+      check[Int @@ Signed]
+    }
+
+    "signed int64" in {
+      check[Long @@ Signed]
+    }
+
+    "fixed int32" in {
+      check[Int @@ Fixed]
+    }
+
+    "fixed int64" in {
+      check[Long @@ Fixed]
+    }
+
+    "fixed signed int32" in {
+      check[Int @@ Signed with Fixed]
+    }
+
+    "fixed signed int64" in {
+      check[Long @@ Signed with Fixed]
+    }
+
+    "Short" in {
+      check[Short]
+    }
+
+    "Char" in {
+      check[Char]
+    }
+
+    "BigDecimal" in {
+      check[BigDecimal]
+    }
+
+    "BigInt" in {
+      check[BigInt]
+    }
+
+    "UUID" in {
+      check[UUID]
+    }
+
+    "Option[Int]" in {
+      check[Option[Int]]
+    }
+
+    "Option[String]" in {
+      check[Option[String]]
+    }
+
+  }
+
+  val indexGenerator: Gen[Int] = Gen.choose(1, 1000)
+
+  private def check[T](implicit enc: FieldEncoder[T], dec: FieldDecoder[T], arbitrary: Arbitrary[T]) = {
+    forAll(indexGenerator) { index =>
+      forAll((t: T) =>
+        encodeDecodeField(t, index)
+      )
+    }
+  }
+
+  private def encodeDecodeField[T](t: T, index: Int)(implicit enc: FieldEncoder[T], dec: FieldDecoder[T]) = {
+    val bytesEncoded = {
+      val out = new ByteArrayOutputStream()
+      val cos = CodedOutputStream.newInstance(out)
+      enc.write(index, t, cos)
+      cos.flush()
+      out.toByteArray
+    }
+
+    val entityDecoded = {
+      val cis = CodedInputStream.newInstance(bytesEncoded)
+      dec.read(cis, index).right.get
+    }
+
+    val entityReEncoded = {
+      val out = new ByteArrayOutputStream()
+      val cos = CodedOutputStream.newInstance(out)
+      enc.write(index, entityDecoded, cos)
+      cos.flush()
+      out.toByteArray
+    }
+
+    entityReEncoded.toList == bytesEncoded.toList
+  }
+}
