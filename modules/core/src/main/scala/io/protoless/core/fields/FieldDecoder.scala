@@ -7,8 +7,9 @@ import scala.util.{Failure, Success, Try}
 
 import com.google.protobuf.WireFormat.FieldType
 import com.google.protobuf.{ByteString, WireFormat, CodedInputStream => CIS}
-import cats.data.NonEmptyList
 
+import shapeless.{Generic, HList, HNil}
+import cats.data.NonEmptyList
 import io.protoless.core.Decoder.Result
 import io.protoless.core.error.{DecodingFailure, MissingField, WrongFieldType}
 import io.protoless.core.tag
@@ -303,6 +304,19 @@ object FieldDecoder extends MidPriorityFieldDecoder {
       else Right(None)
     }
     override def fieldType: FieldType = dec.fieldType
+  }
+
+  /**
+    * Automatically decode a value wrapped in a value class
+    *
+    * @group Decoding
+    */
+  implicit final def decodeValueClass[A, R <: HList](implicit gen: Generic.Aux[A, R], dec: FieldDecoder[R]): FieldDecoder[A] = {
+    dec.map(r => gen.from(r))
+  }
+
+  implicit private[protoless] final def decodeHeadHList[H](implicit dec: FieldDecoder[H]): FieldDecoder[shapeless.::[H, HNil]] = {
+    dec.map(h => h :: HNil)
   }
 
 }

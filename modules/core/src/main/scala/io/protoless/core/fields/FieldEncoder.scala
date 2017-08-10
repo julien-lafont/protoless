@@ -8,6 +8,7 @@ import com.google.protobuf.{ByteString, WireFormat, CodedOutputStream => COS}
 
 import cats.data.NonEmptyList
 import io.protoless.core.tag._
+import shapeless.{::, Generic, HList, HNil}
 
 /**
   * A type class that write a single field `A` into a `CodedOutputStream`.
@@ -208,6 +209,18 @@ object FieldEncoder extends MidPriorityFieldEncoder {
     override val fieldType: FieldType = enc.fieldType
   }
 
+  /**
+    * Automatically encode a value wrapped in a value class
+    *
+    * @group Encoding
+    */
+  implicit final def encodeValueClass[A, R <: HList](implicit gen: Generic.Aux[A, R], enc: FieldEncoder[R] ): FieldEncoder[A] = {
+    enc.contramap[A](gen.to)
+  }
+
+  implicit private[protoless] final def encodeHeadHList[H](implicit enc: FieldEncoder[H]): FieldEncoder[H :: HNil] = {
+    enc.contramap[H :: HNil](_.head)
+  }
 }
 
 trait MidPriorityFieldEncoder extends LowPriorityFieldEncoder {

@@ -5,11 +5,15 @@ import java.util.UUID
 
 import com.google.protobuf.{ByteString, CodedInputStream, CodedOutputStream}
 import org.scalacheck.{Arbitrary, Gen}
+import org.scalacheck.Arbitrary.arbitrary
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
 import io.protoless.core.tag._
 import io.protoless.core.fields.{FieldDecoder, FieldEncoder}
 import io.protoless.tests.instances.ArbitraryInstances
+
+case class Budget(budget: Long) extends AnyVal
+case class Id(value: UUID) extends AnyVal
 
 class FieldEncodingCheck extends ProtolessSuite with GeneratorDrivenPropertyChecks with ArbitraryInstances {
 
@@ -101,6 +105,16 @@ class FieldEncodingCheck extends ProtolessSuite with GeneratorDrivenPropertyChec
 
     "Option[String]" in {
       check[Option[String]]
+    }
+
+    "Budget (ValueClass Long)" in {
+      implicit val budget: Arbitrary[Budget] = Arbitrary(arbitrary[Long].map(Budget.apply))
+      check[Budget]
+    }
+
+    "id (ValueClass String)" in {
+      implicit val id: Arbitrary[Id] = Arbitrary(arbitraryUUID.arbitrary.map(Id.apply))
+      check[Id]
     }
 
   }
