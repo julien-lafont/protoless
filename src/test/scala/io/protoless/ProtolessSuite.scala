@@ -6,7 +6,6 @@ import org.scalatest._
 import cats.instances.AllInstances
 import cats.syntax.AllSyntax
 
-import io.protoless.core.{Decoder, Encoder}
 import io.protoless.tests.samples.TestCase
 
 trait ProtolessSuite extends FreeSpec with MustMatchers with TypeCheckedTripleEquals

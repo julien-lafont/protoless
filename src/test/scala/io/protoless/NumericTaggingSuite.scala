@@ -1,9 +1,9 @@
 package io.protoless
 
 import shapeless.test.illTyped
-import io.protoless.core.tag._
+import io.protoless.tag._
 
-class TagSuite extends ProtolessSuite {
+class NumericTaggingSuite extends ProtolessSuite {
 
   "Numeric tagging must be allowed on" - {
 

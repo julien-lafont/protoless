@@ -6,7 +6,7 @@ import com.google.protobuf.ByteString
 import org.scalacheck.Arbitrary.arbitrary
 import org.scalacheck.{Arbitrary, Gen}
 
-import io.protoless.core.tag._
+import io.protoless.tag._
 
 trait ArbitraryInstances {
 

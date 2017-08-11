@@ -3,8 +3,8 @@ package io.protoless.generic.decoding
 import com.google.protobuf.CodedInputStream
 import shapeless.{Generic, HList, Nat}
 
-import io.protoless.core.Decoder.Result
-import io.protoless.core.decoders.{AutoDecoder, IncrementalDecoder}
+import io.protoless.Decoder.Result
+import io.protoless.decoders.{AutoDecoder, IncrementalDecoder}
 
 trait AutoDecoderInstances extends IncrementalDecoderInstances {
 

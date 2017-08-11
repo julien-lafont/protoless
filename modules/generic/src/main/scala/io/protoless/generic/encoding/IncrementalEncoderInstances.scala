@@ -4,8 +4,8 @@ import com.google.protobuf.CodedOutputStream
 import shapeless.{::, Generic, HList, HNil, Nat, Succ}
 import shapeless.ops.nat.ToInt
 
-import io.protoless.core.encoders.IncrementalEncoder
-import io.protoless.core.fields.FieldEncoder
+import io.protoless.encoders.IncrementalEncoder
+import io.protoless.fields.FieldEncoder
 
 trait IncrementalEncoderInstances {
 

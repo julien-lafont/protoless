@@ -1,8 +1,8 @@
-package io.protoless.core
+package io.protoless
 
 import shapeless.tag.{Tagged, Tagger}
 
-import io.protoless.core.tag.TagRestriction.NumericTagRestriction
+import io.protoless.tag.TagRestriction.NumericTagRestriction
 
 /**
   * Use Shapeless tags to refine int/long values as [[Signed]], [[Unsigned]] or [[Fixed]]..

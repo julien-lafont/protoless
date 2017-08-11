@@ -1,4 +1,4 @@
-package io.protoless.core.tag
+package io.protoless.tag
 
 /**
   * Uses variable-length encoding for Unsigned values (uint32, uint64).

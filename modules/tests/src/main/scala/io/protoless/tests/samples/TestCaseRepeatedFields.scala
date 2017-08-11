@@ -2,7 +2,7 @@ package io.protoless.tests.samples
 
 import com.google.protobuf.ByteString
 
-import io.protoless.core.tag._
+import io.protoless.tag._
 import io.protoless.tests.samples.Schemas.Color
 
 case class TestCaseRepeatedFields(

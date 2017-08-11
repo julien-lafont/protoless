@@ -1,4 +1,4 @@
-package io.protoless.core.fields
+package io.protoless.fields
 
 import scala.annotation.implicitNotFound
 import java.io.ByteArrayOutputStream
@@ -7,7 +7,7 @@ import com.google.protobuf.WireFormat.FieldType
 import com.google.protobuf.{ByteString, WireFormat, CodedOutputStream => COS}
 
 import cats.data.NonEmptyList
-import io.protoless.core.tag._
+import io.protoless.tag._
 import shapeless.{::, Generic, HList, HNil}
 
 /**

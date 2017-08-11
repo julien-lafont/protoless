@@ -3,9 +3,9 @@ package io.protoless.generic.decoding
 import com.google.protobuf.CodedInputStream
 import shapeless.{::, Generic, HList, HNil, Nat, Succ}
 
-import io.protoless.core.Decoder.Result
-import io.protoless.core.decoders.IncrementalDecoder
-import io.protoless.core.fields.FieldDecoder
+import io.protoless.Decoder.Result
+import io.protoless.decoders.IncrementalDecoder
+import io.protoless.fields.FieldDecoder
 
 trait IncrementalDecoderInstances {
 

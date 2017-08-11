@@ -1,35 +1,33 @@
 package io
 
-import shapeless.HList
-
-import io.protoless.core.{Decoder, Encoder}
-import io.protoless.core.decoders.CustomMappingDecoder
-import io.protoless.core.encoders.CustomMappingEncoder
-import io.protoless.generic.decoding.{AutoDecoderInstances, CustomMappingDecoderInstances}
+import io.protoless.decoders.CustomMappingDecoder
+import io.protoless.encoders.CustomMappingEncoder
 import io.protoless.generic.decoding.internal.{SemiAutoDecoder, SemiAutoDecoderInstances}
-import io.protoless.generic.encoding.{AutoEncoderInstances, CustomMappingEncoderInstances}
+import io.protoless.generic.decoding.{AutoDecoderInstances, CustomMappingDecoderInstances}
 import io.protoless.generic.encoding.internal.{SemiAutoEncoder, SemiAutoEncoderInstances}
+import io.protoless.generic.encoding.{AutoEncoderInstances, CustomMappingEncoderInstances}
+import shapeless.HList
 
 package object protoless {
 
   /**
-    * Automatically import [[io.protoless.core.decoders.AutoDecoder AutoDecoder]]s and
-    * [[io.protoless.core.encoders.AutoEncoder AutoEncoder]]s in scope.
+    * Allows to automatically import required [[Decoder]] and [[Encoder]] in the scope.
     *
-    * You can still derive [[io.protoless.core.decoders.CustomMappingDecoder CustomMappingDecoder]] and
-    * [[io.protoless.core.encoders.CustomMappingEncoder CustomMappingEncoder]]
-    * with `semiauto.deriveDecoder[A, L]` or by summoning an encoder with `CustomMappingEncoder[A, HList]`.
+    * Only [[decoders.AutoDecoder]] and [[encoders.AutoEncoder]] can be derived automatically.
+    *
+    * You can still derive [[decoders.CustomMappingDecoder]] and [[encoders.CustomMappingEncoder]]
+    * with `semiauto.deriveDecoder[A, L]` or by summoning a decoder with `CustomMappingDecoder[A, HList]` (idem for Encoders).
     */
   object auto extends AutoDecoderInstances with CustomMappingDecoderInstances with AutoEncoderInstances with CustomMappingEncoderInstances
 
   /**
-    * Allows to manually derive [[io.protoless.core.Decoder]] and [[io.protoless.core.Encoder]],
+    * Allows to manually derive [[Decoder]] and [[Encoder]],
     * either with `Automatic` strategy or `Custom Mapping` strategy.
     */
   object semiauto extends SemiAutoEncoderInstances with SemiAutoDecoderInstances with CustomMappingDecoderInstances with CustomMappingEncoderInstances {
 
     /**
-      * Derive an [[io.protoless.core.Decoder]] to decode a type `A` from a protobuf message, for which
+      * Derive an [[Decoder]] to decode a type `A` from a protobuf message, for which
       * each parameter is associated to a protobuf field using an `Automatic` indexing.
       *
       * ==Automatic Indexing==
@@ -57,7 +55,7 @@ package object protoless {
     def deriveDecoder[A](implicit decoder: SemiAutoDecoder[A]): Decoder[A] = decoder.underlying
 
     /**
-      * Derive an [[io.protoless.core.Decoder]] to decode a type `A` from a protobuf message, for which
+      * Derive an [[Decoder]] to decode a type `A` from a protobuf message, for which
       * you can customize the protobuf field number of each `A` parameters.
       *
       * The expected `L` HList must contains only `Nat`, and must have as many elements as the `A` has parameters.
@@ -91,7 +89,7 @@ package object protoless {
     def deriveDecoder[A, L <: HList](implicit decoder: CustomMappingDecoder[A, L]): Decoder[A] = decoder
 
     /**
-      * Derive an [[io.protoless.core.Encoder]] to encode a type `A` in a protobuf message, for which
+      * Derive an [[Encoder]] to encode a type `A` in a protobuf message, for which
       * each parameter is associated to a protobuf field using an `Automatic` indexing.
       *
       * ==Automatic Indexing==
@@ -119,7 +117,7 @@ package object protoless {
     def deriveEncoder[A](implicit encoder: SemiAutoEncoder[A]): Encoder[A] = encoder.underlying
 
     /**
-      * Derive an [[io.protoless.core.Encoder]] to encode a type `A` in a protobuf message, for which
+      * Derive an [[Encoder]] to encode a type `A` in a protobuf message, for which
       * you can customize the protobuf field number of each `A` parameters.
       *
       * The expected `L` HList must contains only `Nat`, and must have as many elements as the `A` has parameters.
