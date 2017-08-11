@@ -8,8 +8,8 @@ import org.scalacheck.{Arbitrary, Gen}
 import org.scalacheck.Arbitrary.arbitrary
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
-import io.protoless.core.tag._
-import io.protoless.core.fields.{FieldDecoder, FieldEncoder}
+import io.protoless.tag._
+import io.protoless.fields.{FieldDecoder, FieldEncoder}
 import io.protoless.tests.instances.ArbitraryInstances
 
 case class Budget(budget: Long) extends AnyVal

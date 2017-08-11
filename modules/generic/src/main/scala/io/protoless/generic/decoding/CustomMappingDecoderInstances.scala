@@ -5,9 +5,9 @@ import com.google.protobuf.CodedInputStream
 import shapeless.ops.nat.ToInt
 import shapeless.{::, Generic, HList, HNil, Nat}
 
-import io.protoless.core.decoders.CustomMappingDecoder
-import io.protoless.core.fields.FieldDecoder
-import io.protoless.core.Decoder.Result
+import io.protoless.decoders.CustomMappingDecoder
+import io.protoless.fields.FieldDecoder
+import io.protoless.Decoder.Result
 
 trait CustomMappingDecoderInstances {
 

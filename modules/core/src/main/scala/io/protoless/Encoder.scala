@@ -1,4 +1,4 @@
-package io.protoless.core
+package io.protoless
 
 import scala.annotation.implicitNotFound
 import java.io.ByteArrayOutputStream

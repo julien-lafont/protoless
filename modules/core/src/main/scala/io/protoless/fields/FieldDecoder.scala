@@ -1,4 +1,4 @@
-package io.protoless.core.fields
+package io.protoless.fields
 
 import scala.annotation.implicitNotFound
 import scala.collection.generic.CanBuildFrom
@@ -10,10 +10,10 @@ import com.google.protobuf.{ByteString, WireFormat, CodedInputStream => CIS}
 
 import shapeless.{Generic, HList, HNil}
 import cats.data.NonEmptyList
-import io.protoless.core.Decoder.Result
-import io.protoless.core.error.{DecodingFailure, MissingField, WrongFieldType}
-import io.protoless.core.tag
-import io.protoless.core.tag._
+import io.protoless.Decoder.Result
+import io.protoless.error.{DecodingFailure, MissingField, WrongFieldType}
+import io.protoless.tag
+import io.protoless.tag._
 
 /**
   * A type class that reads a single field `A` from a `CodedInputSteam`.

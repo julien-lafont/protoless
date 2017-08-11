@@ -1,6 +1,6 @@
 package io.protoless
 
-import io.protoless.core.fields.{FieldDecoder, RepeatableFieldDecoder}
+import io.protoless.fields.{FieldDecoder, RepeatableFieldDecoder}
 import io.protoless.tests.instances.EqualityInstances
 import io.protoless.tests.samples._
 

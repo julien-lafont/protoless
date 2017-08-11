@@ -1,9 +1,9 @@
-package io.protoless.core.error
+package io.protoless.error
 
 import com.google.protobuf.InvalidProtocolBufferException
 import com.google.protobuf.WireFormat.FieldType
 
-import io.protoless.core.fields.FieldTag
+import io.protoless.fields.FieldTag
 
 /**
   * An exception representing a decoding failure associated with a possible cause
@@ -53,7 +53,7 @@ object DecodingFailure {
     (5, "32-bit", "fixed32, sfixed32, float")
   )
 
-  private[core] def wireTypeDetail(wireType: Int): String = {
+  private[protoless] def wireTypeDetail(wireType: Int): String = {
     mappingWireTypeWithCompatibleType
       .find(_._1 == wireType)
       .map { case (index, name, compatible) => s"$index:$name ($compatible)" }

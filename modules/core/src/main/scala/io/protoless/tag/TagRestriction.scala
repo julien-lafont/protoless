@@ -1,4 +1,4 @@
-package io.protoless.core.tag
+package io.protoless.tag
 
 private[protoless] object TagRestriction {
 

@@ -1,9 +1,9 @@
-package io.protoless.core.encoders
+package io.protoless.encoders
 
 import scala.annotation.implicitNotFound
 import shapeless.Nat
 
-import io.protoless.core.Encoder
+import io.protoless.Encoder
 
 @implicitNotFound("No IncrementalEncoder found for type ${A} and ${N}.")
 @annotation.inductive

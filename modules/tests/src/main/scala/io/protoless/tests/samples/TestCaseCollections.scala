@@ -1,7 +1,7 @@
 package io.protoless.tests.samples
 
 import cats.data.NonEmptyList
-import io.protoless.core.tag._
+import io.protoless.tag._
 
 case class TestCaseCollections(
   d: Seq[Double],
