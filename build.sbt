@@ -68,7 +68,7 @@ lazy val settings = Seq(
 
   autoAPIMappings := true,
   libraryDependencies ++= Seq(
-    "org.typelevel" %% "cats" % "0.9.0",
+    "org.typelevel" %% "cats-core" % "1.0.0-MF",
     "com.chuusai" %% "shapeless" % "2.3.2",
     "com.google.protobuf" % "protobuf-java" % "3.3.1"
   )
@@ -97,7 +97,7 @@ lazy val tests = project.in(file("modules/tests"))
     name := "Protoless tests",
     libraryDependencies ++= Seq(
       "org.scalactic" %% "scalactic" % "3.0.3",
-      "org.scalacheck" %% "scalacheck" % "1.13.4"
+      "org.scalacheck" %% "scalacheck" % "1.13.5"
     )
   ).dependsOn(core)
 
