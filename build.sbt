@@ -50,8 +50,6 @@ lazy val settings = Seq(
     "-Ywarn-unused:privates",            // Warn if a private member is unused.
     "-Ywarn-value-discard"               // Warn when non-Unit expression results are unused.
   ),
-  scalacOptions in (Compile, doc) := (scalacOptions in (Compile, doc)).value.filter(_ != "-Xfatal-warnings"),
-
   // Typelevel-4 scala options
   scalacOptions ++= Seq(
     "-Yinduction-heuristics",       // speeds up the compilation of inductive implicit resolution
@@ -59,6 +57,15 @@ lazy val settings = Seq(
     "-Xstrict-patmat-analysis",     // more accurate reporting of failures of match exhaustivity
     "-Xlint:strict-unsealed-patmat" // warn on inexhaustive matches against unsealed traits
   ),
+
+  // scalastyle task should run on all source file
+  (scalastyleSources in Compile) ++= (unmanagedSourceDirectories in Compile).value,
+  // Ignore CustomMappingEncoderDecoderSuite test file because it use literal type, not accepted by scalastyle
+  (scalastyleSources in Test) := {
+      val scalaSourceFiles = ((scalastyleSources in Test).value ** "*.scala").get
+      scalaSourceFiles.filterNot(_.getName == "CustomMappingEncoderDecoderSuite.scala")
+  },
+
   autoAPIMappings := true,
   libraryDependencies ++= Seq(
     "org.typelevel" %% "cats" % "0.9.0",
@@ -148,3 +155,8 @@ lazy val docs = project.dependsOn(protoless, core, generic)
   .settings(settings)
   .settings(docSettings)
   .settings(noPublishSettings)
+
+
+lazy val jvmProjects = Seq[Project](protoless, core, tests, generic)
+
+addCommandAlias("validate", ";protoless/test;test:scalastyle;docs/unidoc")

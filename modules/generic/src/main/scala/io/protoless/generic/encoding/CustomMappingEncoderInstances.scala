@@ -4,6 +4,7 @@ import com.google.protobuf.CodedOutputStream
 
 import shapeless.{::, Generic, HList, HNil, Nat}
 import shapeless.ops.nat.ToInt
+
 import io.protoless.core.encoders.CustomMappingEncoder
 import io.protoless.core.fields.FieldEncoder
 
