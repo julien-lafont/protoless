@@ -18,7 +18,7 @@ trait Encoder[A] extends Serializable { self =>
   def encode(a: A, output: CodedOutputStream): Unit
 
   /**
-    * Encode the value A into an [[ByteArrayOutputStream]]
+    * Encode the value A into an ByteArrayOutputStream.
     */
   def encodeAsStream(a: A): ByteArrayOutputStream = {
     val out = new ByteArrayOutputStream()
@@ -28,14 +28,14 @@ trait Encoder[A] extends Serializable { self =>
   }
 
   /**
-    * Encode the value A and return the result in Array[Byte]
+    * Encode the value A and return the result in Array[Byte].
     */
   def encodeAsBytes(a: A): Array[Byte] = {
     encodeAsStream(a).toByteArray
   }
 
   /**
-    * Encode the value A and return the result as a [[ByteBuffer]]
+    * Encode the value A and return the result as a ByteBuffer.
     */
   def encodeAsByteBuffer(a: A): ByteBuffer = {
     ByteBuffer.wrap(encodeAsBytes(a))
