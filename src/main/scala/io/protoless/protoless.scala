@@ -13,10 +13,12 @@ import io.protoless.generic.encoding.internal.{SemiAutoEncoder, SemiAutoEncoderI
 package object protoless {
 
   /**
-    * Automatically import [[io.protoless.core.decoders.AutoDecoder]]s and [[io.protoless.core.encoders.AutoEncoder]]s in scope.
+    * Automatically import [[io.protoless.core.decoders.AutoDecoder AutoDecoder]]s and
+    * [[io.protoless.core.encoders.AutoEncoder AutoEncoder]]s in scope.
     *
-    * You can still derive [[io.protoless.core.decoders.CustomMappingDecoder]] and [[io.protoless.core.encoders.CustomMappingEncoder]]
-    * with `semiauto.deriveDecoder[A, L]` or by summoning an encoder with [[io.protoless.core.encoders.CustomMappingEncoder]][A, HList].
+    * You can still derive [[io.protoless.core.decoders.CustomMappingDecoder CustomMappingDecoder]] and
+    * [[io.protoless.core.encoders.CustomMappingEncoder CustomMappingEncoder]]
+    * with `semiauto.deriveDecoder[A, L]` or by summoning an encoder with `CustomMappingEncoder[A, HList]`.
     */
   object auto extends AutoDecoderInstances with CustomMappingDecoderInstances with AutoEncoderInstances with CustomMappingEncoderInstances
 

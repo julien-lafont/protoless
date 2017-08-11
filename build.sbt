@@ -1,5 +1,11 @@
 organization in ThisBuild := "io.protoless"
-name := "protoless"
+
+lazy val catsVersion = "1.0.0-MF"
+lazy val shapelessVersion = "2.3.2"
+lazy val protobufJavaVersion = "3.3.1"
+lazy val scalaTestVersion = "3.0.3"
+lazy val scalaticVersion = scalaTestVersion
+lazy val scalaCheckVersion = "1.13.5"
 
 lazy val settings = Seq(
   scalaVersion in ThisBuild := "2.12.3-bin-typelevel-4",
@@ -9,10 +15,7 @@ lazy val settings = Seq(
     "-encoding", "utf-8",                // Specify character encoding used by source files.
     "-explaintypes",                     // Explain type errors in more detail.
     "-feature",                          // Emit warning and location for usages of features that should be imported explicitly.
-    "-language:existentials",            // Existential types (besides wildcard types) can be written and inferred
-    "-language:experimental.macros",     // Allow macro definition (besides implementation and application)
     "-language:higherKinds",             // Allow higher-kinded types
-    "-language:implicitConversions",     // Allow definition of implicit functions called views
     "-unchecked",                        // Enable additional warnings where generated code depends on assumptions.
     "-Xcheckinit",                       // Wrap field accessors to throw an exception on uninitialized access.
     "-Xfatal-warnings",                  // Fail the compilation if there are any warnings.
@@ -65,22 +68,22 @@ lazy val settings = Seq(
       val scalaSourceFiles = ((scalastyleSources in Test).value ** "*.scala").get
       scalaSourceFiles.filterNot(_.getName == "CustomMappingEncoderDecoderSuite.scala")
   },
-
   autoAPIMappings := true,
   libraryDependencies ++= Seq(
-    "org.typelevel" %% "cats-core" % "1.0.0-MF",
-    "com.chuusai" %% "shapeless" % "2.3.2",
-    "com.google.protobuf" % "protobuf-java" % "3.3.1"
+    "org.typelevel" %% "cats-core" % catsVersion,
+    "com.chuusai" %% "shapeless" % shapelessVersion,
+    "com.google.protobuf" % "protobuf-java" % protobufJavaVersion
   )
 )
+autoAPIMappings in ThisBuild := true
 
 lazy val protoless = project.in(file("."))
   .settings(settings)
   .settings(
     libraryDependencies ++= Seq(
-      "org.scalacheck" %% "scalacheck" % "1.13.4" % "test",
-      "org.scalatest" %% "scalatest" % "3.0.3" % "test",
-      "org.scalactic" %% "scalactic" % "3.0.3" % "test"
+      "org.scalacheck" %% "scalacheck" % scalaCheckVersion % "test",
+      "org.scalatest" %% "scalatest" % scalaTestVersion % "test",
+      "org.scalactic" %% "scalactic" % scalaticVersion % "test"
     )
   )
   .dependsOn(core, generic, tests % Test)
@@ -96,8 +99,8 @@ lazy val tests = project.in(file("modules/tests"))
   .settings(
     name := "Protoless tests",
     libraryDependencies ++= Seq(
-      "org.scalactic" %% "scalactic" % "3.0.3",
-      "org.scalacheck" %% "scalacheck" % "1.13.5"
+      "org.scalactic" %% "scalactic" % scalaticVersion,
+      "org.scalacheck" %% "scalacheck" % scalaCheckVersion
     )
   ).dependsOn(core)
 
@@ -107,6 +110,14 @@ lazy val generic = project.in(file("modules/generic"))
     name := "Protoless generic"
   )
   .dependsOn(core, tests % Test)
+
+lazy val docs = project.dependsOn(protoless, core, generic)
+  .enablePlugins(ScalaUnidocPlugin)
+  .enablePlugins(GhpagesPlugin)
+  .enablePlugins(MicrositesPlugin)
+  .settings(settings)
+  .settings(docSettings)
+  .settings(noPublishSettings)
 
 
 lazy val noPublishSettings = Seq(
@@ -125,15 +136,7 @@ lazy val docSettings = Seq(
   micrositeDocumentationUrl := "api",
   micrositeGithubOwner := "studiodev",
   micrositeGithubRepo := "protoless",
-  micrositePalette := Map(
-    "brand-primary" -> "#5B5988",
-    "brand-secondary" -> "#292E53",
-    "brand-tertiary" -> "#222749",
-    "gray-dark" -> "#49494B",
-    "gray" -> "#7B7B7E",
-    "gray-light" -> "#E5E5E6",
-    "gray-lighter" -> "#F4F3F4",
-    "white-color" -> "#FFFFFF"),
+  /*micrositePalette := Map(),*/ // TODO
   addMappingsToSiteDir(mappings in (ScalaUnidoc, packageDoc), micrositeDocumentationUrl),
   ghpagesNoJekyll := false,
   scalacOptions in (ScalaUnidoc, unidoc) ++= Seq(
@@ -147,15 +150,6 @@ lazy val docSettings = Seq(
   git.remoteRepo := "git@github.com:studiodev/aeroless.git",
   includeFilter in makeSite := "*.html" | "*.css" | "*.png" | "*.jpg" | "*.gif" | "*.svg" | "*.js" | "*.swf" | "*.yml" | "*.md"
 )
-
-lazy val docs = project.dependsOn(protoless, core, generic)
-  .enablePlugins(ScalaUnidocPlugin)
-  .enablePlugins(GhpagesPlugin)
-  .enablePlugins(MicrositesPlugin)
-  .settings(settings)
-  .settings(docSettings)
-  .settings(noPublishSettings)
-
 
 lazy val jvmProjects = Seq[Project](protoless, core, tests, generic)
 
