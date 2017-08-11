@@ -1,12 +1,13 @@
 package io.protoless.generic.decoding
 
 import com.google.protobuf.CodedInputStream
-import shapeless.{::, Generic, HList, HNil, Nat}
-import shapeless.ops.nat.ToInt
 
-import io.protoless.core.Decoder.Result
+import shapeless.ops.nat.ToInt
+import shapeless.{::, Generic, HList, HNil, Nat}
+
 import io.protoless.core.decoders.CustomMappingDecoder
 import io.protoless.core.fields.FieldDecoder
+import io.protoless.core.Decoder.Result
 
 trait CustomMappingDecoderInstances {
 

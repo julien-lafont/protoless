@@ -157,7 +157,7 @@ object FieldDecoder extends MidPriorityFieldDecoder {
     *
     * @group Utilities
     */
-  final def failed[A](failure: String) = new FieldDecoder[A] {
+  final def failed[A](failure: String): FieldDecoder[A] = new FieldDecoder[A] {
     override def read(input: CIS, index: Int): Result[A] = Left(DecodingFailure(failure))
   }
 

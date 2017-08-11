@@ -44,7 +44,7 @@ trait Encoder[A] extends Serializable { self =>
   /**
     * Create a new [[Encoder]] by applying a function to a value of type `B` before writing as an A.
     */
-  final def contramap[B](f: B => A) = new Encoder[B] {
+  final def contramap[B](f: B => A): Encoder[B] = new Encoder[B] {
     final def encode(b: B, output: CodedOutputStream): Unit = self.encode(f(b), output)
   }
 
@@ -65,7 +65,7 @@ final object Encoder {
     *
     * @param writeOperation how to write the object `A` in the `CodedOutputStream`.
     */
-  def instance[A](writeOperation: A => CodedOutputStream => Unit) = new Encoder[A] {
+  def instance[A](writeOperation: A => CodedOutputStream => Unit): Encoder[A] = new Encoder[A] {
     override def encode(a: A, output: CodedOutputStream): Unit = writeOperation(a)(output)
   }
 

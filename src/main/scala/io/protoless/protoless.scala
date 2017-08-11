@@ -2,13 +2,13 @@ package io
 
 import shapeless.HList
 
+import io.protoless.core.{Decoder, Encoder}
 import io.protoless.core.decoders.CustomMappingDecoder
 import io.protoless.core.encoders.CustomMappingEncoder
-import io.protoless.core.{Decoder, Encoder}
-import io.protoless.generic.decoding.internal.{SemiAutoDecoder, SemiAutoDecoderInstances}
 import io.protoless.generic.decoding.{AutoDecoderInstances, CustomMappingDecoderInstances}
-import io.protoless.generic.encoding.internal.{SemiAutoEncoder, SemiAutoEncoderInstances}
+import io.protoless.generic.decoding.internal.{SemiAutoDecoder, SemiAutoDecoderInstances}
 import io.protoless.generic.encoding.{AutoEncoderInstances, CustomMappingEncoderInstances}
+import io.protoless.generic.encoding.internal.{SemiAutoEncoder, SemiAutoEncoderInstances}
 
 package object protoless {
 
