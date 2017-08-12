@@ -93,6 +93,11 @@ lazy val settings = Seq(
     "-Xfatal-warnings"
   ))),
 
+  // Warnings in scaladoc must not fail the build
+  scalacOptions in (Compile, doc)  ~= (_.filterNot(Set(
+    "-Xfatal-warnings"
+  ))),
+
   // scalastyle task should run on all source file
   (scalastyleSources in Compile) ++= (unmanagedSourceDirectories in Compile).value,
 
@@ -137,6 +142,7 @@ lazy val protoless = project.in(file("."))
 
 lazy val core = project.in(file("modules/core"))
   .settings(settings)
+  .settings(publishSettings)
   .settings(
     name := "Protoless core",
     libraryDependencies ++= Seq(
@@ -162,6 +168,7 @@ lazy val testing = project.in(file("modules/testing"))
 
 lazy val generic = project.in(file("modules/generic"))
   .settings(settings)
+  .settings(publishSettings)
   .settings(
     name := "Protoless generic",
     libraryDependencies ++= Seq(
@@ -172,6 +179,7 @@ lazy val generic = project.in(file("modules/generic"))
 
 lazy val tagging = project.in(file("modules/tagging"))
   .settings(settings)
+  .settings(noPublishSettings)
   .settings(
     name := "Protoless tagging",
     libraryDependencies ++= Seq(
@@ -224,6 +232,26 @@ lazy val docSettings = Seq(
   includeFilter in makeSite := "*.html" | "*.css" | "*.png" | "*.jpg" | "*.gif" | "*.svg" | "*.js" | "*.swf" | "*.yml" | "*.md"
 )
 
-lazy val jvmProjects = Seq[Project](protoless, core, testing, generic)
+lazy val publishSettings = Seq(
+  releaseCrossBuild := true,
+  releasePublishArtifactsAction := PgpKeys.publishSigned.value,
+  homepage := Some(url("https://github.com/julien-lafont/protoless")),
+  licenses := Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
+  publishMavenStyle := true,
+  publishArtifact in Test := false,
+  pomIncludeRepository := { _ => false },
+  autoAPIMappings := true,
+  apiURL := Some(url("https://julien-lafont.github.io/protoless/api/")),
+  scmInfo := Some(
+    ScmInfo(
+      url("https://github.com/julien-lafont/protoless"),
+      "scm:git:git@github.com:julien-lafont/protoless.git"
+    )
+  ),
+  developers := List(
+    Developer("julien-lafont", "Julien Lafont", "yotsumi.fx@gmail.com",
+      url("https://twitter.com/julien_lafont"))
+  )
+)
 
 addCommandAlias("validate", ";protoless/test;test:scalastyle;docs/unidoc")
