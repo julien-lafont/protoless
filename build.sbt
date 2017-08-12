@@ -251,7 +251,8 @@ lazy val publishSettings = Seq(
   developers := List(
     Developer("julien-lafont", "Julien Lafont", "yotsumi.fx@gmail.com",
       url("https://twitter.com/julien_lafont"))
-  )
+  ),
+  bintrayOrganization := Some("julien_lafont")
 )
 
 addCommandAlias("validate", ";protoless/test;test:scalastyle;docs/unidoc")
