@@ -10,4 +10,8 @@ package object syntax {
     final def asProtobufStream(implicit encoder: Encoder[A]): ByteArrayOutputStream = encoder.encodeAsStream(wrappedEncodeable)
   }
 
+  implicit final class DecoderOps(val bytes: Array[Byte]) extends AnyVal {
+    final def as[A](implicit decoder: Decoder[A]): Decoder.Result[A] = decoder.decode(bytes)
+  }
+
 }

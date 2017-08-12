@@ -1,5 +1,13 @@
 options:
 
-  - title: Parsing Protobuf
-    url: parsing.html
+  - title: Design
+    url: design.html
 
+  - title: Message Encoder & Decoder
+    url: message.html
+
+  - title: field Encoder & Decoder
+    url: field.html
+
+  - title: Type mapping
+    url: mapping.html
