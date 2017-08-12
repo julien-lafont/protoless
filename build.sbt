@@ -208,10 +208,10 @@ lazy val docSettings = Seq(
   micrositeAuthor := "Julien Lafont",
   micrositeTwitterCreator := "@julien_lafont",
   micrositeHighlightTheme := "atom-one-light",
-  micrositeHomepage := "https://julien-lafont.github.io/protoless",
+  micrositeHomepage := "https://julien_lafont.gitlab.io/protoless",
   micrositeDocumentationUrl := "api",
-  micrositeGithubOwner := "julien-lafont",
-  micrositeGithubRepo := "protoless",
+  micrositeGitHostingService := GitLab,
+  micrositeGitHostingUrl := "https://gitlab.com/julien_lafont/protoless",
   micrositeGitterChannel := true,
   micrositeGitterChannelUrl := "julien-lafont/protoless",
   micrositeHighlightTheme := "atom-one-dark",
@@ -226,7 +226,7 @@ lazy val docSettings = Seq(
     "-sourcepath", baseDirectory.in(LocalRootProject).value.getAbsolutePath,
     "-doc-root-content", (resourceDirectory.in(Compile).value / "rootdoc.txt").getAbsolutePath
   ),
-  git.remoteRepo := "git@github.com:julien-lafont/protoless.git",
+  git.remoteRepo := "git@gitlab.com:julien_lafont/protoless.git",
   unidocProjectFilter in (ScalaUnidoc, unidoc) :=
     inAnyProject,
   includeFilter in makeSite := "*.html" | "*.css" | "*.png" | "*.jpg" | "*.gif" | "*.svg" | "*.js" | "*.swf" | "*.yml" | "*.md"
@@ -235,17 +235,17 @@ lazy val docSettings = Seq(
 lazy val publishSettings = Seq(
   releaseCrossBuild := true,
   releasePublishArtifactsAction := PgpKeys.publishSigned.value,
-  homepage := Some(url("https://github.com/julien-lafont/protoless")),
+  homepage := Some(url("https://gitlab.com/julien_lafont/protoless")),
   licenses := Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
   publishMavenStyle := true,
   publishArtifact in Test := false,
   pomIncludeRepository := { _ => false },
   autoAPIMappings := true,
-  apiURL := Some(url("https://julien-lafont.github.io/protoless/api/")),
+  apiURL := Some(url("https://julien_lafont.gitlab.io/protoless/api/")),
   scmInfo := Some(
     ScmInfo(
-      url("https://github.com/julien-lafont/protoless"),
-      "scm:git:git@github.com:julien-lafont/protoless.git"
+      url("https://gitlab.com/julien_lafont/protoless"),
+      "scm:git@gitlab.com:julien_lafont/protoless.git"
     )
   ),
   developers := List(
