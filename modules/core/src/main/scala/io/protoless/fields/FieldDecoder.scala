@@ -176,7 +176,10 @@ object FieldDecoder extends MidPriorityFieldDecoder {
       // Check if the type match, except if fieldType=2 for repeatedfields
       else if (tag.wireType != 2 && tag.wireType != expectedType.getWireType) Left(WrongFieldType(expectedType, tag))
       // else try to decode the input
-      else Try(r(input)).toEither.left.map(DecodingFailure.fromThrowable(_, index))
+      else Try(r(input)) match {
+        case Success(b) => Right(b)
+        case Failure(ex) => Left(DecodingFailure.fromThrowable(ex, index))
+      }
     }
   }
 
@@ -285,7 +288,7 @@ object FieldDecoder extends MidPriorityFieldDecoder {
     *
     * {{{
     *   object WeekDay extends Enumeration { ... }
-    *   implicit val weekDayDecoder = Decoder.decodeEnum(WeekDay)
+    *   implicit val weekDayDecoder: Decoder[WeekDay#Value] = Decoder.decodeEnum(WeekDay)
     * }}}
     *
     * @group Decoding
@@ -300,7 +303,7 @@ object FieldDecoder extends MidPriorityFieldDecoder {
   implicit final def decodeOption[A](implicit dec: RepeatableFieldDecoder[A]): RepeatableFieldDecoder[Option[A]] = new RepeatableFieldDecoder[Option[A]] {
     override def read(input: CIS, index: Int): Result[Option[A]] = {
       val tag = readTag(input, index)
-      if (tag.fieldNumber == index) dec.read(input, index).map(Some.apply)
+      if (tag.fieldNumber == index) dec.read(input, index).right.map(Some.apply)
       else Right(None)
     }
     override def fieldType: FieldType = dec.fieldType

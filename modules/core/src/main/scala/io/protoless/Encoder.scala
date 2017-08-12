@@ -8,6 +8,11 @@ import com.google.protobuf.CodedOutputStream
 
 /**
   * Interface for all Encoder implementations.
+  *
+  * Allows to encode instances of `A` as protobuf3 serialized message.
+  *
+  * Encoding can be done with `Automatic` strategy with [[encoders.AutoEncoder]], or by specifying
+  * a custom protobuf mapping with [[encoders.CustomMappingEncoder]].
   */
 @implicitNotFound("No Encoder found for type ${A}.")
 trait Encoder[A] extends Serializable { self =>
