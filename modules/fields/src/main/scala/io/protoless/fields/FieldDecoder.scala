@@ -1,18 +1,18 @@
 package io.protoless.fields
 
 import scala.annotation.implicitNotFound
-import scala.collection.generic.CanBuildFrom
 import scala.collection.mutable
+import scala.collection.generic.CanBuildFrom
 import scala.util.{Failure, Success, Try}
 
-import com.google.protobuf.WireFormat.FieldType
 import com.google.protobuf.{ByteString, WireFormat, CodedInputStream => CIS}
-
+import com.google.protobuf.WireFormat.FieldType
 import shapeless.{Generic, HList, HNil}
+
 import cats.data.NonEmptyList
+import io.protoless.tag
 import io.protoless.Decoder.Result
 import io.protoless.error.{DecodingFailure, MissingField, WrongFieldType}
-import io.protoless.tag
 import io.protoless.tag._
 
 /**
@@ -172,9 +172,9 @@ object FieldDecoder extends MidPriorityFieldDecoder {
       val tag = readTag(input, index)
 
       // Check that the fieldNumber match the current index
-      if (tag.fieldNumber != index) Left(MissingField(index, expectedType, tag))
+      if (tag.fieldNumber != index) Left(MissingField(index, expectedType, tag.wireType, tag.fieldNumber))
       // Check if the type match, except if fieldType=2 for repeatedfields
-      else if (tag.wireType != 2 && tag.wireType != expectedType.getWireType) Left(WrongFieldType(expectedType, tag))
+      else if (tag.wireType != 2 && tag.wireType != expectedType.getWireType) Left(WrongFieldType(expectedType, tag.fieldNumber, tag.wireType))
       // else try to decode the input
       else Try(r(input)) match {
         case Success(b) => Right(b)
@@ -406,11 +406,13 @@ trait LowPriorityFieldDecoder {
     else FieldTag(input.readTag())
   }
 
+  protected[protoless] case class FieldTag private(fieldNumber: Int, wireType: Int)
+  protected[protoless] object FieldTag {
+    def apply(tag: Int): FieldTag = {
+      FieldTag(WireFormat.getTagFieldNumber(tag), WireFormat.getTagWireType(tag))
+    }
+  }
+
+
 }
 
-private[protoless] case class FieldTag private(fieldNumber: Int, wireType: Int, tag: Int)
-private[protoless] object FieldTag {
-  def apply(tag: Int): FieldTag = {
-    FieldTag(WireFormat.getTagFieldNumber(tag), WireFormat.getTagWireType(tag), tag)
-  }
-}

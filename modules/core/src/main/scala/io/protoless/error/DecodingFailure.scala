@@ -3,25 +3,21 @@ package io.protoless.error
 import com.google.protobuf.InvalidProtocolBufferException
 import com.google.protobuf.WireFormat.FieldType
 
-import io.protoless.fields.FieldTag
-
 /**
   * An exception representing a decoding failure associated with a possible cause
   */
 sealed class DecodingFailure(message: String, cause: Option[Throwable] = None)
   extends Exception(message, cause.orNull)
 
-case class MissingField(index: Int, fieldType: FieldType, tag: FieldTag) extends DecodingFailure(
+case class MissingField(index: Int, fieldType: FieldType, wireType: Int, fieldNumber: Int) extends DecodingFailure(
   "Field not present in protobuff message.\n" +
   s"Expected to read field at index $index with type ${fieldType.getJavaType.name()}, " +
-  s"but next index is ${tag.fieldNumber} with wire type ${DecodingFailure.wireTypeDetail(tag.wireType)} " +
-  s"[raw tag: ${tag.tag}]")
+  s"but next index is $fieldNumber with wire type ${DecodingFailure.wireTypeDetail(wireType)}")
 
-case class WrongFieldType(expectedType: FieldType, tag: FieldTag) extends DecodingFailure(
-  s"Field read at index ${tag.fieldNumber} doesn't meet field type requirements. " +
+case class WrongFieldType(expectedType: FieldType, fieldNumber: Int, wireType: Int) extends DecodingFailure(
+  s"Field read at index $fieldNumber doesn't meet field type requirements. " +
   s"Expected type ${expectedType.getJavaType.name()} (wire: ${expectedType.getWireType}) " +
-  s"but wire type read is ${DecodingFailure.wireTypeDetail(tag.wireType)} " +
-  s"[raw tag: ${tag.tag}]"
+  s"but wire type read is ${DecodingFailure.wireTypeDetail(wireType)}"
 )
 
 case class InternalProtobufError(message: String, cause: Throwable) extends DecodingFailure(message, Some(cause))
@@ -29,7 +25,7 @@ case class InternalProtobufError(message: String, cause: Throwable) extends Deco
 object DecodingFailure {
 
   /**
-    * Transform a generic Exception into a [[DecodingFailure]] associated with the `field number` of the failure`.
+    * Transform a generic Exception into a [[DecodingFailure]] associated with the `field number` of the failure.
     */
   def fromThrowable(ex: Throwable, index: Int): InternalProtobufError = ex match {
     case err: InvalidProtocolBufferException =>
@@ -40,7 +36,7 @@ object DecodingFailure {
   }
 
   /**
-    * Build a [[DecodingFailure]] from a message
+    * Build a [[DecodingFailure]] from a message.
     */
   def apply(message: String): DecodingFailure = new DecodingFailure(message)
 
