@@ -6,8 +6,8 @@ import java.io.ByteArrayOutputStream
 import com.google.protobuf.{ByteString, WireFormat, CodedOutputStream => COS}
 import com.google.protobuf.WireFormat.FieldType
 import shapeless.Unwrapped
-
 import cats.data.NonEmptyList
+
 import io.protoless.Encoder
 import io.protoless.tag._
 
