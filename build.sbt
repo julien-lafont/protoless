@@ -122,8 +122,6 @@ lazy val settings = Seq(
   )
 )
 
-
-
 lazy val protoless = project.in(file("."))
   .settings(settings)
   .settings(noPublishSettings)
@@ -136,8 +134,8 @@ lazy val protoless = project.in(file("."))
         |import io.protoless.syntax._
       """.stripMargin
     )
-  .dependsOn(core, tagging, generic)
-  .aggregate(core, tagging, generic, docs)
+  .dependsOn(core, tagging, generic, fields)
+  .aggregate(core, tagging, generic, fields, docs)
 
 
 lazy val core = project.in(file("modules/core"))
@@ -175,7 +173,19 @@ lazy val generic = project.in(file("modules/generic"))
       "com.chuusai" %% "shapeless" % shapelessVersion
     )
   )
+  .dependsOn(core, fields, tagging, testing % Test)
+
+lazy val fields = project.in(file("modules/fields"))
+  .settings(settings)
+  .settings(noPublishSettings)
+  .settings(
+    name := "Protoless fields",
+    libraryDependencies ++= Seq(
+      "com.chuusai" %% "shapeless" % shapelessVersion
+    )
+  )
   .dependsOn(core, tagging, testing % Test)
+
 
 lazy val tagging = project.in(file("modules/tagging"))
   .settings(settings)

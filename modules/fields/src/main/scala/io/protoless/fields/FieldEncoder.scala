@@ -3,12 +3,12 @@ package io.protoless.fields
 import scala.annotation.implicitNotFound
 import java.io.ByteArrayOutputStream
 
-import com.google.protobuf.WireFormat.FieldType
 import com.google.protobuf.{ByteString, WireFormat, CodedOutputStream => COS}
+import com.google.protobuf.WireFormat.FieldType
+import shapeless.{::, Generic, HList, HNil}
 
 import cats.data.NonEmptyList
 import io.protoless.tag._
-import shapeless.{::, Generic, HList, HNil}
 
 /**
   * A type class that write a single field `A` into a `CodedOutputStream`.
