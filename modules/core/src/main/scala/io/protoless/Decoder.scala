@@ -1,7 +1,7 @@
 package io.protoless
 
 import scala.annotation.implicitNotFound
-import scala.util.Try
+import scala.util.{Failure, Success, Try}
 import java.io.InputStream
 import java.nio.ByteBuffer
 
@@ -12,6 +12,12 @@ import io.protoless.error.DecodingFailure
 
 /**
   * Interface for all Decoder implementations.
+  *
+  * Allows to decode protobuf3 serialized message in type `A`. If the message is not compatible with `A`,
+  * return a [[error.DecodingFailure]].
+  *
+  * Decoding can be done with `Automatic` strategy with [[decoders.AutoDecoder]], or by specifying
+  * a custom protobuf mapping with [[decoders.CustomMappingDecoder]].
   */
 @implicitNotFound("No Decoder found for type ${A}.")
 trait Decoder[A] extends Serializable { self =>
@@ -79,7 +85,10 @@ trait Decoder[A] extends Serializable { self =>
     final def decode(input: CIS): Result[B] = {
       for {
         a <- self.decode(input).right
-        b <- f(a).toEither.left.map(DecodingFailure.fromThrowable(_, 0)).right
+        b <- (f(a) match {
+          case Failure(ex) => Left(DecodingFailure.fromThrowable(ex, 0))
+          case Success(v) => Right(v)
+        }).right
       } yield b
     }
   }

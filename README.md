@@ -18,25 +18,22 @@ libraryDependencies += "io.protoless" %% "protoless-core" % "0.0.1"
 
 Then type sbt console to start a REPL and then paste the following:
 
-//TODO: io.protoless.generic.syntax._
 
 ```scala
-import io.protoless._, io.protoless.syntax._, io.protoless.auto._.
-// import io.protoless._
-// import io.protoless.auto._
-// import io.protoless.syntax._
+import io.protoless._, io.protoless.syntax._, io.protoless.generic.auto._
 
 case class Person(firstname: String, lastname: String, age: Option[Int], locations: Seq[String])
 // defined class Person
 
-val p = Person("John", "Doe", Some(28), Seq("Paris", "London", "New York")
+val p = Person("John", "Doe", Some(28), Seq("Paris", "London", "New York"))
 // p: Person = Right(Person(John, Doe, Some(28), Seq(Paris, London, New York)
 
-val bytes = p.asProtobufBytes
-// bytes: Array[Byte] = [raw protobuf representation in bytes]
+p.asProtobufBytes
+// res0: Array[Byte] = Array(10, 4, 74, 111, 104, 110, 18, ...)
 
-Decoder[Person).decode(bytes)
+Decoder[Person].decode(p.asProtobufBytes)
 // res0: Either[io.protoless.DecodingFailure, Person] = Right(Person(John, Doe, Some(28), Seq(Paris, London, New York)
+
 ```
 
 No boilerplate, no runtime reflection, no runtime cost.
