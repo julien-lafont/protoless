@@ -13,3 +13,5 @@ addSbtPlugin("com.47deg"  % "sbt-microsites" % "0.6.1")
 addSbtPlugin("com.typesafe.sbt" % "sbt-ghpages" % "0.6.1")
 
 addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "0.9.0")
+
+addSbtPlugin("org.foundweekends" % "sbt-bintray" % "0.5.1")

@@ -234,9 +234,8 @@ lazy val docSettings = Seq(
 
 lazy val publishSettings = Seq(
   releaseCrossBuild := true,
-  releasePublishArtifactsAction := PgpKeys.publishSigned.value,
   homepage := Some(url("https://github.com/julien-lafont/protoless")),
-  licenses := Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
+  licenses := Seq("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
   publishMavenStyle := true,
   publishArtifact in Test := false,
   pomIncludeRepository := { _ => false },
@@ -251,7 +250,8 @@ lazy val publishSettings = Seq(
   developers := List(
     Developer("julien-lafont", "Julien Lafont", "yotsumi.fx@gmail.com",
       url("https://twitter.com/julien_lafont"))
-  )
+  ),
+  bintrayOrganization := Some("julien-lafont")
 )
 
 addCommandAlias("validate", ";protoless/test;test:scalastyle;docs/unidoc")
