@@ -38,6 +38,10 @@ class AutoEncoderDecoderSuite extends ProtolessSuite with EqualityInstances with
     "custom types (uuid, bigdecimal, char)" in {
       testEncoding(TestCaseCustomType)
     }
+
+    "nested fields" in {
+      testEncoding(TestCaseNested)
+    }
   }
 
   "Auto Decoder must convert protobuf format to case class for" - {
@@ -67,6 +71,10 @@ class AutoEncoderDecoderSuite extends ProtolessSuite with EqualityInstances with
     "custom types (uuid, bigdecimal, char)" in {
       testDecoding(TestCaseCustomType)
     }
+
+    "nested fields" in {
+      testDecoding(TestCaseNested)
+    }
   }
 
   "Auto Encoders/Decoders must respect law: encode(i) === encode(decode(encode(i))" - {
@@ -95,6 +103,10 @@ class AutoEncoderDecoderSuite extends ProtolessSuite with EqualityInstances with
 
     "custom types (uuid, bigdecimal, char)" in {
       testFullCycle(TestCaseCustomType)
+    }
+
+    "nested fields" in {
+      testFullCycle(TestCaseNested)
     }
   }
 

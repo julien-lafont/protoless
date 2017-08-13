@@ -8,6 +8,7 @@ import com.google.protobuf.WireFormat.FieldType
 import shapeless.Unwrapped
 
 import cats.data.NonEmptyList
+import io.protoless.Encoder
 import io.protoless.tag._
 
 /**
@@ -277,6 +278,36 @@ trait MidPriorityFieldEncoder extends LowPriorityFieldEncoder {
 trait LowPriorityFieldEncoder extends FieldEncoderHelpers {
 
   /**
+    * Allows to encode a message for which we have en `Encoder[A]` as a nested (repeated) field.
+    *
+    * @group Encoding
+    */
+  implicit final def encodeNestedMessage[A](implicit enc: Encoder[A]): RepeatableFieldEncoder[A] = new RepeatableFieldEncoder[A] {
+    override def writeRepeated(a: A, output: COS): Unit = {
+
+      // FIXME: Could be calculated without internal buffer if packed field type is known (or atomic size is known)
+      val subOutput = new ByteArrayOutputStream()
+      val cos = COS.newInstance(subOutput)
+      enc.encode(a, cos)
+      cos.flush()
+      val subOutputBytes = subOutput.toByteArray
+
+      // Write raw byte array following it's size
+      output.writeByteArrayNoTag(subOutputBytes)
+    }
+
+    override def write(index: Int, a: A, output: COS): Unit = {
+      // Write index + WireType: 2 (length delimited)
+      output.writeTag(index, WireFormat.WIRETYPE_LENGTH_DELIMITED)
+
+      // And then write raw representation of nested message
+      writeRepeated(a, output)
+    }
+
+    override def fieldType: FieldType = FieldType.MESSAGE
+  }
+
+  /**
     * @group Collection
     */
   implicit final def encodeTraversable[A](implicit enc: RepeatableFieldEncoder[A]): FieldEncoder[Traversable[A]] = new FieldEncoder[Traversable[A]] {
@@ -304,7 +335,7 @@ trait LowPriorityFieldEncoder extends FieldEncoderHelpers {
           output.writeByteArrayNoTag(subOutputBytes)
         }
 
-        // Non package fields are written one after the other by repeating the tag
+        // Non packable fields are written one after the other by simply repeating the tag
         else {
           list.foreach(enc.write(index, _, output))
         }
