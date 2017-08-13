@@ -5,7 +5,7 @@ import java.io.ByteArrayOutputStream
 
 import com.google.protobuf.{ByteString, WireFormat, CodedOutputStream => COS}
 import com.google.protobuf.WireFormat.FieldType
-import shapeless.{::, Generic, HList, HNil}
+import shapeless.Unwrapped
 
 import cats.data.NonEmptyList
 import io.protoless.tag._
@@ -20,6 +20,17 @@ trait FieldEncoder[A] extends Serializable { self =>
     * Write the field `A` into the protobuf OutputStream with field number `index`.
     */
   def write(index: Int, a: A, output: COS): Unit
+
+  /**
+    * Encode the field `A` and return the result in Array[Byte].
+    */
+  def encodeAsByte(index: Int, a: A): Array[Byte] = {
+    val out = new ByteArrayOutputStream()
+    val cos = COS.newInstance(out)
+    write(index, a, cos)
+    cos.flush()
+    out.toByteArray
+  }
 
   /**
     * Create a new [[FieldEncoder]] by applying a function to a value of type `B` before writing as an A.
@@ -78,15 +89,7 @@ object FieldEncoder extends MidPriorityFieldEncoder {
     *
     * @group Utilities
     */
-  final def apply[A](instance: FieldEncoder[A]): FieldEncoder[A] = instance
-
-  /**
-    * Return a RepeatableFieldEncoder instance for a given type `A`.
-    *
-    * @group Utilities
-    */
-  final def repeatable[A](instance: RepeatableFieldEncoder[A]): RepeatableFieldEncoder[A] = instance
-
+  final def apply[A](implicit instance: FieldEncoder[A]): FieldEncoder[A] = instance
 
   /**
     * @group EncodingNative
@@ -214,13 +217,12 @@ object FieldEncoder extends MidPriorityFieldEncoder {
     *
     * @group Encoding
     */
-  implicit final def encodeValueClass[A, R <: HList](implicit gen: Generic.Aux[A, R], enc: FieldEncoder[R] ): FieldEncoder[A] = {
-    enc.contramap[A](gen.to)
-  }
+  implicit final def encodeValueClass[A, R](implicit
+    ev: A <:< AnyVal,
+    unwrapped: Unwrapped.Aux[A, R],
+    enc: FieldEncoder[R]
+  ): FieldEncoder[A] = enc.contramap[A](unwrapped.unwrap)
 
-  implicit private[protoless] final def encodeHeadHList[H](implicit enc: FieldEncoder[H]): FieldEncoder[H :: HNil] = {
-    enc.contramap[H :: HNil](_.head)
-  }
 }
 
 trait MidPriorityFieldEncoder extends LowPriorityFieldEncoder {
