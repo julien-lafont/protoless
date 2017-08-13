@@ -19,14 +19,28 @@ trait EncoderDecoderHelpers {
   protected def testDecoding[X](testCase: TestCase[X])(implicit dec: Decoder[X], eq: Equality[X]): Assertion = {
     val bytes = testCase.protobuf.toByteArray
     val decoded = dec.decode(bytes)
-    decoded.right.value must ===(testCase.source)
+
+    decoded match {
+      case Right(res) => res must ===(testCase.source)
+      case Left(err) =>
+        err.printStackTrace()
+        fail(err)
+    }
   }
 
   protected def testFullCycle[X](testCase: TestCase[X])(implicit dec: Decoder[X], enc: Encoder[X]): Assertion = {
     val bytes = enc.encodeAsBytes(testCase.source)
-    val origin = dec.decode(bytes)
-    val rebytes = origin.right.map(enc.encodeAsBytes)
-    bytes must ===(rebytes.right.get)
+    val decoded = dec.decode(bytes)
+
+    decoded match {
+      case Right(res) =>
+        val rebytes = enc.encodeAsBytes(res)
+        bytes must ===(rebytes)
+
+      case Left(err) =>
+        err.printStackTrace()
+        fail(err)
+    }
   }
 
 }

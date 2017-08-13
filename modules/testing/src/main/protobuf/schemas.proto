@@ -1,8 +1,5 @@
 syntax = "proto3";
 
-// Compile proto schema to java files with:
-// `protoc modules/tests/src/main/protobuf/schemas.proto --java_out=modules/tests/src/main/java`
-
 package io.protoless.tests.samples;
 
 enum Color {
@@ -81,7 +78,7 @@ message Custom {
 
 message Nested {
   double d = 1;
-  Custom m = 2;
-  repeated Custom rm = 3;
-  bool b = 4;
+  Custom m1 = 2;
+  Custom m2 = 3;
+  repeated Custom rm = 4;
 }

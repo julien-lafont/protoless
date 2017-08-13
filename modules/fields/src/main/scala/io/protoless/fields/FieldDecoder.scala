@@ -10,7 +10,7 @@ import com.google.protobuf.WireFormat.FieldType
 import shapeless.Unwrapped
 
 import cats.data.NonEmptyList
-import io.protoless.tag
+import io.protoless.{tag, Decoder}
 import io.protoless.Decoder.Result
 import io.protoless.error.{DecodingFailure, MissingField, WrongFieldType}
 import io.protoless.tag._
@@ -297,6 +297,7 @@ object FieldDecoder extends MidPriorityFieldDecoder {
     Try(enum(v)).orElse(Failure(new DecodingFailure(s"Cannot find value at index $v in enum $enum")))
   )
 
+
   /**
     * @group Decoding
     */
@@ -320,10 +321,6 @@ object FieldDecoder extends MidPriorityFieldDecoder {
     dec: FieldDecoder[R]
   ): FieldDecoder[A] = dec.map(unwrapped.wrap)
 
-}
-
-trait MidPriorityFieldDecoder extends LowPriorityFieldDecoder {
-
   /**
     * @group Collection
     */
@@ -331,6 +328,33 @@ trait MidPriorityFieldDecoder extends LowPriorityFieldDecoder {
     case head :: tail => FieldDecoder.const(NonEmptyList(head, tail))
     case _ => FieldDecoder.failed("NonEmptyList cannot be empty")
   }
+}
+
+trait MidPriorityFieldDecoder extends LowPriorityFieldDecoder {
+
+  /**
+    * Allow to decode a message `A` as a nested field if we have a `Decoder[A]`.
+    *
+    * @group Decoding
+    */
+  implicit final def decodeNestedMessage[A](implicit dec: Decoder[A]): RepeatableFieldDecoder[A] = new RepeatableFieldDecoder[A] {
+    override def read(input: CIS, index: Int): Result[A] = {
+      val tag = readTag(input, index)
+      if (tag.wireType == WireFormat.FieldType.MESSAGE.getWireType)  {
+
+        val messageBytes = input.readByteArray()
+        dec.decode(messageBytes)
+      } else {
+        Left(DecodingFailure(s"Try to read nested message (with wireType=${WireFormat.FieldType.MESSAGE.getWireType}, but found ${tag.wireType}."))
+      }
+    }
+
+    /**
+      * Type of the target protobuf field, required to choose the decoding strategy (packed, length-delimited).
+      */
+    override def fieldType: FieldType = FieldType.MESSAGE
+  }
+
 }
 
 trait LowPriorityFieldDecoder {
@@ -370,6 +394,7 @@ trait LowPriorityFieldDecoder {
     }
 
     override def read(input: CIS, index: Int): Result[C[A]] = {
+
       val tag = readTag(input, index)
 
       if (tag.fieldNumber > index) Right(cbf.apply().result())

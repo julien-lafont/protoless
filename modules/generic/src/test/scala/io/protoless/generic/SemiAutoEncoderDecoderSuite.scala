@@ -18,6 +18,8 @@ class SemiAutoEncoderDecoderSuite extends ProtolessSuite with EqualityInstances 
   implicit val decoderTestCaseEmptyRepeated: Decoder[TestCaseEmptyRepeated] = deriveDecoder[TestCaseEmptyRepeated]
   implicit val decoderTestCaseCollections: Decoder[TestCaseCollections] = deriveDecoder[TestCaseCollections]
   implicit val decoderTestCaseCustomType: Decoder[TestCaseCustomType] = deriveDecoder[TestCaseCustomType]
+  implicit val decoderTestCaseNestedInner: Decoder[TestCaseNested.InnerNested] = deriveDecoder[TestCaseNested.InnerNested]
+  implicit val decoderTestCaseNested: Decoder[TestCaseNested] = deriveDecoder[TestCaseNested]
 
   implicit val encoderTestCaseAllFields: Encoder[TestCaseAllFields] = deriveEncoder[TestCaseAllFields]
   implicit val encoderTestCaseOptionalFields: Encoder[TestCaseOptionalFields] = deriveEncoder[TestCaseOptionalFields]
@@ -25,6 +27,8 @@ class SemiAutoEncoderDecoderSuite extends ProtolessSuite with EqualityInstances 
   implicit val encoderTestCaseEmptyRepeated: Encoder[TestCaseEmptyRepeated] = deriveEncoder[TestCaseEmptyRepeated]
   implicit val encoderTestCaseCollections: Encoder[TestCaseCollections] = deriveEncoder[TestCaseCollections]
   implicit val encoderTestCaseCustomType: Encoder[TestCaseCustomType] = deriveEncoder[TestCaseCustomType]
+  implicit val encoderTestCaseNestedInner: Encoder[TestCaseNested.InnerNested] = deriveEncoder[TestCaseNested.InnerNested]
+  implicit val encoderTestCaseNesteInner: Encoder[TestCaseNested] = deriveEncoder[TestCaseNested]
 
   "SemiAuto Encoders must convert case class to protobuf format for" - {
     "protobuf native fields type" in {
@@ -52,6 +56,10 @@ class SemiAutoEncoderDecoderSuite extends ProtolessSuite with EqualityInstances 
 
     "custom types (uuid, bigdecimal, char)" in {
       testEncoding(TestCaseCustomType)
+    }
+
+    "nested fields" in {
+      testEncoding(TestCaseNested)
     }
   }
 
@@ -82,6 +90,10 @@ class SemiAutoEncoderDecoderSuite extends ProtolessSuite with EqualityInstances 
     "custom types (uuid, bigdecimal, char)" in {
       testDecoding(TestCaseCustomType)
     }
+
+    "nested fields" in {
+      testDecoding(TestCaseNested)
+    }
   }
 
   "SemiAuto Encoders/Decoders must respect law: encode(i) === encode(decode(encode(i))" - {
@@ -110,6 +122,10 @@ class SemiAutoEncoderDecoderSuite extends ProtolessSuite with EqualityInstances 
 
     "custom types (uuid, bigdecimal, char)" in {
       testFullCycle(TestCaseCustomType)
+    }
+
+    "nested fields" in {
+      testFullCycle(TestCaseNested)
     }
   }
 
