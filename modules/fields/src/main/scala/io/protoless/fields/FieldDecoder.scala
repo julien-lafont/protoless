@@ -7,7 +7,7 @@ import scala.util.{Failure, Success, Try}
 
 import com.google.protobuf.{ByteString, WireFormat, CodedInputStream => CIS}
 import com.google.protobuf.WireFormat.FieldType
-import shapeless.{Generic, HList, HNil}
+import shapeless.Unwrapped
 
 import cats.data.NonEmptyList
 import io.protoless.tag
@@ -25,6 +25,13 @@ trait FieldDecoder[A] extends Serializable { self =>
     * Read value located at index `index` as an object of type `A` from the CodedInputStream `input`.
     */
   def read(input: CIS, index: Int): Result[A]
+
+  /**
+    * Read value located at index `index` as an object of type `A` from an Array[Byte].
+    */
+  def read(input: Array[Byte], index: Int): Result[A] = {
+    read(CIS.newInstance(input), index)
+  }
 
   /**
     * Map a function over this [[FieldDecoder]].
@@ -134,14 +141,7 @@ object FieldDecoder extends MidPriorityFieldDecoder {
     *
     * @group Utilities
     */
-  final def apply[A](instance: FieldDecoder[A]): FieldDecoder[A] = instance
-
-  /**
-    * Return a RepeatableFieldDecoder instance for a given type `A`.
-    *
-    * @group Utilities
-    */
-  final def repeatable[A](instance: RepeatableFieldDecoder[A]): RepeatableFieldDecoder[A] = instance
+  final def apply[A](implicit instance: FieldDecoder[A]): FieldDecoder[A] = instance
 
   /**
     * Generate a FieldDecoder that always return a single value.
@@ -314,13 +314,11 @@ object FieldDecoder extends MidPriorityFieldDecoder {
     *
     * @group Decoding
     */
-  implicit final def decodeValueClass[A, R <: HList](implicit gen: Generic.Aux[A, R], dec: FieldDecoder[R]): FieldDecoder[A] = {
-    dec.map(r => gen.from(r))
-  }
-
-  implicit private[protoless] final def decodeHeadHList[H](implicit dec: FieldDecoder[H]): FieldDecoder[shapeless.::[H, HNil]] = {
-    dec.map(h => h :: HNil)
-  }
+  implicit final def decodeValueClass[A, R](implicit
+    ev: A <:< AnyVal,
+    unwrapped: Unwrapped.Aux[A, R],
+    dec: FieldDecoder[R]
+  ): FieldDecoder[A] = dec.map(unwrapped.wrap)
 
 }
 
