@@ -1,9 +1,8 @@
 package io.protoless.fields
 
-import java.io.ByteArrayOutputStream
 import java.util.UUID
 
-import com.google.protobuf.{ByteString, CodedInputStream, CodedOutputStream}
+import com.google.protobuf.{ByteString}
 import org.scalacheck.{Arbitrary, Gen}
 import org.scalacheck.Arbitrary.arbitrary
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
@@ -130,27 +129,10 @@ class FieldEncodingCheck extends ProtolessSuite with GeneratorDrivenPropertyChec
   }
 
   private def encodeDecodeField[T](t: T, index: Int)(implicit enc: FieldEncoder[T], dec: FieldDecoder[T]) = {
-    val bytesEncoded = {
-      val out = new ByteArrayOutputStream()
-      val cos = CodedOutputStream.newInstance(out)
-      enc.write(index, t, cos)
-      cos.flush()
-      out.toByteArray
-    }
+    val bytesEncoded = enc.encodeAsByte(index, t)
+    val entityDecoded = dec.read(bytesEncoded, index).right.get
+    val entityReEncoded = enc.encodeAsByte(index, entityDecoded)
 
-    val entityDecoded = {
-      val cis = CodedInputStream.newInstance(bytesEncoded)
-      dec.read(cis, index).right.get
-    }
-
-    val entityReEncoded = {
-      val out = new ByteArrayOutputStream()
-      val cos = CodedOutputStream.newInstance(out)
-      enc.write(index, entityDecoded, cos)
-      cos.flush()
-      out.toByteArray
-    }
-
-    entityReEncoded.toList == bytesEncoded.toList
+    entityReEncoded.toList must ===(bytesEncoded.toList)
   }
 }
