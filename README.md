@@ -46,14 +46,17 @@ Encoder[Person].encode(p) // or p.asProtobufBytes
 
 Decoder[Person].decode(p.asProtobufBytes) // or bytes.as[Person]
 // res1: Either[io.protoless.DecodingFailure, Person] = Right(Person(John, Doe, Some(28), Seq(Paris, London, New York)))
-
 ```
 
 No boilerplate, no runtime reflection.
 
 ## Documentation
 
-The full documentation is available here: [https://julien-lafont.github.io/protoless/](https://julien-lafont.github.io/protoless/).
+The full documentation is available here: [https://julien-lafont.github.io/protoless](https://julien-lafont.github.io/protoless/).
+ - [Library design](https://julien-lafont.github.io/protoless/design.html)
+ - [Message Encoder & Decoder](https://julien-lafont.github.io/protoless/message.html)
+ - [Field Encoder & Decoder](https://julien-lafont.github.io/protoless/field.html)
+ - [Type Mapping](https://julien-lafont.github.io/protoless/mapping.html)
 
 ## Why?
 
@@ -79,3 +82,7 @@ protoless proposes a different approach, your lightweight models drive the proto
 - [ ] Support default value.
 - [ ] Compile time schema validation.
 - [ ] And last, but not least, [GRPC](https://grpc.io/) integration.
+
+# License
+
+Code is provided under the Apache 2.0 license available at http://opensource.org/licenses/Apache-2.0, as well as in the LICENSE file. 
