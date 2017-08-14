@@ -15,7 +15,7 @@ No macro were harmed in the making of this library.
 
 `Schema-free` doesn't imply any loss of consistency. If you have one, you can still validate it at compile-time with yours models (*not implemented yet*).
 
-protoless is heavily inspired by awesome work made on [Circe](http://circe.io) by Travis Brown, such that their public APIs share a lot in their design.
+protoless is heavily inspired by awesome work made on [Circe](http://circe.io) by Travis Brown, so that their public APIs share a lot in their design.
 
 ## QuickStart
 
@@ -30,7 +30,7 @@ libraryDependencies += Seq(
 )
 ```
 
-Then type `sbt console` to start a REPL and then paste the following:
+Type `sbt console` to start a REPL and then paste the following:
 
 ```scala
 import io.protoless._, io.protoless.syntax._, io.protoless.generic.auto._
@@ -60,8 +60,7 @@ The full documentation is available here: [https://julien-lafont.github.io/proto
 
 ## Why?
 
-[ScalaPB](https://github.com/scalapb/ScalaPB), a protocol buffers compiler for scala, was the only serious library
-if you want to work with protobuf in Scala, but it comes with:
+[ScalaPB](https://github.com/scalapb/ScalaPB), a protocol buffers compiler for scala, was the only serious library to work with protobuf in Scala, but it comes with:
  * Two step code generation (protobuf -> java, java -> scala)
    * And if you want to map your own model, you need a third wrapping level.
  * Heavy builder interface
@@ -69,7 +68,7 @@ if you want to work with protobuf in Scala, but it comes with:
 
 protoless proposes a different approach, your lightweight models drive the protobuf serialization, **without weighing it down**.
 
-## Progression
+##  Progress of the work
 
 - [x] Encoding/decoding protobuf native fields.
 - [x] Encoding/decoding scala native types (collections, bigdecimal, enum, etc).
