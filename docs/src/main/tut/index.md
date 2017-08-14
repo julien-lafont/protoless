@@ -7,7 +7,7 @@ section: "home"
 [![Build Status](https://travis-ci.org/julien-lafont/protoless.svg)](https://travis-ci.org/julien-lafont/protoless)
 [![GitHub tag](https://img.shields.io/github/tag/julien-lafont/protoless.svg)]()
 [![Bintray](https://img.shields.io/bintray/v/julien-lafont/maven/protoless-core.svg)]()
-[![Gitter](https://img.shields.io/gitter/room/julien-lafont/protoless.js.svg)]()
+[![Gitter](https://img.shields.io/gitter/room/julien-lafont/protoless.js.svg)](https://gitter.im/protoless/Lobby)
 
 protoless is a [Protobuf 3](https://developers.google.com/protocol-buffers/docs/proto3) serialization
 library in **Scala** for JVM, based on automatic type class derivation to perfectly fit with your models.

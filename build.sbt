@@ -222,7 +222,7 @@ lazy val docSettings = Seq(
   micrositeGithubOwner := "julien-lafont",
   micrositeGithubRepo := "protoless",
   micrositeGitterChannel := true,
-  micrositeGitterChannelUrl := "julien-lafont/protoless",
+  micrositeGitterChannelUrl := "protoless/Lobby",
   micrositeHighlightTheme := "atom-one-dark",
   micrositeAnalyticsToken := "UA-40626968-2",
   addMappingsToSiteDir(mappings in (ScalaUnidoc, packageDoc), micrositeDocumentationUrl),
