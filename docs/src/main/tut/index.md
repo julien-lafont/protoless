@@ -10,14 +10,14 @@ section: "home"
 [![Gitter](https://img.shields.io/gitter/room/julien-lafont/protoless.js.svg)]()
 
 protoless is a [Protobuf 3](https://developers.google.com/protocol-buffers/docs/proto3) serialization
-library in Scala for JVM, based on automatic type class derivation to perfectly fit with your models.
+library in **Scala** for JVM, based on automatic type class derivation to perfectly fit with your models.
 
-The type class derivation approach allows to generate `type-safe` [Encoders](https://julien-lafont.github.io/protoless/api/io/protoless/index.html/io/protoless/Encoder.html)
-and [Decoders](https://julien-lafont.github.io/protoless/api/io/protoless/index.html/io/protoless/Encoder.html) for your own models,
-without code-generation and or requiring proto3 schema file. The derivation is done with [Shapeless](https://github.com/milessabin/shapeless),
+The type class derivation approach allows to generate `type-safe` [Encoders](https://julien-lafont.github.io/protoless/api/io/protoless/Decoder.html)
+and [Decoders](https://julien-lafont.github.io/protoless/api/io/protoless/Encoder.html) at `compile-time` for your own models,
+without code-generation. The derivation is done with [Shapeless](https://github.com/milessabin/shapeless),
 No macro were harmed in the making of this library.
 
-Schema-free doesn't imply any loss of consistency. If you have one, you can still validate it at `compile-time` with yours models (*not implemented yet*).
+`Schema-free` doesn't imply any loss of consistency. If you have one, you can still validate it at compile-time with yours models (*not implemented yet*).
 
 protoless is heavily inspired by awesome work made on [Circe](http://circe.io) by Travis Brown, such that their public APIs share a lot in their design.
 
@@ -44,9 +44,9 @@ case class Person(firstname: String, lastname: String, age: Option[Int], locatio
 
 val p = Person("John", "Doe", Some(28), Seq("Paris", "London", "New York"))
 
-p.asProtobufBytes
+Encoder[Person].encodeAsBytes(p) // or p.asProtobufBytes
 
-Decoder[Person].decode(p.asProtobufBytes)
+Decoder[Person].decode(res0) // or res0.as[Person]
 ```
 
 No boilerplate, no runtime reflection.

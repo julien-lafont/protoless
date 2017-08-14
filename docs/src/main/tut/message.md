@@ -7,7 +7,7 @@ position: 2
 # Encode & decode protobuf messages
 
 Encoders and Decoders for protobuf messages can be created if 2 differents ways:
- - `Automatic derivation`: encoders & decoders will automatically be derived from your models. All the fields in the
+ - `Fully Automatic derivation`: encoders & decoders will automatically be derived from your models. All the fields in the
    proto schema **must** be numbered consecutively starting from one.
  - `Semi-automatic derivation` (**recommended**): you have to derive an encoder/decoder for each case class involved in
    protobuf serialization. You can derive with automatic field numbering, or configure a specific mapping.
@@ -21,7 +21,7 @@ Encoders and Decoders for protobuf messages can be created if 2 differents ways:
     var diagram = flowchart.parse(
       'st=>start: protoless\n' +
 
-      'endAuto=>end: Automatic derivation\n' +
+      'endAuto=>end: Fully Automatic derivation\n' +
       'endSemi=>end: Semi-Automatic derivation\n' +
 
       'cond1=>condition: Are all the fields\n' +
@@ -81,7 +81,6 @@ You can summon encoders and decoders for these models with respectively `deriveE
 ```tut
 import io.protoless.generic.semiauto._
 import shapeless.{::, HNil, Nat}
-import io.protoless.syntax._
 
 // Summon automatic decoder for course (note that we will read a partial representation of the message Course)
 implicit val courseDecoder = deriveDecoder[Course]
@@ -100,23 +99,35 @@ val student = Student(StudentId(4815162342L), "Kate", "1977-06-21", NonEmptyList
     Course("US marshall", 4912)
 ))
 
-val bytes = student.asProtobufBytes
+val bytes = studentEncoder.encodeAsBytes(student)
+
+studentDecoder.decode(bytes)
+```
+
+You can also use the syntaxic sugar `.as[A]` and `.asProtobufBytes` to replace the explicit call on decoders/encoders:
+
+```tut
+import io.protoless.syntax._
+
+student.asProtobufBytes
 
 bytes.as[Student]
 ```
 
 ### Literal types
 
-If your project use the typevel [fork](https://github.com/typelevel/scala/) of Scala, you can define the fields mapping
+If your project use the typelevel [fork](https://github.com/typelevel/scala/) of Scala, you can define the field mapping
 with [Literal types](https://github.com/typelevel/scala/blob/typelevel-readme/notes/typelevel-4.md#literal-types-pull5310-milesabin).
 
 ```tut
 type StudentMapping = 1 :: 2 :: 4 :: 8 :: HNil
 ```
 
-## Automatic derivation
+## Fully Automatic derivation
 
 Automatically derive the required decoder/encoders, using the `automatic field numbering` strategy.
+
+This approach requires less code, but only works if your messages are numbered consecutively starting from one.
 
 ```tut
 import io.protoless.generic.auto._
