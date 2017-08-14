@@ -6,7 +6,7 @@ options:
   - title: Message Encoder & Decoder
     url: message.html
 
-  - title: field Encoder & Decoder
+  - title: Field Encoder & Decoder
     url: field.html
 
   - title: Type mapping

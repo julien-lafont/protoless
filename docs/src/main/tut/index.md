@@ -12,8 +12,8 @@ section: "home"
 protoless is a [Protobuf 3](https://developers.google.com/protocol-buffers/docs/proto3) serialization
 library in **Scala** for JVM, based on automatic type class derivation to perfectly fit with your models.
 
-The type class derivation approach allows to generate `type-safe` [Encoders](https://julien-lafont.github.io/protoless/api/io/protoless/Decoder.html)
-and [Decoders](https://julien-lafont.github.io/protoless/api/io/protoless/Encoder.html) at `compile-time` for your own models,
+The type class derivation approach allows to generate `type-safe` [Encoders](/protoless/api/io/protoless/Decoder.html)
+and [Decoders](/protoless/api/io/protoless/Encoder.html) at `compile-time` for your own models,
 without code-generation. The derivation is done with [Shapeless](https://github.com/milessabin/shapeless),
 No macro were harmed in the making of this library.
 
@@ -35,7 +35,7 @@ libraryDependencies += Seq(
 )
 ```
 
-Then type `sbt console` to start a REPL and then paste the following:
+Type `sbt console` to start a REPL and then paste the following the following code:
 
 ```tut
 import io.protoless._, io.protoless.syntax._, io.protoless.generic.auto._
@@ -44,9 +44,9 @@ case class Person(firstname: String, lastname: String, age: Option[Int], locatio
 
 val p = Person("John", "Doe", Some(28), Seq("Paris", "London", "New York"))
 
-Encoder[Person].encodeAsBytes(p) // or p.asProtobufBytes
+val bytes = Encoder[Person].encodeAsBytes(p) // or p.asProtobufBytes
 
-Decoder[Person].decode(res0) // or res0.as[Person]
+Decoder[Person].decode(bytes) // or bytes.as[Person]
 ```
 
 No boilerplate, no runtime reflection.
@@ -54,6 +54,7 @@ No boilerplate, no runtime reflection.
 # What's next ?
 
 The next sections will focus on:
+ - Library design
  - Protobuf message encoding / decoding
- - Create custom field encoder/decoder.
+ - Create custom field encoder/decoder
  - Mapping between protobuf types and scala types

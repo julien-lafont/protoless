@@ -228,8 +228,7 @@ object FieldEncoder extends MidPriorityFieldEncoder {
 
 trait MidPriorityFieldEncoder extends LowPriorityFieldEncoder {
 
-
-  private final def deriveFromTraversable[A, C[A] <: Traversable[A]](implicit enc: RepeatableFieldEncoder[A]): FieldEncoder[C[A]] = {
+  final def deriveFromTraversable[A, C[A] <: Traversable[A]](implicit enc: RepeatableFieldEncoder[A]): FieldEncoder[C[A]] = {
     encodeTraversable[A].contramap[C[A]](identity)
   }
 

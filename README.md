@@ -30,7 +30,7 @@ libraryDependencies += Seq(
 )
 ```
 
-Type `sbt console` to start a REPL and then paste the following:
+Type `sbt console` to start a REPL and then paste the following the following code:
 
 ```scala
 import io.protoless._, io.protoless.syntax._, io.protoless.generic.auto._
@@ -41,10 +41,10 @@ case class Person(firstname: String, lastname: String, age: Option[Int], locatio
 val p = Person("John", "Doe", Some(28), Seq("Paris", "London", "New York"))
 // p: Person = Right(Person(John, Doe, Some(28), Seq(Paris, London, New York)
 
-Encoder[Person].encode(p) // or p.asProtobufBytes
-// res0: Array[Byte] = Array(10, 4, 74, 111, 104, 110, 18, ...)
+val byte = Encoder[Person].encode(p) // or p.asProtobufBytes
+// bytes: Array[Byte] = Array(10, 4, 74, 111, 104, 110, 18, ...)
 
-Decoder[Person].decode(p.asProtobufBytes) // or bytes.as[Person]
+Decoder[Person].decode(bytes) // or bytes.as[Person]
 // res1: Either[io.protoless.DecodingFailure, Person] = Right(Person(John, Doe, Some(28), Seq(Paris, London, New York)))
 ```
 
@@ -84,4 +84,4 @@ protoless proposes a different approach, your lightweight models drive the proto
 
 # License
 
-Code is provided under the Apache 2.0 license available at http://opensource.org/licenses/Apache-2.0, as well as in the LICENSE file. 
+Code is provided under the Apache 2.0 license available at http://opensource.org/licenses/Apache-2.0, as well as in the LICENSE file.

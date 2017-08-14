@@ -288,7 +288,7 @@ object FieldDecoder extends MidPriorityFieldDecoder {
     *
     * {{{
     *   object WeekDay extends Enumeration { ... }
-    *   implicit val weekDayDecoder: Decoder[WeekDay#Value] = Decoder.decodeEnum(WeekDay)
+    *   implicit val weekDayDecoder: RepeatableFieldDecoder[WeekDay.Value] = FieldDecoder.decodeEnum(WeekDay)
     * }}}
     *
     * @group Decoding
