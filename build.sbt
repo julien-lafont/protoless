@@ -250,7 +250,7 @@ lazy val publishSettings = Seq(
     )
   ),
   developers := List(
-    Developer("julien-lafont", "Julien Lafont", "yotsumi.fx@gmail.com",
+    Developer("julien-lafont", "Julien Lafont", "julien.lafont@gmail.com",
       url("https://twitter.com/julien_lafont"))
   ),
   bintrayOrganization := Some("julien-lafont")
