@@ -13,38 +13,38 @@ Encoders and Decoders for protobuf Messages can be created in 3 different ways:
    protobuf serialization. You can derive with automatic field numbering, or configure a specific mapping.
  - [Hand-crafted encoders/decoders](#hand-crafted-encodersdecoders): you have the freedom to compose your own encoders/decoders using existing bricks.
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.6/flowchart.min.js"></script>
-
 <div id="diagram"></div>
-<script>
-    var diagram = flowchart.parse(
-        'st=>start: Which strategy shoud I use?\n' +
 
-        'endAuto=>end: Fully Automatic derivation:>#fully-automatic-derivation\n' +
-        'endSemi=>end: Semi-Automatic derivation:>#semi-automatic-derivation\n' +
-        'endCraft=>end: Hand-crafted encoders/decoders:>#hand-crafted-encodersdecoders\n' +
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var diagram = flowchart.parse(
+            'st=>start: Which strategy shoud I use?\n' +
+
+            'endAuto=>end: Fully Automatic derivation:>#fully-automatic-derivation\n' +
+            'endSemi=>end: Semi-Automatic derivation:>#semi-automatic-derivation\n' +
+            'endCraft=>end: Hand-crafted encoders/decoders:>#hand-crafted-encodersdecoders\n' +
 
 
-        'cond0=>condition: Do you intend to\n' +
-        'validate or transform fields\n' +
-        'individually?\n' +
+            'cond0=>condition: Do you intend to\n' +
+            'validate or transform fields\n' +
+            'individually?\n' +
 
-        'cond1=>condition: Are the fields\n' +
-        'numbered consecutively\n' +
-        'starting from one?\n' +
+            'cond1=>condition: Are the fields\n' +
+            'numbered consecutively\n' +
+            'starting from one?\n' +
 
-        'cond2=>condition: Do you like\n' +
-        'magic?\n' +
+            'cond2=>condition: Do you like\n' +
+            'magic?\n' +
 
-        'st->cond0\n' +
-        'cond0(yes)->endCraft\n' +
-        'cond0(no)->cond1(yes)->cond2\n' +
-        'cond1(no)->endSemi(left)\n' +
-        'cond2(no)->endSemi(left)s\n' +
-        'cond2(yes, left)->endAuto\n');
+            'st->cond0\n' +
+            'cond0(yes)->endCraft\n' +
+            'cond0(no)->cond1(yes)->cond2\n' +
+            'cond1(no)->endSemi(left)\n' +
+            'cond2(no)->endSemi(left)s\n' +
+            'cond2(yes, left)->endAuto\n');
 
-    diagram.drawSVG('diagram');
+        diagram.drawSVG('diagram');
+    });
 </script>
 
 ## Semi-automatic derivation
@@ -90,6 +90,7 @@ import shapeless.{::, HNil, Nat}
 
 // Summon automatic decoder for course (note that we will read a partial representation of the message Course)
 implicit val courseDecoder = deriveDecoder[Course]
+
 // Summon a decoder for student with a custom mapping between fields (studentId: 1, name: 2, birthDate: 4, courses: 8)
 implicit val studentDecoder = deriveDecoder[Student, Nat._1 :: Nat._2 :: Nat._4 :: Nat._8 :: HNil]
 
@@ -116,7 +117,6 @@ You can also use the syntaxic sugar `.as[A]` and `.asProtobufBytes` to replace t
 import io.protoless.syntax._
 
 student.asProtobufBytes
-
 bytes.as[Student]
 ```
 

@@ -213,6 +213,12 @@ lazy val docSettings = Seq(
   micrositeGitterChannelUrl := "protoless/Lobby",
   micrositeHighlightTheme := "atom-one-dark",
   micrositeAnalyticsToken := "UA-40626968-2",
+  micrositeCDNDirectives := microsites.CdnDirectives(
+    jsList = List(
+      "https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.6/flowchart.min.js"
+    )
+  ),
   addMappingsToSiteDir(mappings in (ScalaUnidoc, packageDoc), micrositeDocumentationUrl),
   ghpagesNoJekyll := false,
   scalacOptions in (ScalaUnidoc, unidoc) ++= Seq(
@@ -224,8 +230,7 @@ lazy val docSettings = Seq(
     "-doc-root-content", (resourceDirectory.in(Compile).value / "rootdoc.txt").getAbsolutePath
   ),
   git.remoteRepo := "git@github.com:julien-lafont/protoless.git",
-  unidocProjectFilter in (ScalaUnidoc, unidoc) :=
-    inAnyProject,
+  unidocProjectFilter in (ScalaUnidoc, unidoc) := inAnyProject,
   includeFilter in makeSite := "*.html" | "*.css" | "*.png" | "*.jpg" | "*.gif" | "*.svg" | "*.js" | "*.swf" | "*.yml" | "*.md"
 )
 
