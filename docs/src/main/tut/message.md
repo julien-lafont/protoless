@@ -6,7 +6,7 @@ position: 2
 
 # Encode & decode protobuf messages
 
-Encoders and Decoders for protobuf Messages can be created in 3 different ways:
+Encoders and Decoders for protobuf Messages can be created in three different ways:
  - [Fully Automatic derivation](#fully-automatic-derivation): encoders & decoders will automatically be derived from your models. All the fields in the
    proto schema **must** be numbered consecutively starting from one.
  - [Semi-automatic derivation](#semi-automatic-derivation) (**recommended**): you have to derive an encoder/decoder for each case class involved in
@@ -70,7 +70,7 @@ message Course {
 }
 ```
 
-Note that `Student` schema has definitively evolved many times, because the numbering is not sequential, unlike `Course`, which is numbered consecutively.
+Note that the `Student` schema has certainly evolved many times, because the numbering is not sequential, unlike the `Course`, which is numbered consecutively.
 
 In your application, we want to use these types:
 
@@ -82,7 +82,7 @@ case class StudentId(value: Long) extends AnyVal
 case class Student(id: StudentId, name: String, birthDate: String, courses: NonEmptyList[Course])
 ```
 
-You can summon encoders and decoders for these models with respectively `deriveEncoder` and `deriveDecoder`:
+You can summon encoders and decoders for these models with `deriveEncoder` and `deriveDecoder`, respectively :
 
 ```tut:silent
 import io.protoless.generic.semiauto._
@@ -150,10 +150,10 @@ bytes.as[Unicorn]
 
 ## Hand-crafted encoders/decoders
 
-`Hand-crafted` encoders and decoders give you total control on how your objects are encoded and decoded.
-You've to define for each field how to read/write it and at which position.
+`Hand-crafted` encoders and decoders give you a total control on how your objects are encoded and decoded.
+For each field you have to define how and where to read/write it .
 
-It's useful if you want to validate or transform protobuf message to fit with your model.
+It's useful if you want to validate or transform protobuf message to fit your model.
 
 ```protobuf
 message Meteo {
