@@ -25,8 +25,8 @@ protoless is published to [bintray.com/julien-lafont](https://bintray.com/julien
 resolvers += Resolver.bintrayRepo("julien-lafont", "maven")
 
 libraryDependencies += Seq(
-  "io.protoless" %% "protoless-core" % "0.0.3",
-  "io.protoless" %% "protoless-generic" % "0.0.3"
+  "io.protoless" %% "protoless-core" % "0.0.4",
+  "io.protoless" %% "protoless-generic" % "0.0.4"
 )
 ```
 
