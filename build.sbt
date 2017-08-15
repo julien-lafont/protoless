@@ -52,8 +52,8 @@ val `compilerOptions-Scala-2.12` = Seq(
   "-Ywarn-unused:patvars",             // Warn if a variable bound in a pattern is unused.
   "-Ywarn-unused:privates",            // Warn if a private member is unused.
   "-Ywarn-value-discard",               // Warn when non-Unit expression results are unused.
-  "-Ywarn-extra-implicit"//,             // Warn when more than one implicit parameter section is defined.,
-  //"-Ywarn-unused:imports"
+  "-Ywarn-extra-implicit",             // Warn when more than one implicit parameter section is defined.,
+  "-Ywarn-unused:imports"
 )
 
 lazy val `compilerOptions-Scala-2.11` = Seq(
@@ -90,6 +90,12 @@ lazy val settings = Seq(
     "-Ywarn-unused:imports",  // 2.12
     "-Ywarn-unused-import",   // 2.11
     "-Xfatal-warnings"
+  ))),
+
+  // Test source code contains `import cats.syntax.either._` for scala 2.11 compatibility, but it is
+  // an unused import for scala 2.12... so disabled it for now.
+  scalacOptions in Test ~= (_.filterNot(Set(
+    "-Ywarn-unused:imports"  // 2.12
   ))),
 
   // Warnings in scaladoc must not fail the build

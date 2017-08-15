@@ -11,6 +11,8 @@ import io.protoless.tests.samples.TestCaseNested.InnerNested
 
 class HandCraftedEncoderDecoderSuite extends ProtolessSuite with EncoderDecoderAssertions {
 
+  import cats.syntax.either._ // Only required for scala 2.11.x (see http://typelevel.org/cats/faq.html#either)
+
   implicit val decoderTestCaseAllFields: Decoder[TestCaseAllFields] = Decoder.instance(input =>
     for {
       d <- input.read[Double]

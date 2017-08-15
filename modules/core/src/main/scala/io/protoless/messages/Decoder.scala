@@ -7,7 +7,6 @@ import java.nio.ByteBuffer
 
 import com.google.protobuf.{CodedInputStream => CIS}
 
-import io.protoless.error
 import io.protoless.error.DecodingFailure
 import io.protoless.messages.Decoder.Result
 import io.protoless.messages.streams.ProtolessInputStream
@@ -16,7 +15,7 @@ import io.protoless.messages.streams.ProtolessInputStream
   * Interface for all Decoder implementations.
   *
   * Allows to decode protobuf3 serialized message in type `A`. If the message is not compatible with `A`,
-  * return a [[error.DecodingFailure]].
+  * return a [[io.protoless.error.DecodingFailure]].
   *
   * Decoding can be done with `Automatic` strategy with [[decoders.AutoDecoder]], or by specifying
   * a custom protobuf mapping with [[decoders.CustomMappingDecoder]].

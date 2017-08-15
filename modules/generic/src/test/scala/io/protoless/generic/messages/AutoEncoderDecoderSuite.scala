@@ -1,7 +1,6 @@
 package io.protoless.generic.messages
 
 import io.protoless.EncoderDecoderAssertions
-import io.protoless.fields.{FieldDecoder, RepeatableFieldDecoder}
 import io.protoless.tests.ProtolessSuite
 import io.protoless.tests.instances.EqualityInstances
 import io.protoless.tests.samples._
