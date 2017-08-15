@@ -181,7 +181,7 @@ object FieldEncoder extends MidPriorityFieldEncoder {
 
   /**
     * Encode an UUID in an `repeated sint64` field, by extracting the `mostSignificantBits`
-    * and `LeastSignificantBits` from the 128 bites UUID.
+    * and `LeastSignificantBits` from the 128 bites UUID
     *
     * @group Encoding
     */
