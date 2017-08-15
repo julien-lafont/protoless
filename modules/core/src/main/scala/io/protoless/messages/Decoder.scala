@@ -9,6 +9,7 @@ import com.google.protobuf.{CodedInputStream => CIS}
 
 import io.protoless.Decoder.Result
 import io.protoless.error.DecodingFailure
+import io.protoless.wrappers.ProtolessInputStream
 
 /**
   * Interface for all Decoder implementations.
@@ -114,8 +115,8 @@ object Decoder {
     *
     * @param f how to read the object `A` from the `CodedInputStream`.
     */
-  def instance[A](f: CIS => Decoder.Result[A]): Decoder[A] = new Decoder[A] {
-    override def decode(input: CIS): Result[A] = f(input)
+  def instance[A](f: ProtolessInputStream => Decoder.Result[A]): Decoder[A] = new Decoder[A] {
+    override def decode(input: CIS): Result[A] = f(new ProtolessInputStream(input))
   }
 
   /**

@@ -6,6 +6,8 @@ import java.nio.ByteBuffer
 
 import com.google.protobuf.CodedOutputStream
 
+import io.protoless.wrappers.ProtolessOutputStream
+
 /**
   * Interface for all Encoder implementations.
   *
@@ -67,15 +69,12 @@ final object Encoder {
 
   /**
     * Construct an instance from a function.
-    *
-    * @param writeOperation how to write the object `A` in the `CodedOutputStream`.
     */
-  def instance[A](writeOperation: A => CodedOutputStream => Unit): Encoder[A] = new Encoder[A] {
-    override def encode(a: A, output: CodedOutputStream): Unit = writeOperation(a)(output)
+  def instance[A](f: A => ProtolessOutputStream => Unit): Encoder[A] = new Encoder[A] {
+    override def encode(a: A, output: CodedOutputStream): Unit = {
+      f(a)(new ProtolessOutputStream(output))
+      output.flush()
+    }
   }
 
-  /**
-    * Construct an Encoder that writes a constant value in the `CodedOutputStream`.
-    */
-  def const[T](v: CodedOutputStream => Unit): Encoder[T] = instance[T](_ => output => v(output))
 }

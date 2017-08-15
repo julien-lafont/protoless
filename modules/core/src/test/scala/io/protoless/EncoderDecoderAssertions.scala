@@ -1,9 +1,8 @@
-package io.protoless.generic
+package io.protoless
 
 import org.scalactic.Equality
 import org.scalatest.Assertion
 
-import io.protoless.{Decoder, Encoder}
 import io.protoless.tests.ProtolessSuite
 import io.protoless.tests.samples.TestCase
 

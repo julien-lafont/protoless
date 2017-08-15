@@ -78,7 +78,7 @@ protoless proposes a different approach, your lightweight models drive the proto
 - [x] `Semi-automatic` encoder/decoder for message with fields not numbered consecutively.
 - [x] Auto-derivation of `value class`.
 - [x] Support nested message.
-- [ ] Fluid syntax to write custom message decoder/encoder
+- [x] Fluid syntax to write custom message decoder/encoder
 - [ ] Support default value.
 - [ ] Compile time schema validation.
 - [ ] And last, but not least, [GRPC](https://grpc.io/) integration.

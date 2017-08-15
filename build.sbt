@@ -52,8 +52,8 @@ val `compilerOptions-Scala-2.12` = Seq(
   "-Ywarn-unused:patvars",             // Warn if a variable bound in a pattern is unused.
   "-Ywarn-unused:privates",            // Warn if a private member is unused.
   "-Ywarn-value-discard",               // Warn when non-Unit expression results are unused.
-  "-Ywarn-extra-implicit",             // Warn when more than one implicit parameter section is defined.,
-  "-Ywarn-unused:imports"
+  "-Ywarn-extra-implicit"//,             // Warn when more than one implicit parameter section is defined.,
+  //"-Ywarn-unused:imports"
 )
 
 lazy val `compilerOptions-Scala-2.11` = Seq(
@@ -172,7 +172,7 @@ lazy val generic = project.in(file("modules/generic"))
       "com.chuusai" %% "shapeless" % shapelessVersion
     )
   )
-  .dependsOn(core, tag, testing % Test)
+  .dependsOn(core % "test->test;compile->compile", tag, testing % Test)
 
 lazy val tag = project.in(file("modules/tag"))
   .settings(settings)
