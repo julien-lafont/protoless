@@ -2,7 +2,8 @@ inThisBuild(Seq(
   organization in ThisBuild := "io.protoless",
   scalaVersion := "2.12.3-bin-typelevel-4",
   crossScalaVersions := Seq("2.11.11-bin-typelevel-4", "2.12.3-bin-typelevel-4"),
-  scalaOrganization := "org.typelevel"
+  scalaOrganization := "org.typelevel",
+  releaseCrossBuild := true
 ))
 
 lazy val catsVersion = "1.0.0-MF"
@@ -241,7 +242,6 @@ lazy val docSettings = Seq(
 )
 
 lazy val publishSettings = Seq(
-  releaseCrossBuild := true,
   homepage := Some(url("https://github.com/julien-lafont/protoless")),
   licenses := Seq("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
   publishMavenStyle := true,
