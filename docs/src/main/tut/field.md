@@ -45,7 +45,7 @@ Even if `int32`, `uint32`, `sint32`, `fixed32` and `sfixed32` are all represente
 how the numeric field has been encoded in order to decode it with the right algorithm.
 
 protoless uses [tagged type](http://www.vlachjosef.com/tagged-types-introduction/) to carry this information
-on your model, and provides [helpers](/protoless/api/io/protoless/tag/index.html) to tag your data.
+by your model, and provides [helpers](/protoless/api/io/protoless/tag/index.html) to tag your data.
 
 ```tut:silent
 import io.protoless._, io.protoless.generic.auto._, io.protoless.tag._
@@ -65,10 +65,10 @@ messages.Encoder[NumericSeries].encodeAsBytes(serie)
 
 ## Optional fields
 
-Unlike protocol buffers version 3 which force optional type by default, your model with lay down the law.
+Unlike protocol buffers version 3 which force optional type by default, your model will lay down the law.
 You just have to use an `Option` if you want to encode/decode an optional field.
 
-Implicit instances of `Option[A]` are provided if type `A` has a decoder/encoder instance.
+Implicit instances of `Option[A]` are provided if the type `A` has a decoder/encoder instance.
 
 ## Repeated fields
 
@@ -90,7 +90,7 @@ implicit def encodeArrayBuffer[A](implicit enc: RepeatableFieldEncoder[A]): Fiel
 
 ## Nested fields
 
-Protocol buffers allows to use a previously defined message as field type.
+Protocol buffers allows to use the previously defined message as a field type.
 
 protoless operates in the same way: it can encode/decode a field of type `A` if there is an implicit instance of
 `Encoder[A]`/`Decoder[A]` in the implicit scope.
@@ -147,7 +147,7 @@ Implicit instances are provided for the following scala types:
 
 ## Custom field encoder & decoder
 
-You can create custom encoders by relying on existing ones, and add your own logic inside.
+You can create custom encoders/decoders by relying on existing ones, and add your own logic inside them.
 
 ```tut:silent
 case class Fahrenheit(value: Float)
