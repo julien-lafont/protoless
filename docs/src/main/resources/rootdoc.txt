@@ -1,0 +1,13 @@
+This is the API documentation for Protoless, a Protobuf library for Scala.
+
+The main entry point to use protoless is the [[io.protoless.generic]] package object, which allow to derive
+encoders and decoders for your case classes.
+
+The library is split in several modules:
+ - [[io.protoless]]: Syntax, decoding failures
+ - [[io.protoless.messages messages]]: Encoder and Decoder for protobuf messages.
+ - [[io.protoless.fields fields]]: Encoder and Decoder for protobuf fields.
+ - [[io.protoless.generic generic]]: Shapeless-powered generic derivation for case classes.
+ - [[io.protoless.tag tag]]: Tagging tools to support unsigned/signed/fixed types.
+
+Please see the [[https://julien-lafont.github.io/protoless/ guide]] for more information on how to use protoless.
