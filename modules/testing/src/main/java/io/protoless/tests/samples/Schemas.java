@@ -6592,34 +6592,37 @@ public final class Schemas {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string uuid = 1;</code>
-     */
-    java.lang.String getUuid();
-    /**
-     * <code>optional string uuid = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getUuidBytes();
-
-    /**
-     * <code>optional string bigdecimal = 2;</code>
+     * <code>optional string bigdecimal = 1;</code>
      */
     java.lang.String getBigdecimal();
     /**
-     * <code>optional string bigdecimal = 2;</code>
+     * <code>optional string bigdecimal = 1;</code>
      */
     com.google.protobuf.ByteString
         getBigdecimalBytes();
 
     /**
-     * <code>optional string bigint = 3;</code>
+     * <code>optional string bigint = 2;</code>
      */
     java.lang.String getBigint();
     /**
-     * <code>optional string bigint = 3;</code>
+     * <code>optional string bigint = 2;</code>
      */
     com.google.protobuf.ByteString
         getBigintBytes();
+
+    /**
+     * <code>repeated sint64 uuid = 3;</code>
+     */
+    java.util.List<java.lang.Long> getUuidList();
+    /**
+     * <code>repeated sint64 uuid = 3;</code>
+     */
+    int getUuidCount();
+    /**
+     * <code>repeated sint64 uuid = 3;</code>
+     */
+    long getUuid(int index);
 
     /**
      * <code>optional int32 short = 4;</code>
@@ -6643,9 +6646,9 @@ public final class Schemas {
       super(builder);
     }
     private Custom() {
-      uuid_ = "";
       bigdecimal_ = "";
       bigint_ = "";
+      uuid_ = java.util.Collections.emptyList();
       short_ = 0;
       char_ = 0;
     }
@@ -6678,19 +6681,34 @@ public final class Schemas {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              uuid_ = s;
+              bigdecimal_ = s;
               break;
             }
             case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              bigdecimal_ = s;
+              bigint_ = s;
+              break;
+            }
+            case 24: {
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                uuid_ = new java.util.ArrayList<java.lang.Long>();
+                mutable_bitField0_ |= 0x00000004;
+              }
+              uuid_.add(input.readSInt64());
               break;
             }
             case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              bigint_ = s;
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004) && input.getBytesUntilLimit() > 0) {
+                uuid_ = new java.util.ArrayList<java.lang.Long>();
+                mutable_bitField0_ |= 0x00000004;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                uuid_.add(input.readSInt64());
+              }
+              input.popLimit(limit);
               break;
             }
             case 32: {
@@ -6711,6 +6729,9 @@ public final class Schemas {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+          uuid_ = java.util.Collections.unmodifiableList(uuid_);
+        }
         makeExtensionsImmutable();
       }
     }
@@ -6726,44 +6747,11 @@ public final class Schemas {
               io.protoless.tests.samples.Schemas.Custom.class, io.protoless.tests.samples.Schemas.Custom.Builder.class);
     }
 
-    public static final int UUID_FIELD_NUMBER = 1;
-    private volatile java.lang.Object uuid_;
-    /**
-     * <code>optional string uuid = 1;</code>
-     */
-    public java.lang.String getUuid() {
-      java.lang.Object ref = uuid_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        uuid_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string uuid = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getUuidBytes() {
-      java.lang.Object ref = uuid_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        uuid_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int BIGDECIMAL_FIELD_NUMBER = 2;
+    private int bitField0_;
+    public static final int BIGDECIMAL_FIELD_NUMBER = 1;
     private volatile java.lang.Object bigdecimal_;
     /**
-     * <code>optional string bigdecimal = 2;</code>
+     * <code>optional string bigdecimal = 1;</code>
      */
     public java.lang.String getBigdecimal() {
       java.lang.Object ref = bigdecimal_;
@@ -6778,7 +6766,7 @@ public final class Schemas {
       }
     }
     /**
-     * <code>optional string bigdecimal = 2;</code>
+     * <code>optional string bigdecimal = 1;</code>
      */
     public com.google.protobuf.ByteString
         getBigdecimalBytes() {
@@ -6794,10 +6782,10 @@ public final class Schemas {
       }
     }
 
-    public static final int BIGINT_FIELD_NUMBER = 3;
+    public static final int BIGINT_FIELD_NUMBER = 2;
     private volatile java.lang.Object bigint_;
     /**
-     * <code>optional string bigint = 3;</code>
+     * <code>optional string bigint = 2;</code>
      */
     public java.lang.String getBigint() {
       java.lang.Object ref = bigint_;
@@ -6812,7 +6800,7 @@ public final class Schemas {
       }
     }
     /**
-     * <code>optional string bigint = 3;</code>
+     * <code>optional string bigint = 2;</code>
      */
     public com.google.protobuf.ByteString
         getBigintBytes() {
@@ -6827,6 +6815,29 @@ public final class Schemas {
         return (com.google.protobuf.ByteString) ref;
       }
     }
+
+    public static final int UUID_FIELD_NUMBER = 3;
+    private java.util.List<java.lang.Long> uuid_;
+    /**
+     * <code>repeated sint64 uuid = 3;</code>
+     */
+    public java.util.List<java.lang.Long>
+        getUuidList() {
+      return uuid_;
+    }
+    /**
+     * <code>repeated sint64 uuid = 3;</code>
+     */
+    public int getUuidCount() {
+      return uuid_.size();
+    }
+    /**
+     * <code>repeated sint64 uuid = 3;</code>
+     */
+    public long getUuid(int index) {
+      return uuid_.get(index);
+    }
+    private int uuidMemoizedSerializedSize = -1;
 
     public static final int SHORT_FIELD_NUMBER = 4;
     private int short_;
@@ -6858,14 +6869,19 @@ public final class Schemas {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getUuidBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, uuid_);
-      }
+      getSerializedSize();
       if (!getBigdecimalBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bigdecimal_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, bigdecimal_);
       }
       if (!getBigintBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, bigint_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bigint_);
+      }
+      if (getUuidList().size() > 0) {
+        output.writeUInt32NoTag(26);
+        output.writeUInt32NoTag(uuidMemoizedSerializedSize);
+      }
+      for (int i = 0; i < uuid_.size(); i++) {
+        output.writeSInt64NoTag(uuid_.get(i));
       }
       if (short_ != 0) {
         output.writeInt32(4, short_);
@@ -6880,14 +6896,25 @@ public final class Schemas {
       if (size != -1) return size;
 
       size = 0;
-      if (!getUuidBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, uuid_);
-      }
       if (!getBigdecimalBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bigdecimal_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, bigdecimal_);
       }
       if (!getBigintBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, bigint_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bigint_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < uuid_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeSInt64SizeNoTag(uuid_.get(i));
+        }
+        size += dataSize;
+        if (!getUuidList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        uuidMemoizedSerializedSize = dataSize;
       }
       if (short_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -6913,12 +6940,12 @@ public final class Schemas {
       io.protoless.tests.samples.Schemas.Custom other = (io.protoless.tests.samples.Schemas.Custom) obj;
 
       boolean result = true;
-      result = result && getUuid()
-          .equals(other.getUuid());
       result = result && getBigdecimal()
           .equals(other.getBigdecimal());
       result = result && getBigint()
           .equals(other.getBigint());
+      result = result && getUuidList()
+          .equals(other.getUuidList());
       result = result && (getShort()
           == other.getShort());
       result = result && (getChar()
@@ -6933,12 +6960,14 @@ public final class Schemas {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + UUID_FIELD_NUMBER;
-      hash = (53 * hash) + getUuid().hashCode();
       hash = (37 * hash) + BIGDECIMAL_FIELD_NUMBER;
       hash = (53 * hash) + getBigdecimal().hashCode();
       hash = (37 * hash) + BIGINT_FIELD_NUMBER;
       hash = (53 * hash) + getBigint().hashCode();
+      if (getUuidCount() > 0) {
+        hash = (37 * hash) + UUID_FIELD_NUMBER;
+        hash = (53 * hash) + getUuidList().hashCode();
+      }
       hash = (37 * hash) + SHORT_FIELD_NUMBER;
       hash = (53 * hash) + getShort();
       hash = (37 * hash) + CHAR_FIELD_NUMBER;
@@ -7061,12 +7090,12 @@ public final class Schemas {
       }
       public Builder clear() {
         super.clear();
-        uuid_ = "";
-
         bigdecimal_ = "";
 
         bigint_ = "";
 
+        uuid_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);
         short_ = 0;
 
         char_ = 0;
@@ -7093,11 +7122,18 @@ public final class Schemas {
 
       public io.protoless.tests.samples.Schemas.Custom buildPartial() {
         io.protoless.tests.samples.Schemas.Custom result = new io.protoless.tests.samples.Schemas.Custom(this);
-        result.uuid_ = uuid_;
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         result.bigdecimal_ = bigdecimal_;
         result.bigint_ = bigint_;
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          uuid_ = java.util.Collections.unmodifiableList(uuid_);
+          bitField0_ = (bitField0_ & ~0x00000004);
+        }
+        result.uuid_ = uuid_;
         result.short_ = short_;
         result.char_ = char_;
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -7139,16 +7175,22 @@ public final class Schemas {
 
       public Builder mergeFrom(io.protoless.tests.samples.Schemas.Custom other) {
         if (other == io.protoless.tests.samples.Schemas.Custom.getDefaultInstance()) return this;
-        if (!other.getUuid().isEmpty()) {
-          uuid_ = other.uuid_;
-          onChanged();
-        }
         if (!other.getBigdecimal().isEmpty()) {
           bigdecimal_ = other.bigdecimal_;
           onChanged();
         }
         if (!other.getBigint().isEmpty()) {
           bigint_ = other.bigint_;
+          onChanged();
+        }
+        if (!other.uuid_.isEmpty()) {
+          if (uuid_.isEmpty()) {
+            uuid_ = other.uuid_;
+            bitField0_ = (bitField0_ & ~0x00000004);
+          } else {
+            ensureUuidIsMutable();
+            uuid_.addAll(other.uuid_);
+          }
           onChanged();
         }
         if (other.getShort() != 0) {
@@ -7182,79 +7224,11 @@ public final class Schemas {
         }
         return this;
       }
-
-      private java.lang.Object uuid_ = "";
-      /**
-       * <code>optional string uuid = 1;</code>
-       */
-      public java.lang.String getUuid() {
-        java.lang.Object ref = uuid_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          uuid_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string uuid = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getUuidBytes() {
-        java.lang.Object ref = uuid_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          uuid_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string uuid = 1;</code>
-       */
-      public Builder setUuid(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        uuid_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string uuid = 1;</code>
-       */
-      public Builder clearUuid() {
-        
-        uuid_ = getDefaultInstance().getUuid();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string uuid = 1;</code>
-       */
-      public Builder setUuidBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        uuid_ = value;
-        onChanged();
-        return this;
-      }
+      private int bitField0_;
 
       private java.lang.Object bigdecimal_ = "";
       /**
-       * <code>optional string bigdecimal = 2;</code>
+       * <code>optional string bigdecimal = 1;</code>
        */
       public java.lang.String getBigdecimal() {
         java.lang.Object ref = bigdecimal_;
@@ -7269,7 +7243,7 @@ public final class Schemas {
         }
       }
       /**
-       * <code>optional string bigdecimal = 2;</code>
+       * <code>optional string bigdecimal = 1;</code>
        */
       public com.google.protobuf.ByteString
           getBigdecimalBytes() {
@@ -7285,7 +7259,7 @@ public final class Schemas {
         }
       }
       /**
-       * <code>optional string bigdecimal = 2;</code>
+       * <code>optional string bigdecimal = 1;</code>
        */
       public Builder setBigdecimal(
           java.lang.String value) {
@@ -7298,7 +7272,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional string bigdecimal = 2;</code>
+       * <code>optional string bigdecimal = 1;</code>
        */
       public Builder clearBigdecimal() {
         
@@ -7307,7 +7281,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional string bigdecimal = 2;</code>
+       * <code>optional string bigdecimal = 1;</code>
        */
       public Builder setBigdecimalBytes(
           com.google.protobuf.ByteString value) {
@@ -7323,7 +7297,7 @@ public final class Schemas {
 
       private java.lang.Object bigint_ = "";
       /**
-       * <code>optional string bigint = 3;</code>
+       * <code>optional string bigint = 2;</code>
        */
       public java.lang.String getBigint() {
         java.lang.Object ref = bigint_;
@@ -7338,7 +7312,7 @@ public final class Schemas {
         }
       }
       /**
-       * <code>optional string bigint = 3;</code>
+       * <code>optional string bigint = 2;</code>
        */
       public com.google.protobuf.ByteString
           getBigintBytes() {
@@ -7354,7 +7328,7 @@ public final class Schemas {
         }
       }
       /**
-       * <code>optional string bigint = 3;</code>
+       * <code>optional string bigint = 2;</code>
        */
       public Builder setBigint(
           java.lang.String value) {
@@ -7367,7 +7341,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional string bigint = 3;</code>
+       * <code>optional string bigint = 2;</code>
        */
       public Builder clearBigint() {
         
@@ -7376,7 +7350,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional string bigint = 3;</code>
+       * <code>optional string bigint = 2;</code>
        */
       public Builder setBigintBytes(
           com.google.protobuf.ByteString value) {
@@ -7386,6 +7360,72 @@ public final class Schemas {
   checkByteStringIsUtf8(value);
         
         bigint_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<java.lang.Long> uuid_ = java.util.Collections.emptyList();
+      private void ensureUuidIsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          uuid_ = new java.util.ArrayList<java.lang.Long>(uuid_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+      /**
+       * <code>repeated sint64 uuid = 3;</code>
+       */
+      public java.util.List<java.lang.Long>
+          getUuidList() {
+        return java.util.Collections.unmodifiableList(uuid_);
+      }
+      /**
+       * <code>repeated sint64 uuid = 3;</code>
+       */
+      public int getUuidCount() {
+        return uuid_.size();
+      }
+      /**
+       * <code>repeated sint64 uuid = 3;</code>
+       */
+      public long getUuid(int index) {
+        return uuid_.get(index);
+      }
+      /**
+       * <code>repeated sint64 uuid = 3;</code>
+       */
+      public Builder setUuid(
+          int index, long value) {
+        ensureUuidIsMutable();
+        uuid_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated sint64 uuid = 3;</code>
+       */
+      public Builder addUuid(long value) {
+        ensureUuidIsMutable();
+        uuid_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated sint64 uuid = 3;</code>
+       */
+      public Builder addAllUuid(
+          java.lang.Iterable<? extends java.lang.Long> values) {
+        ensureUuidIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, uuid_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated sint64 uuid = 3;</code>
+       */
+      public Builder clearUuid() {
+        uuid_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -8748,8 +8788,8 @@ public final class Schemas {
       "\022\024\n\nbool_field\030\r \001(\010H\000\022\026\n\014string_field\030\016",
       " \001(\tH\000\022\025\n\013bytes_field\030\017 \001(\014H\000\0228\n\013color_f" +
       "ield\030\020 \001(\0162!.io.protoless.tests.samples." +
-      "ColorH\000B\007\n\005field\"W\n\006Custom\022\014\n\004uuid\030\001 \001(\t" +
-      "\022\022\n\nbigdecimal\030\002 \001(\t\022\016\n\006bigint\030\003 \001(\t\022\r\n\005" +
+      "ColorH\000B\007\n\005field\"W\n\006Custom\022\022\n\nbigdecimal" +
+      "\030\001 \001(\t\022\016\n\006bigint\030\002 \001(\t\022\014\n\004uuid\030\003 \003(\022\022\r\n\005" +
       "short\030\004 \001(\005\022\014\n\004char\030\005 \001(\005\"\243\001\n\006Nested\022\t\n\001" +
       "d\030\001 \001(\001\022.\n\002m1\030\002 \001(\0132\".io.protoless.tests" +
       ".samples.Custom\022.\n\002m2\030\003 \001(\0132\".io.protole" +
@@ -8793,7 +8833,7 @@ public final class Schemas {
     internal_static_io_protoless_tests_samples_Custom_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_io_protoless_tests_samples_Custom_descriptor,
-        new java.lang.String[] { "Uuid", "Bigdecimal", "Bigint", "Short", "Char", });
+        new java.lang.String[] { "Bigdecimal", "Bigint", "Uuid", "Short", "Char", });
     internal_static_io_protoless_tests_samples_Nested_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_io_protoless_tests_samples_Nested_fieldAccessorTable = new

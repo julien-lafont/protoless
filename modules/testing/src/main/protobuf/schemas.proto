@@ -69,9 +69,9 @@ message OneOf {
 }
 
 message Custom {
-  string uuid = 1;
-  string bigdecimal = 2;
-  string bigint = 3;
+  string bigdecimal = 1;
+  string bigint = 2;
+  repeated sint64 uuid = 3;
   int32 short = 4;
   int32 char = 5;
 }

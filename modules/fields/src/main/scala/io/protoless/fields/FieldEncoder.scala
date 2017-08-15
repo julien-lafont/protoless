@@ -180,9 +180,16 @@ object FieldEncoder extends MidPriorityFieldEncoder {
   }
 
   /**
+    * Encode an UUID in an `repeated sint64` field, by extracting the `mostSignificantBits`
+    * and `LeastSignificantBits` from the 128 bites UUID.
+    *
     * @group Encoding
     */
-  implicit final val encodeUUID: RepeatableFieldEncoder[java.util.UUID] = encodeString.contramap[java.util.UUID](_.toString)
+  implicit final val encodeUUID: FieldEncoder[java.util.UUID] = {
+    encodeSeq[Long @@ Signed].contramap[java.util.UUID](uuid =>
+      Seq(signed(uuid.getMostSignificantBits), signed(uuid.getLeastSignificantBits))
+    )
+  }
 
   /**
     * @group Encoding

@@ -11,23 +11,23 @@ case class TestCaseNested(
 object TestCaseNested extends TestCase[TestCaseNested] {
 
   case class InnerNested(
-    uuid: String,
-    bigDecimal: BigDecimal
+    bigDecimal: BigDecimal,
+    bigInt: BigInt
   )
 
   override val source: TestCaseNested = TestCaseNested(
     d = 1.0,
-    m1 = Some(InnerNested("bonjour", BigDecimal(Double.MaxValue.toString))),
-    m2 = InnerNested("hello", BigDecimal(Long.MinValue)),
-    rm = Seq(InnerNested("Добрый день", BigDecimal(1)), InnerNested("buongiorno", BigDecimal(2)))
+    m1 = Some(InnerNested(BigDecimal(Double.MaxValue.toString), BigInt(1))),
+    m2 = InnerNested(BigDecimal(Long.MinValue), BigInt(2)),
+    rm = Seq(InnerNested(BigDecimal(1), BigInt(3)), InnerNested(BigDecimal(2), BigInt(4)))
   )
 
   override val protobuf: ProtoSerializable = ProtoSerializable(Schemas.Nested.newBuilder()
     .setD(source.d)
-    .setM1(Schemas.Custom.newBuilder().setUuid(source.m1.get.uuid).setBigdecimal(source.m1.get.bigDecimal.toString()).build())
-    .setM2(Schemas.Custom.newBuilder().setUuid(source.m2.uuid).setBigdecimal(source.m2.bigDecimal.toString()).build())
-    .addRm(Schemas.Custom.newBuilder().setUuid(source.rm(0).uuid).setBigdecimal(source.rm(0).bigDecimal.toString()).build())
-    .addRm(Schemas.Custom.newBuilder().setUuid(source.rm(1).uuid).setBigdecimal(source.rm(1).bigDecimal.toString()).build())
+    .setM1(Schemas.Custom.newBuilder().setBigdecimal(source.m1.get.bigDecimal.toString()).setBigint(source.m1.get.bigInt.toString()).build())
+    .setM2(Schemas.Custom.newBuilder().setBigdecimal(source.m2.bigDecimal.toString()).setBigint(source.m2.bigInt.toString()).build())
+    .addRm(Schemas.Custom.newBuilder().setBigdecimal(source.rm(0).bigDecimal.toString()).setBigint(source.rm(0).bigInt.toString()).build())
+    .addRm(Schemas.Custom.newBuilder().setBigdecimal(source.rm(1).bigDecimal.toString()).setBigint(source.rm(1).bigInt.toString()).build())
     .build())
 
 }

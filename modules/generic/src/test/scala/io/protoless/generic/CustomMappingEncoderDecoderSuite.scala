@@ -33,7 +33,7 @@ class CustomMappingEncoderDecoderSuite extends ProtolessSuite with EqualityInsta
   implicit val encoderTestCaseCustomMappingRepeated: Encoder[TestCaseCustomMappingRepeated] =
     deriveEncoder[TestCaseCustomMappingRepeated, IndexRepeated]
 
-  type IndexNestedInner = Nat._3 :: Nat._5 :: HNil
+  type IndexNestedInner = Nat._2 :: Nat._5 :: HNil
   type IndexNested = Nat._3 :: Nat._4 :: HNil
 
   implicit val decoderInnerNestedCustomMapping: Decoder[InnerNestedCustomMapping] =

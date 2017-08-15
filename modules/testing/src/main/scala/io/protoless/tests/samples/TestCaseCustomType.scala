@@ -1,9 +1,9 @@
 package io.protoless.tests.samples
 
 case class TestCaseCustomType(
-  uuid: java.util.UUID,
   bigdecimal: BigDecimal,
   bigint: BigInt,
+  uuid: java.util.UUID,
   short: Short,
   char: Char
 )
@@ -11,17 +11,17 @@ case class TestCaseCustomType(
 object TestCaseCustomType extends TestCase[TestCaseCustomType] {
 
   override val source: TestCaseCustomType = TestCaseCustomType(
-    uuid = java.util.UUID.randomUUID(),
     bigdecimal = BigDecimal(Double.MaxValue) * BigDecimal(Double.MaxValue),
     bigint = BigInt(Long.MaxValue) * BigInt(Long.MaxValue),
+    uuid = java.util.UUID.randomUUID(),
     short = Short.MaxValue,
     char = 'z'
   )
 
   override val protobuf: ProtoSerializable = ProtoSerializable(Schemas.Custom.newBuilder()
-    .setUuid(source.uuid.toString)
     .setBigdecimal(source.bigdecimal.toString())
     .setBigint(source.bigint.toString())
+    .addUuid(source.uuid.getMostSignificantBits).addUuid(source.uuid.getLeastSignificantBits)
     .setShort(source.short.toInt)
     .setChar(source.char.toInt)
     .build())

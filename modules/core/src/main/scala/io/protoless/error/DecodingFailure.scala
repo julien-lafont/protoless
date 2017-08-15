@@ -7,7 +7,10 @@ import com.google.protobuf.WireFormat.FieldType
   * An exception representing a decoding failure associated with a possible cause
   */
 sealed class DecodingFailure(message: String, cause: Option[Throwable] = None)
-  extends Exception(message, cause.orNull)
+  extends Exception(message, cause.orNull) {
+
+  def withMessage(msg: String): DecodingFailure = new DecodingFailure(msg, cause)
+}
 
 case class MissingField(index: Int, fieldType: FieldType, wireType: Int, fieldNumber: Int) extends DecodingFailure(
   "Field not present in protobuff message.\n" +

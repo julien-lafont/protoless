@@ -72,6 +72,29 @@ trait FieldDecoder[A] extends Serializable { self =>
     }
   }
 
+  /**
+    * Create a new decoder that performs some operation on the result if this one succeeds.
+    *
+    * @param f a function returning either a value or an error message
+    */
+  def emap[B](f: A => Result[B]): FieldDecoder[B] = new FieldDecoder[B] {
+    override def read(input: CIS, index: Int): Result[B] = self.read(input, index) match {
+      case Right(a) => f(a)
+      case l @ Left(_) => l.asInstanceOf[Result[B]]
+    }
+  }
+
+
+  /**
+    * Build a new instance with the specified error message.
+    */
+  def withErrorMessage(message: String): FieldDecoder[A] = new FieldDecoder[A] {
+    override def read(input: CIS, index: Int): Result[A] = self.read(input, index) match {
+      case r @ Right(_) => r
+      case Left(e) => Left(e.withMessage(message))
+    }
+  }
+
 }
 
 /**
@@ -127,6 +150,18 @@ trait RepeatableFieldDecoder[A] extends FieldDecoder[A] { self =>
       }
       case l @ Left(_) => l.asInstanceOf[Result[B]]
     }
+    override def fieldType: FieldType = self.fieldType
+  }
+
+  /**
+    * Build a new instance with the specified error message.
+    */
+  final override def withErrorMessage(message: String): RepeatableFieldDecoder[A] = new RepeatableFieldDecoder[A] {
+    override def read(input: CIS, index: Int): Result[A] = self.read(input, index) match {
+      case r @ Right(_) => r
+      case Left(e) => Left(e.withMessage(message))
+    }
+
     override def fieldType: FieldType = self.fieldType
   }
 }
@@ -259,9 +294,19 @@ object FieldDecoder extends MidPriorityFieldDecoder {
   implicit final val decodeByteString: RepeatableFieldDecoder[ByteString] = native(_.readBytes(), FieldType.BYTES)
 
   /**
+    * Decode an UUID from a `repeated sint64` field, containing the `mostSignificantBits`
+    * and `LeastSignificantBits` of the 128 bits UUID.
+    *
     * @group Decoding
     */
-  implicit final val decodeUUID: RepeatableFieldDecoder[java.util.UUID] = decodeString.emapTry(v => Try(java.util.UUID.fromString(v)))
+  implicit final val decodeUUID: FieldDecoder[java.util.UUID] = {
+    FieldDecoder[List[Long @@ Signed]]
+      .withErrorMessage("UUID must be encoded as `repeated sint64`")
+      .emap {
+        case m :: l :: Nil => Right(new java.util.UUID(m, l))
+        case other: Any => Left(DecodingFailure(s"$other must have size 2 to create an UUID from long's"))
+      }
+  }
 
   /**
     * @group Decoding
