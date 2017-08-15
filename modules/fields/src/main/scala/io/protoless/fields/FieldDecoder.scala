@@ -29,7 +29,7 @@ trait FieldDecoder[A] extends Serializable { self =>
   /**
     * Read value located at index `index` as an object of type `A` from an Array[Byte].
     */
-  def read(input: Array[Byte], index: Int): Result[A] = {
+  final def decode(input: Array[Byte], index: Int): Result[A] = {
     read(CIS.newInstance(input), index)
   }
 
@@ -300,7 +300,7 @@ object FieldDecoder extends MidPriorityFieldDecoder {
     * @group Decoding
     */
   implicit final val decodeUUID: FieldDecoder[java.util.UUID] = {
-    FieldDecoder[List[Long @@ Signed]]
+    apply[List[Long @@ Signed]]
       .withErrorMessage("UUID must be encoded as `repeated sint64`")
       .emap {
         case m :: l :: Nil => Right(new java.util.UUID(m, l))
@@ -370,8 +370,8 @@ object FieldDecoder extends MidPriorityFieldDecoder {
     * @group Collection
     */
   implicit final def decodeNonEmptyList[A](implicit dec: FieldDecoder[List[A]]): FieldDecoder[NonEmptyList[A]] = dec.flatMap {
-    case head :: tail => FieldDecoder.const(NonEmptyList(head, tail))
-    case _ => FieldDecoder.failed("NonEmptyList cannot be empty")
+    case head :: tail => const(NonEmptyList(head, tail))
+    case _ => failed("NonEmptyList cannot be empty")
   }
 }
 

@@ -14,7 +14,7 @@ class ValueClassClassSuite extends ProtolessSuite {
 
   "value class must be decoded" in {
     val dec: FieldDecoder[ValueClass] = FieldDecoder[ValueClass]
-    dec.read(bytes, 1) must ===(Right(valueClass))
+    dec.decode(bytes, 1) must ===(Right(valueClass))
   }
 
   "value class must be encoded" in {

@@ -130,7 +130,7 @@ class FieldEncodingCheck extends ProtolessSuite with GeneratorDrivenPropertyChec
 
   private def encodeDecodeField[T](t: T, index: Int)(implicit enc: FieldEncoder[T], dec: FieldDecoder[T]) = {
     val bytesEncoded = enc.encodeAsByte(index, t)
-    val entityDecoded = dec.read(bytesEncoded, index).right.get
+    val entityDecoded = dec.decode(bytesEncoded, index).right.get
     val entityReEncoded = enc.encodeAsByte(index, entityDecoded)
 
     entityReEncoded.toList must ===(bytesEncoded.toList)

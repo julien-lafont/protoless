@@ -25,7 +25,7 @@ trait FieldEncoder[A] extends Serializable { self =>
   /**
     * Encode the field `A` and return the result in Array[Byte].
     */
-  def encodeAsByte(index: Int, a: A): Array[Byte] = {
+  final def encodeAsByte(index: Int, a: A): Array[Byte] = {
     val out = new ByteArrayOutputStream()
     val cos = COS.newInstance(out)
     write(index, a, cos)
