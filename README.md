@@ -79,10 +79,16 @@ protoless proposes a different approach, your lightweight models drive the proto
 - [x] Auto-derivation of `value class`.
 - [x] Support nested message.
 - [x] Fluid syntax to write custom message decoder/encoder
-- [ ] Support default value.
-- [ ] Compile time schema validation.
+- [ ] Support default value #3
+- [ ] Compile time schema validation. #4
 - [ ] And last, but not least, [GRPC](https://grpc.io/) integration.
 
-# License
+## Contributing
+
+The protoless project welcomes contributions from **anybody wishing to participate**. All code or documentation that is provided must be licensed with the same license that Protoless is licensed with (Apache 2.0, see LICENSE.txt).
+
+Feel free to open an issue if you notice a bug, have an idea for a feature, or have a question about the code. Pull requests are also gladly accepted. You can also just enter in the gitter channel to talk with us.
+
+## License
 
 Code is provided under the Apache 2.0 license available at http://opensource.org/licenses/Apache-2.0, as well as in the LICENSE file.
