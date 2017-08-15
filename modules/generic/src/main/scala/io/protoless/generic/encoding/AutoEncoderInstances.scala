@@ -3,7 +3,7 @@ package io.protoless.generic.encoding
 import com.google.protobuf.CodedOutputStream
 import shapeless.{Generic, HList, Nat}
 
-import io.protoless.encoders.{AutoEncoder, IncrementalEncoder}
+import io.protoless.messages.encoders.{AutoEncoder, IncrementalEncoder}
 
 trait AutoEncoderInstances extends IncrementalEncoderInstances {
 

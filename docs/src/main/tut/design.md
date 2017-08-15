@@ -1,6 +1,6 @@
 ---
 layout: docs
-title:  "Design"
+title:  "Library Design"
 position: 1
 ---
 
@@ -26,13 +26,14 @@ Several implementations are available to fit the multiple scenarios:
  - Decode all fields of a protobuf message, or just some of these.
  - Fields are numbered consecutively, or their numbering must be personalized.
  - Fields must be transformed or validated after decoding
+ - Protobuf numbering is known at compile-time or not
 
 ### Field encoder & decoder:
 
 `Field` decoders/encoders allow to read a specific type at a specific position in a protobuf message.
 
 protoless provides implicit instances of these type classes for many types from the Scala standard library, including `Int`,
-`String`, `BigDecimal`, `UUID`, and [others](TODO). It also provides instances for `Seq[A]`, `Option[A]` and other generic types, but
+`String`, `BigDecimal`, `UUID`, and [others](/protoless/mapping.html). It also provides instances for `Seq[A]`, `Option[A]` and other generic types, but
 only if `A` has an encoder/decoder instance.
 
 An implicit instance for types `A` where `A` has a `Decoder[A]` instance is also provided, in order to support protobuf
@@ -44,4 +45,3 @@ For performance reasons, protobuf messages are processed in a **streaming** fash
 
 As a consequence, reading the same fields two times, trying to read a field with a type and retrying with another type, or
 reading in reverse order is not allowed.
-

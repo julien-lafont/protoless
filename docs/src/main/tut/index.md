@@ -37,8 +37,8 @@ libraryDependencies += Seq(
 
 Type `sbt console` to start a REPL and then paste the following the following code:
 
-```tut
-import io.protoless._, io.protoless.syntax._, io.protoless.generic.auto._
+```tut:book
+import io.protoless._, io.protoless.messages._, io.protoless.generic.auto._
 
 case class Person(firstname: String, lastname: String, age: Option[Int], locations: Seq[String])
 
@@ -55,6 +55,5 @@ No boilerplate, no runtime reflection.
 
 The next sections will focus on:
  - Library design
- - Protobuf message encoding / decoding
- - Create custom field encoder/decoder
- - Mapping between protobuf types and scala types
+ - Protobuf **message** encoding / decoding
+ - Protobuf **field ** encoding / decoding

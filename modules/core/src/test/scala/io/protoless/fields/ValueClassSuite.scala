@@ -19,7 +19,7 @@ class ValueClassClassSuite extends ProtolessSuite {
 
   "value class must be encoded" in {
     val enc: FieldEncoder[ValueClass] = FieldEncoder[ValueClass]
-    enc.encodeAsByte(1, valueClass) must ===(bytes)
+    enc.encodeAsBytes(1, valueClass) must ===(bytes)
   }
 
   "Class not inheriting AnyVal must not be decoded like ValueClass" in {

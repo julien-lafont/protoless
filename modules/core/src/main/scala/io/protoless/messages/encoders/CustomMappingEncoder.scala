@@ -1,9 +1,10 @@
-package io.protoless.encoders
+package io.protoless.messages.encoders
 
 import scala.annotation.implicitNotFound
+
 import shapeless.HList
 
-import io.protoless.Encoder
+import io.protoless.messages.Encoder
 
 @implicitNotFound("No CustomMappingEncoder found for type ${A} and ${L}.")
 @annotation.inductive

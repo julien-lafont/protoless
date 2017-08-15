@@ -1,16 +1,15 @@
-package io.protoless.generic
+package io.protoless.generic.messages
 
-import io.protoless.{Decoder, Encoder, EncoderDecoderHelpers}
+import io.protoless.EncoderDecoderAssertions
 import io.protoless.fields.{FieldDecoder, RepeatableFieldDecoder}
+import io.protoless.messages.{Decoder, Encoder}
 import io.protoless.tests.ProtolessSuite
 import io.protoless.tests.instances.EqualityInstances
 import io.protoless.tests.samples._
 
-class SemiAutoEncoderDecoderSuite extends ProtolessSuite with EqualityInstances with EncoderDecoderHelpers {
+class SemiAutoEncoderDecoderSuite extends ProtolessSuite with EqualityInstances with EncoderDecoderAssertions {
 
   import io.protoless.generic.semiauto._
-
-  implicit val colorDecoder: RepeatableFieldDecoder[Colors.Value] = FieldDecoder.decodeEnum(Colors)
 
   implicit val decoderTestCaseAllFields: Decoder[TestCaseAllFields] = deriveDecoder[TestCaseAllFields]
   implicit val decoderTestCaseOptionalFields: Decoder[TestCaseOptionalFields] = deriveDecoder[TestCaseOptionalFields]

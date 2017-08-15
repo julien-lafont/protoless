@@ -1,19 +1,18 @@
-package io.protoless.generic
+package io.protoless.generic.messages
 
 import shapeless.{::, HNil, Nat}
 
-import io.protoless.{Decoder, Encoder, EncoderDecoderHelpers}
+import io.protoless.EncoderDecoderAssertions
 import io.protoless.fields.{FieldDecoder, RepeatableFieldDecoder}
+import io.protoless.messages.{Decoder, Encoder}
 import io.protoless.tests.ProtolessSuite
 import io.protoless.tests.instances.EqualityInstances
 import io.protoless.tests.samples._
 import io.protoless.tests.samples.TestCaseNestedCustomMapping.InnerNestedCustomMapping
 
-class CustomMappingEncoderDecoderSuite extends ProtolessSuite with EqualityInstances with EncoderDecoderHelpers {
+class CustomMappingEncoderDecoderSuite extends ProtolessSuite with EqualityInstances with EncoderDecoderAssertions {
 
   import io.protoless.generic.semiauto._
-
-  implicit val colorDecoder: RepeatableFieldDecoder[Colors.Value] = FieldDecoder.decodeEnum(Colors)
 
   // Fields number specified with Nat
   type IndexSimple = Nat._2 :: Nat._5 :: Nat._13 :: Nat._16 :: HNil

@@ -1,17 +1,15 @@
-package io.protoless
+package io.protoless.messages
 
 import com.google.protobuf.ByteString
 
-import io.protoless.fields.{FieldDecoder, RepeatableFieldDecoder}
+import io.protoless.EncoderDecoderAssertions
 import io.protoless.tag.{@@, Fixed, Signed, Unsigned}
 import io.protoless.tests.ProtolessSuite
 import io.protoless.tests.samples.{Colors, TestCaseAllFields, TestCaseCustomMappingRepeated, TestCaseNested}
 import io.protoless.tests.samples.Colors.Color
 import io.protoless.tests.samples.TestCaseNested.InnerNested
 
-class HandCraftedEncoderDecoderSuite extends ProtolessSuite with EncoderDecoderHelpers {
-
-  implicit val colorDecoder: RepeatableFieldDecoder[Colors.Value] = FieldDecoder.decodeEnum(Colors)
+class HandCraftedEncoderDecoderSuite extends ProtolessSuite with EncoderDecoderAssertions {
 
   implicit val decoderTestCaseAllFields: Decoder[TestCaseAllFields] = Decoder.instance(input =>
     for {

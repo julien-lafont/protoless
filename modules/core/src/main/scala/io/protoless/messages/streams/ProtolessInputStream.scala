@@ -1,9 +1,9 @@
-package io.protoless.wrappers
+package io.protoless.messages.streams
 
 import com.google.protobuf.CodedInputStream
 
-import io.protoless.Decoder
 import io.protoless.fields.FieldDecoder
+import io.protoless.messages.Decoder
 
 /**
   * Wrapper around protobuf `CodedInputStream` introducing runtime methods to read fields

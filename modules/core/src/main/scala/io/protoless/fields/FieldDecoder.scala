@@ -10,9 +10,10 @@ import com.google.protobuf.WireFormat.FieldType
 import shapeless.Unwrapped
 
 import cats.data.NonEmptyList
-import io.protoless.{tag, Decoder}
-import io.protoless.Decoder.Result
+import io.protoless.tag
+import io.protoless.messages.Decoder.Result
 import io.protoless.error.{DecodingFailure, MissingField, WrongFieldType}
+import io.protoless.messages.Decoder
 import io.protoless.tag._
 
 /**

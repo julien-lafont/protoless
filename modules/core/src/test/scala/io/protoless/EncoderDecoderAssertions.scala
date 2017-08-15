@@ -3,11 +3,15 @@ package io.protoless
 import org.scalactic.Equality
 import org.scalatest.Assertion
 
+import io.protoless.fields.{FieldDecoder, RepeatableFieldDecoder}
+import io.protoless.messages.{Decoder, Encoder}
 import io.protoless.tests.ProtolessSuite
-import io.protoless.tests.samples.TestCase
+import io.protoless.tests.samples.{Colors, TestCase}
 
-trait EncoderDecoderHelpers {
+trait EncoderDecoderAssertions {
   self: ProtolessSuite =>
+
+  implicit protected val colorDecoder: RepeatableFieldDecoder[Colors.Value] = FieldDecoder.decodeEnum(Colors)
 
   protected def testEncoding[X](testCase: TestCase[X])(implicit enc: Encoder[X]): Assertion = {
     val bytes = enc.encodeAsBytes(testCase.source)

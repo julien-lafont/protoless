@@ -1,4 +1,4 @@
-package io.protoless.instances
+package io.protoless.fields.instances
 
 import java.util.UUID
 

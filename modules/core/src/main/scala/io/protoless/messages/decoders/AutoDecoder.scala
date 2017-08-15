@@ -1,8 +1,8 @@
-package io.protoless.decoders
+package io.protoless.messages.decoders
 
 import scala.annotation.implicitNotFound
 
-import io.protoless.Decoder
+import io.protoless.messages.Decoder
 
 /**
   * A type class that decode a value of type `A` from a `CodedInputSteam`.

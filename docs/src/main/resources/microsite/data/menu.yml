@@ -1,6 +1,6 @@
 options:
 
-  - title: Design
+  - title: Library Design
     url: design.html
 
   - title: Message Encoder & Decoder
@@ -9,5 +9,3 @@ options:
   - title: Field Encoder & Decoder
     url: field.html
 
-  - title: Type mapping
-    url: mapping.html

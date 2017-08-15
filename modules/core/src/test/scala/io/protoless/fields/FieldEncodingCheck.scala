@@ -7,7 +7,7 @@ import org.scalacheck.{Arbitrary, Gen}
 import org.scalacheck.Arbitrary.arbitrary
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
-import io.protoless.instances.ArbitraryInstances
+import io.protoless.fields.instances.ArbitraryInstances
 import io.protoless.tag._
 import io.protoless.tests.ProtolessSuite
 
@@ -129,9 +129,9 @@ class FieldEncodingCheck extends ProtolessSuite with GeneratorDrivenPropertyChec
   }
 
   private def encodeDecodeField[T](t: T, index: Int)(implicit enc: FieldEncoder[T], dec: FieldDecoder[T]) = {
-    val bytesEncoded = enc.encodeAsByte(index, t)
+    val bytesEncoded = enc.encodeAsBytes(index, t)
     val entityDecoded = dec.decode(bytesEncoded, index).right.get
-    val entityReEncoded = enc.encodeAsByte(index, entityDecoded)
+    val entityReEncoded = enc.encodeAsBytes(index, entityDecoded)
 
     entityReEncoded.toList must ===(bytesEncoded.toList)
   }

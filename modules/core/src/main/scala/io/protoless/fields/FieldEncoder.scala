@@ -6,9 +6,9 @@ import java.io.ByteArrayOutputStream
 import com.google.protobuf.{ByteString, WireFormat, CodedOutputStream => COS}
 import com.google.protobuf.WireFormat.FieldType
 import shapeless.Unwrapped
-import cats.data.NonEmptyList
 
-import io.protoless.Encoder
+import cats.data.NonEmptyList
+import io.protoless.messages.Encoder
 import io.protoless.tag._
 
 /**
@@ -25,7 +25,7 @@ trait FieldEncoder[A] extends Serializable { self =>
   /**
     * Encode the field `A` and return the result in Array[Byte].
     */
-  final def encodeAsByte(index: Int, a: A): Array[Byte] = {
+  final def encodeAsBytes(index: Int, a: A): Array[Byte] = {
     val out = new ByteArrayOutputStream()
     val cos = COS.newInstance(out)
     write(index, a, cos)

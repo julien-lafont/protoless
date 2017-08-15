@@ -1,4 +1,4 @@
-package io.protoless
+package io.protoless.messages
 
 import scala.annotation.implicitNotFound
 import java.io.ByteArrayOutputStream
@@ -6,7 +6,7 @@ import java.nio.ByteBuffer
 
 import com.google.protobuf.CodedOutputStream
 
-import io.protoless.wrappers.ProtolessOutputStream
+import io.protoless.messages.streams.ProtolessOutputStream
 
 /**
   * Interface for all Encoder implementations.

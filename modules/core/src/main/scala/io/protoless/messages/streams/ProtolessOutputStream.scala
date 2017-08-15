@@ -1,4 +1,4 @@
-package io.protoless.wrappers
+package io.protoless.messages.streams
 
 import com.google.protobuf.CodedOutputStream
 

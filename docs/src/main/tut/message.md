@@ -6,12 +6,12 @@ position: 2
 
 # Encode & decode protobuf messages
 
-Encoders and Decoders for protobuf messages can be created if 2 differents ways:
- - `Fully Automatic derivation`: encoders & decoders will automatically be derived from your models. All the fields in the
+Encoders and Decoders for protobuf Messages can be created in 3 different ways:
+ - [Fully Automatic derivation](#fully-automatic-derivation): encoders & decoders will automatically be derived from your models. All the fields in the
    proto schema **must** be numbered consecutively starting from one.
- - `Semi-automatic derivation` (**recommended**): you have to derive an encoder/decoder for each case class involved in
+ - [Semi-automatic derivation](#semi-automatic-derivation) (**recommended**): you have to derive an encoder/decoder for each case class involved in
    protobuf serialization. You can derive with automatic field numbering, or configure a specific mapping.
-
+ - [Hand-crafted encoders/decoders](#hand-crafted-encodersdecoders): you have the freedom to compose your own encoders/decoders using existing bricks.
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.6/flowchart.min.js"></script>
@@ -19,24 +19,30 @@ Encoders and Decoders for protobuf messages can be created if 2 differents ways:
 <div id="diagram"></div>
 <script>
     var diagram = flowchart.parse(
-      'st=>start: protoless\n' +
+        'st=>start: Which strategy shoud I use?\n' +
 
-      'endAuto=>end: Fully Automatic derivation\n' +
-      'endSemi=>end: Semi-Automatic derivation\n' +
+        'endAuto=>end: Fully Automatic derivation:>#fully-automatic-derivation\n' +
+        'endSemi=>end: Semi-Automatic derivation:>#semi-automatic-derivation\n' +
+        'endCraft=>end: Hand-crafted encoders/decoders:>#hand-crafted-encodersdecoders\n' +
 
-      'cond1=>condition: Are all the fields\n' +
-      'numbered consecutively\n' +
-      'starting from one?\n' +
 
-      'cond2=>condition: Do you need to\n' +
-      'customize field\n' +
-      'encoding/decoding?\n' +
+        'cond0=>condition: Do you intend to\n' +
+        'validate or transform fields\n' +
+        'individually?\n' +
 
-      'st->cond1\n' +
-      'cond1(yes)->cond2\n' +
-      'cond1(no)->endSemi(left)\n' +
-      'cond2(yes)->endSemi(left)\n' +
-      'cond2(no, left)->endAuto\n');
+        'cond1=>condition: Are the fields\n' +
+        'numbered consecutively\n' +
+        'starting from one?\n' +
+
+        'cond2=>condition: Do you like\n' +
+        'magic?\n' +
+
+        'st->cond0\n' +
+        'cond0(yes)->endCraft\n' +
+        'cond0(no)->cond1(yes)->cond2\n' +
+        'cond1(no)->endSemi(left)\n' +
+        'cond2(no)->endSemi(left)s\n' +
+        'cond2(yes, left)->endAuto\n');
 
     diagram.drawSVG('diagram');
 </script>
@@ -68,7 +74,7 @@ Note that `Student` schema has definitively evolved many times, because the numb
 
 In your application, we want to use these types:
 
-```tut
+```tut:silent
 import cats.data.NonEmptyList
 
 case class Course(name: String, price: Double) // we doesn't care about the `external` field
@@ -78,7 +84,7 @@ case class Student(id: StudentId, name: String, birthDate: String, courses: NonE
 
 You can summon encoders and decoders for these models with respectively `deriveEncoder` and `deriveDecoder`:
 
-```tut
+```tut:silent
 import io.protoless.generic.semiauto._
 import shapeless.{::, HNil, Nat}
 
@@ -93,7 +99,7 @@ implicit val studentEncoder = deriveEncoder[Student, Nat._1 :: Nat._2 :: Nat._4 
 
 You're ready to encode and decode protobuf messages:
 
-```tut
+```tut:book
 val student = Student(StudentId(4815162342L), "Kate", "1977-06-21", NonEmptyList.of(
     Course("airline pilot", 8150),
     Course("US marshall", 4912)
@@ -106,7 +112,7 @@ studentDecoder.decode(bytes)
 
 You can also use the syntaxic sugar `.as[A]` and `.asProtobufBytes` to replace the explicit call on decoders/encoders:
 
-```tut
+```tut:silent
 import io.protoless.syntax._
 
 student.asProtobufBytes
@@ -119,7 +125,7 @@ bytes.as[Student]
 If your project use the typelevel [fork](https://github.com/typelevel/scala/) of Scala, you can define the field mapping
 with [Literal types](https://github.com/typelevel/scala/blob/typelevel-readme/notes/typelevel-4.md#literal-types-pull5310-milesabin).
 
-```tut
+```tut:silent
 type StudentMapping = 1 :: 2 :: 4 :: 8 :: HNil
 ```
 
@@ -129,7 +135,7 @@ Automatically derive the required decoder/encoders, using the `automatic field n
 
 This approach requires less code, but only works if your messages are numbered consecutively starting from one.
 
-```tut
+```tut:silent
 import io.protoless.generic.auto._
 
 case class Cloud(name: String, nickname: Char)
@@ -141,4 +147,69 @@ val bytes = unicorn.asProtobufBytes
 
 bytes.as[Unicorn]
 ```
+
+## Hand-crafted encoders/decoders
+
+`Hand-crafted` encoders and decoders give you total control on how your objects are encoded and decoded.
+You've to define for each field how to read/write it and at which position.
+
+It's useful if you want to validate or transform protobuf message to fit with your model.
+
+```protobuf
+message Meteo {
+  string city = 1;
+  string country = 2;
+  int32 temperature = 3; // in °F
+  float wind = 4;
+  float humidity = 5; // optional
+}
+```
+<br/>
+
+```tut:reset:silent
+case class Location(country: String, city: String)
+case class Celcius(temp: Float)
+
+sealed trait Weather
+case object Sunny extends Weather
+case class Rainy(humidity: Float) extends Weather
+
+case class Meteo(location: Location, temp: Celcius, weather: Weather)
+```
+<br/>
+```tut:silent
+import io.protoless.messages._, io.protoless.syntax._
+
+implicit val meteoDecoder = Decoder.instance[Meteo](input =>
+  for {
+    city <- input.read[String] // if nothing is specified, index are automatically incremented
+    country <- input.read[String].map(_.toUpperCase)
+    temp <- input.read[Int].map(f => Celcius((f-32f)/1.8f))
+    // we don't care about wind
+    weather <- input.read[Option[Float]](5).map {
+      case Some(humidity) => Rainy(humidity)
+      case None => Sunny
+    }
+  } yield Meteo(Location(city, country), temp, weather)
+)
+
+implicit val meteoEncoder = Encoder.instance[Meteo]{ meteo =>
+  output =>
+    output.write[String](meteo.location.city)
+    output.write[String](meteo.location.country)
+    output.write[Int]((meteo.temp.temp * 1.8f - 32).toInt)
+    output.write[Option[Float]](meteo.weather match {
+      case Rainy(humidity) => Some(humidity)
+      case _ => None
+    }, 6)
+}
+```
+```tut:book
+val bytes = meteoEncoder.encodeAsBytes(Meteo(Location("France", "Montpellier"), Celcius(38), Sunny))
+
+bytes.as[Meteo]
+```
+
+
+
 

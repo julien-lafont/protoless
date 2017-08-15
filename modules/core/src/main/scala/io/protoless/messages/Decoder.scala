@@ -1,4 +1,4 @@
-package io.protoless
+package io.protoless.messages
 
 import scala.annotation.implicitNotFound
 import scala.util.{Failure, Success, Try}
@@ -7,9 +7,10 @@ import java.nio.ByteBuffer
 
 import com.google.protobuf.{CodedInputStream => CIS}
 
-import io.protoless.Decoder.Result
+import io.protoless.error
 import io.protoless.error.DecodingFailure
-import io.protoless.wrappers.ProtolessInputStream
+import io.protoless.messages.Decoder.Result
+import io.protoless.messages.streams.ProtolessInputStream
 
 /**
   * Interface for all Decoder implementations.

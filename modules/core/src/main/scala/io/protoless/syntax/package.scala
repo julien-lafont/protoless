@@ -2,6 +2,8 @@ package io.protoless
 
 import java.io.ByteArrayOutputStream
 
+import io.protoless.messages.{Decoder, Encoder}
+
 package object syntax {
 
   implicit final class EncoderOps[A](val wrappedEncodeable: A) extends AnyVal {

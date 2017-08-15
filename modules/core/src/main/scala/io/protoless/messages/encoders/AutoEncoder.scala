@@ -1,8 +1,8 @@
-package io.protoless.encoders
+package io.protoless.messages.encoders
 
 import scala.annotation.implicitNotFound
 
-import io.protoless.Encoder
+import io.protoless.messages.Encoder
 
 @implicitNotFound("No AutoEncoder found for type ${A}.")
 @annotation.inductive

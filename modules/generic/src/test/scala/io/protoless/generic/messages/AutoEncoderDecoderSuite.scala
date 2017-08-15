@@ -1,16 +1,14 @@
-package io.protoless.generic
+package io.protoless.generic.messages
 
-import io.protoless.EncoderDecoderHelpers
+import io.protoless.EncoderDecoderAssertions
 import io.protoless.fields.{FieldDecoder, RepeatableFieldDecoder}
 import io.protoless.tests.ProtolessSuite
 import io.protoless.tests.instances.EqualityInstances
 import io.protoless.tests.samples._
 
-class AutoEncoderDecoderSuite extends ProtolessSuite with EqualityInstances with EncoderDecoderHelpers {
+class AutoEncoderDecoderSuite extends ProtolessSuite with EqualityInstances with EncoderDecoderAssertions {
 
   import io.protoless.generic.auto._
-
-  implicit val colorDecoder: RepeatableFieldDecoder[Colors.Value] = FieldDecoder.decodeEnum(Colors)
 
   "Auto Encoder must convert case class to protobuf format for" - {
     "protobuf native fields type" in {
