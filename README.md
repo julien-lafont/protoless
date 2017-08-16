@@ -86,7 +86,7 @@ protoless proposes a different approach, your lightweight models drive the proto
 
 ## Contributing
 
-The protoless project welcomes contributions from **anybody wishing to participate**. All code or documentation that is provided must be licensed with the same license that Protoless is licensed with (Apache 2.0, see LICENSE.txt).
+The protoless project welcomes contributions from **anybody wishing to participate**. All code or documentation that is provided must be licensed with the same license that Protoless is licensed with (Apache 2.0, see LICENSE file).
 
 Feel free to open an issue if you notice a bug, have an idea for a feature, or have a question about the code. Pull requests are also gladly accepted. You can also just enter in the gitter channel to talk with us.
 
