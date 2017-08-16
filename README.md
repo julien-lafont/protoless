@@ -58,7 +58,6 @@ The full documentation is available here: [https://julien-lafont.github.io/proto
  - [Library design](https://julien-lafont.github.io/protoless/design.html)
  - [Message Encoder & Decoder](https://julien-lafont.github.io/protoless/message.html)
  - [Field Encoder & Decoder](https://julien-lafont.github.io/protoless/field.html)
- - [Type Mapping](https://julien-lafont.github.io/protoless/mapping.html)
 
 ## Why?
 
@@ -81,8 +80,8 @@ protoless proposes a different approach, your lightweight models drive the proto
 - [x] Auto-derivation of `value class`.
 - [x] Support nested message.
 - [x] Fluid syntax to write custom message decoder/encoder
-- [ ] Support default value #3
-- [ ] Compile time schema validation. #4
+- [ ] Support default value [#3](https://github.com/julien-lafont/protoless/issues/3)
+- [ ] Compile time schema validation. [#4](https://github.com/julien-lafont/protoless/issues/4)
 - [ ] And last, but not least, [GRPC](https://grpc.io/) integration.
 
 ## Contributing
