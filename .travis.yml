@@ -3,15 +3,10 @@ sudo: required
 dist: trusty
 
 scala:
-  - 2.11.11
+  - 2.12.3
 
 jdk:
   - oraclejdk8
-
-matrix:
-  include:
-  - scala: 2.12.2
-    jdk: oraclejdk8
 
 cache:
   directories:
@@ -19,14 +14,8 @@ cache:
     - $HOME/.sbt/boot
     - $HOME/.coursier
 
-install:
-  - pip install --user codecov
-
 script:
-  - if [[ "$TRAVIS_SCALA_VERSION" == 2.11.* ]];
-    then sbt ++2.11.11-bin-typelevel-4 clean validate;
-    else sbt ++2.12.3-bin-typelevel-4 clean validate;
-    fi
+  - sbt "+ validate";
 
   # See http://www.scala-sbt.org/0.13/docs/Travis-CI-with-sbt.html
   # Tricks to avoid unnecessary cache updates
