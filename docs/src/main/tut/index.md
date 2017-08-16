@@ -56,4 +56,4 @@ No boilerplate, no runtime reflection.
 The next sections will focus on:
  - Library design
  - Protobuf **message** encoding / decoding
- - Protobuf **field ** encoding / decoding
+ - Protobuf **field** encoding / decoding

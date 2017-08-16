@@ -214,6 +214,7 @@ lazy val docSettings = Seq(
   micrositeHighlightTheme := "monokai",
   micrositeHomepage := "https://julien-lafont.github.io/protoless",
   micrositeDocumentationUrl := "api",
+  micrositeBaseUrl := "/protoless",
   micrositeGithubOwner := "julien-lafont",
   micrositeGithubRepo := "protoless",
   micrositeGitterChannel := true,
@@ -223,7 +224,8 @@ lazy val docSettings = Seq(
   micrositeCDNDirectives := microsites.CdnDirectives(
     jsList = List(
       "https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js",
-      "https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.6/flowchart.min.js"
+      "https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.6/flowchart.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.0.0/anchor.min.js"
     )
   ),
   addMappingsToSiteDir(mappings in (ScalaUnidoc, packageDoc), micrositeDocumentationUrl),
