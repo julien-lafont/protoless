@@ -208,7 +208,7 @@ lazy val noPublishSettings = Seq(
 
 lazy val docSettings = Seq(
   micrositeName := "protoless",
-  micrositeDescription := "A type-safe and schema-free Protobuf library for Scala",
+  micrositeDescription := "Type-safe and schema-free Protobuf library for Scala",
   micrositeAuthor := "Julien Lafont",
   micrositeTwitterCreator := "@julien_lafont",
   micrositeHighlightTheme := "monokai",
@@ -224,8 +224,7 @@ lazy val docSettings = Seq(
   micrositeCDNDirectives := microsites.CdnDirectives(
     jsList = List(
       "https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js",
-      "https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.6/flowchart.min.js",
-      "https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.0.0/anchor.min.js"
+      "https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.6/flowchart.min.js"
     )
   ),
   addMappingsToSiteDir(mappings in (ScalaUnidoc, packageDoc), micrositeDocumentationUrl),
