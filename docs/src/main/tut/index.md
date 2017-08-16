@@ -10,7 +10,7 @@ section: "home"
 [![Gitter](https://img.shields.io/gitter/room/julien-lafont/protoless.js.svg)](https://gitter.im/protoless/Lobby)
 
 protoless is a [Protobuf 3](https://developers.google.com/protocol-buffers/docs/proto3) serialization
-library in **Scala** for JVM, based on automatic type class derivation to perfectly fit with your models.
+library in **Scala** for JVM, based on automatic type class derivation to perfectly fit your models.
 
 The type class derivation approach allows to generate `type-safe` [Encoders](/protoless/api/io/protoless/Decoder.html)
 and [Decoders](/protoless/api/io/protoless/Encoder.html) at `compile-time` for your own models,
@@ -19,7 +19,7 @@ No macro were harmed in the making of this library.
 
 `Schema-free` doesn't imply any loss of consistency. If you have one, you can still validate it at compile-time with yours models (*not implemented yet*).
 
-protoless is heavily inspired by awesome work made on [Circe](http://circe.io) by Travis Brown, such that their public APIs share a lot in their design.
+protoless is heavily inspired by awesome work made on [Circe](http://circe.io) by Travis Brown, so that the design of their public APIs has a lot in common. .
 
 
 ## QuickStart

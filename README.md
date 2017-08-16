@@ -8,7 +8,7 @@
 > A type-safe and schema-free Protobuf library for Scala
 
 protoless is a [Protobuf 3](https://developers.google.com/protocol-buffers/docs/proto3) serialization
-library in **Scala** for JVM, based on automatic type class derivation to perfectly fit with your models.
+library in **Scala** for JVM, based on automatic type class derivation to perfectly fit your models.
 
 The type class derivation approach allows to generate `type-safe` [Encoders](https://julien-lafont.github.io/protoless/api/io/protoless/Decoder.html)
 and [Decoders](https://julien-lafont.github.io/protoless/api/io/protoless/Encoder.html) at `compile-time` for your own models,
@@ -17,7 +17,7 @@ No macro were harmed in the making of this library.
 
 `Schema-free` doesn't imply any loss of consistency. If you have one, you can still validate it at compile-time with yours models (*not implemented yet*).
 
-protoless is heavily inspired by awesome work made on [Circe](http://circe.io) by Travis Brown, so that their public APIs share a lot in their design.
+protoless is heavily inspired by awesome work made on [Circe](http://circe.io) by Travis Brown, so the design of their public APIs has a lot in common.
 
 ## QuickStart
 
@@ -69,7 +69,7 @@ The full documentation is available here: [https://julien-lafont.github.io/proto
 
 protoless proposes a different approach, your lightweight models drive the protobuf serialization, **without weighing it down**.
 
-##  Progress of the work
+##  State of progress
 
 - [x] Encoding/decoding protobuf native fields.
 - [x] Encoding/decoding scala native types (collections, bigdecimal, enum, etc).
