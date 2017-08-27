@@ -8,7 +8,7 @@ inThisBuild(Seq(
 
 lazy val catsVersion = "1.0.0-MF"
 lazy val shapelessVersion = "2.3.2"
-lazy val protobufJavaVersion = "3.3.1"
+lazy val protobufJavaVersion = "3.4.0"
 lazy val scalaTestVersion = "3.0.3"
 lazy val scalaticVersion = "3.0.3"
 lazy val scalaCheckVersion = "1.13.5"

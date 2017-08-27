@@ -126,91 +126,91 @@ public final class Schemas {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional double double_field = 1;</code>
+     * <code>double double_field = 1;</code>
      */
     double getDoubleField();
 
     /**
-     * <code>optional float float_field = 2;</code>
+     * <code>float float_field = 2;</code>
      */
     float getFloatField();
 
     /**
-     * <code>optional int32 int32_field = 3;</code>
+     * <code>int32 int32_field = 3;</code>
      */
     int getInt32Field();
 
     /**
-     * <code>optional int64 int64_field = 4;</code>
+     * <code>int64 int64_field = 4;</code>
      */
     long getInt64Field();
 
     /**
-     * <code>optional uint32 uint32_field = 5;</code>
+     * <code>uint32 uint32_field = 5;</code>
      */
     int getUint32Field();
 
     /**
-     * <code>optional uint64 uint64_field = 6;</code>
+     * <code>uint64 uint64_field = 6;</code>
      */
     long getUint64Field();
 
     /**
-     * <code>optional sint32 sint32_field = 7;</code>
+     * <code>sint32 sint32_field = 7;</code>
      */
     int getSint32Field();
 
     /**
-     * <code>optional sint64 sint64_field = 8;</code>
+     * <code>sint64 sint64_field = 8;</code>
      */
     long getSint64Field();
 
     /**
-     * <code>optional fixed32 fixed32_field = 9;</code>
+     * <code>fixed32 fixed32_field = 9;</code>
      */
     int getFixed32Field();
 
     /**
-     * <code>optional fixed64 fixed64_field = 10;</code>
+     * <code>fixed64 fixed64_field = 10;</code>
      */
     long getFixed64Field();
 
     /**
-     * <code>optional sfixed32 sfixed32_field = 11;</code>
+     * <code>sfixed32 sfixed32_field = 11;</code>
      */
     int getSfixed32Field();
 
     /**
-     * <code>optional sfixed64 sfixed64_field = 12;</code>
+     * <code>sfixed64 sfixed64_field = 12;</code>
      */
     long getSfixed64Field();
 
     /**
-     * <code>optional bool bool_field = 13;</code>
+     * <code>bool bool_field = 13;</code>
      */
     boolean getBoolField();
 
     /**
-     * <code>optional string string_field = 14;</code>
+     * <code>string string_field = 14;</code>
      */
     java.lang.String getStringField();
     /**
-     * <code>optional string string_field = 14;</code>
+     * <code>string string_field = 14;</code>
      */
     com.google.protobuf.ByteString
         getStringFieldBytes();
 
     /**
-     * <code>optional bytes bytes_field = 15;</code>
+     * <code>bytes bytes_field = 15;</code>
      */
     com.google.protobuf.ByteString getBytesField();
 
     /**
-     * <code>optional .io.protoless.tests.samples.Color color_field = 16;</code>
+     * <code>.io.protoless.tests.samples.Color color_field = 16;</code>
      */
     int getColorFieldValue();
     /**
-     * <code>optional .io.protoless.tests.samples.Color color_field = 16;</code>
+     * <code>.io.protoless.tests.samples.Color color_field = 16;</code>
      */
     io.protoless.tests.samples.Schemas.Color getColorField();
   }
@@ -221,6 +221,7 @@ public final class Schemas {
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:io.protoless.tests.samples.Optional)
       OptionalOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Optional.newBuilder() to construct.
     private Optional(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -247,7 +248,7 @@ public final class Schemas {
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private Optional(
         com.google.protobuf.CodedInputStream input,
@@ -255,6 +256,8 @@ public final class Schemas {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -264,7 +267,8 @@ public final class Schemas {
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -359,6 +363,7 @@ public final class Schemas {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -377,7 +382,7 @@ public final class Schemas {
     public static final int DOUBLE_FIELD_FIELD_NUMBER = 1;
     private double doubleField_;
     /**
-     * <code>optional double double_field = 1;</code>
+     * <code>double double_field = 1;</code>
      */
     public double getDoubleField() {
       return doubleField_;
@@ -386,7 +391,7 @@ public final class Schemas {
     public static final int FLOAT_FIELD_FIELD_NUMBER = 2;
     private float floatField_;
     /**
-     * <code>optional float float_field = 2;</code>
+     * <code>float float_field = 2;</code>
      */
     public float getFloatField() {
       return floatField_;
@@ -395,7 +400,7 @@ public final class Schemas {
     public static final int INT32_FIELD_FIELD_NUMBER = 3;
     private int int32Field_;
     /**
-     * <code>optional int32 int32_field = 3;</code>
+     * <code>int32 int32_field = 3;</code>
      */
     public int getInt32Field() {
       return int32Field_;
@@ -404,7 +409,7 @@ public final class Schemas {
     public static final int INT64_FIELD_FIELD_NUMBER = 4;
     private long int64Field_;
     /**
-     * <code>optional int64 int64_field = 4;</code>
+     * <code>int64 int64_field = 4;</code>
      */
     public long getInt64Field() {
       return int64Field_;
@@ -413,7 +418,7 @@ public final class Schemas {
     public static final int UINT32_FIELD_FIELD_NUMBER = 5;
     private int uint32Field_;
     /**
-     * <code>optional uint32 uint32_field = 5;</code>
+     * <code>uint32 uint32_field = 5;</code>
      */
     public int getUint32Field() {
       return uint32Field_;
@@ -422,7 +427,7 @@ public final class Schemas {
     public static final int UINT64_FIELD_FIELD_NUMBER = 6;
     private long uint64Field_;
     /**
-     * <code>optional uint64 uint64_field = 6;</code>
+     * <code>uint64 uint64_field = 6;</code>
      */
     public long getUint64Field() {
       return uint64Field_;
@@ -431,7 +436,7 @@ public final class Schemas {
     public static final int SINT32_FIELD_FIELD_NUMBER = 7;
     private int sint32Field_;
     /**
-     * <code>optional sint32 sint32_field = 7;</code>
+     * <code>sint32 sint32_field = 7;</code>
      */
     public int getSint32Field() {
       return sint32Field_;
@@ -440,7 +445,7 @@ public final class Schemas {
     public static final int SINT64_FIELD_FIELD_NUMBER = 8;
     private long sint64Field_;
     /**
-     * <code>optional sint64 sint64_field = 8;</code>
+     * <code>sint64 sint64_field = 8;</code>
      */
     public long getSint64Field() {
       return sint64Field_;
@@ -449,7 +454,7 @@ public final class Schemas {
     public static final int FIXED32_FIELD_FIELD_NUMBER = 9;
     private int fixed32Field_;
     /**
-     * <code>optional fixed32 fixed32_field = 9;</code>
+     * <code>fixed32 fixed32_field = 9;</code>
      */
     public int getFixed32Field() {
       return fixed32Field_;
@@ -458,7 +463,7 @@ public final class Schemas {
     public static final int FIXED64_FIELD_FIELD_NUMBER = 10;
     private long fixed64Field_;
     /**
-     * <code>optional fixed64 fixed64_field = 10;</code>
+     * <code>fixed64 fixed64_field = 10;</code>
      */
     public long getFixed64Field() {
       return fixed64Field_;
@@ -467,7 +472,7 @@ public final class Schemas {
     public static final int SFIXED32_FIELD_FIELD_NUMBER = 11;
     private int sfixed32Field_;
     /**
-     * <code>optional sfixed32 sfixed32_field = 11;</code>
+     * <code>sfixed32 sfixed32_field = 11;</code>
      */
     public int getSfixed32Field() {
       return sfixed32Field_;
@@ -476,7 +481,7 @@ public final class Schemas {
     public static final int SFIXED64_FIELD_FIELD_NUMBER = 12;
     private long sfixed64Field_;
     /**
-     * <code>optional sfixed64 sfixed64_field = 12;</code>
+     * <code>sfixed64 sfixed64_field = 12;</code>
      */
     public long getSfixed64Field() {
       return sfixed64Field_;
@@ -485,7 +490,7 @@ public final class Schemas {
     public static final int BOOL_FIELD_FIELD_NUMBER = 13;
     private boolean boolField_;
     /**
-     * <code>optional bool bool_field = 13;</code>
+     * <code>bool bool_field = 13;</code>
      */
     public boolean getBoolField() {
       return boolField_;
@@ -494,7 +499,7 @@ public final class Schemas {
     public static final int STRING_FIELD_FIELD_NUMBER = 14;
     private volatile java.lang.Object stringField_;
     /**
-     * <code>optional string string_field = 14;</code>
+     * <code>string string_field = 14;</code>
      */
     public java.lang.String getStringField() {
       java.lang.Object ref = stringField_;
@@ -509,7 +514,7 @@ public final class Schemas {
       }
     }
     /**
-     * <code>optional string string_field = 14;</code>
+     * <code>string string_field = 14;</code>
      */
     public com.google.protobuf.ByteString
         getStringFieldBytes() {
@@ -528,7 +533,7 @@ public final class Schemas {
     public static final int BYTES_FIELD_FIELD_NUMBER = 15;
     private com.google.protobuf.ByteString bytesField_;
     /**
-     * <code>optional bytes bytes_field = 15;</code>
+     * <code>bytes bytes_field = 15;</code>
      */
     public com.google.protobuf.ByteString getBytesField() {
       return bytesField_;
@@ -537,13 +542,13 @@ public final class Schemas {
     public static final int COLOR_FIELD_FIELD_NUMBER = 16;
     private int colorField_;
     /**
-     * <code>optional .io.protoless.tests.samples.Color color_field = 16;</code>
+     * <code>.io.protoless.tests.samples.Color color_field = 16;</code>
      */
     public int getColorFieldValue() {
       return colorField_;
     }
     /**
-     * <code>optional .io.protoless.tests.samples.Color color_field = 16;</code>
+     * <code>.io.protoless.tests.samples.Color color_field = 16;</code>
      */
     public io.protoless.tests.samples.Schemas.Color getColorField() {
       io.protoless.tests.samples.Schemas.Color result = io.protoless.tests.samples.Schemas.Color.valueOf(colorField_);
@@ -610,6 +615,7 @@ public final class Schemas {
       if (colorField_ != io.protoless.tests.samples.Schemas.Color.BLACK.getNumber()) {
         output.writeEnum(16, colorField_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -680,11 +686,11 @@ public final class Schemas {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(16, colorField_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -731,6 +737,7 @@ public final class Schemas {
       result = result && getBytesField()
           .equals(other.getBytesField());
       result = result && colorField_ == other.colorField_;
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -740,7 +747,7 @@ public final class Schemas {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + DOUBLE_FIELD_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getDoubleField()));
@@ -786,6 +793,17 @@ public final class Schemas {
       return hash;
     }
 
+    public static io.protoless.tests.samples.Schemas.Optional parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.protoless.tests.samples.Schemas.Optional parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static io.protoless.tests.samples.Schemas.Optional parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -978,7 +996,7 @@ public final class Schemas {
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -991,12 +1009,12 @@ public final class Schemas {
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1059,6 +1077,7 @@ public final class Schemas {
         if (other.colorField_ != 0) {
           setColorFieldValue(other.getColorFieldValue());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -1087,13 +1106,13 @@ public final class Schemas {
 
       private double doubleField_ ;
       /**
-       * <code>optional double double_field = 1;</code>
+       * <code>double double_field = 1;</code>
        */
       public double getDoubleField() {
         return doubleField_;
       }
       /**
-       * <code>optional double double_field = 1;</code>
+       * <code>double double_field = 1;</code>
        */
       public Builder setDoubleField(double value) {
         
@@ -1102,7 +1121,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional double double_field = 1;</code>
+       * <code>double double_field = 1;</code>
        */
       public Builder clearDoubleField() {
         
@@ -1113,13 +1132,13 @@ public final class Schemas {
 
       private float floatField_ ;
       /**
-       * <code>optional float float_field = 2;</code>
+       * <code>float float_field = 2;</code>
        */
       public float getFloatField() {
         return floatField_;
       }
       /**
-       * <code>optional float float_field = 2;</code>
+       * <code>float float_field = 2;</code>
        */
       public Builder setFloatField(float value) {
         
@@ -1128,7 +1147,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional float float_field = 2;</code>
+       * <code>float float_field = 2;</code>
        */
       public Builder clearFloatField() {
         
@@ -1139,13 +1158,13 @@ public final class Schemas {
 
       private int int32Field_ ;
       /**
-       * <code>optional int32 int32_field = 3;</code>
+       * <code>int32 int32_field = 3;</code>
        */
       public int getInt32Field() {
         return int32Field_;
       }
       /**
-       * <code>optional int32 int32_field = 3;</code>
+       * <code>int32 int32_field = 3;</code>
        */
       public Builder setInt32Field(int value) {
         
@@ -1154,7 +1173,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional int32 int32_field = 3;</code>
+       * <code>int32 int32_field = 3;</code>
        */
       public Builder clearInt32Field() {
         
@@ -1165,13 +1184,13 @@ public final class Schemas {
 
       private long int64Field_ ;
       /**
-       * <code>optional int64 int64_field = 4;</code>
+       * <code>int64 int64_field = 4;</code>
        */
       public long getInt64Field() {
         return int64Field_;
       }
       /**
-       * <code>optional int64 int64_field = 4;</code>
+       * <code>int64 int64_field = 4;</code>
        */
       public Builder setInt64Field(long value) {
         
@@ -1180,7 +1199,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional int64 int64_field = 4;</code>
+       * <code>int64 int64_field = 4;</code>
        */
       public Builder clearInt64Field() {
         
@@ -1191,13 +1210,13 @@ public final class Schemas {
 
       private int uint32Field_ ;
       /**
-       * <code>optional uint32 uint32_field = 5;</code>
+       * <code>uint32 uint32_field = 5;</code>
        */
       public int getUint32Field() {
         return uint32Field_;
       }
       /**
-       * <code>optional uint32 uint32_field = 5;</code>
+       * <code>uint32 uint32_field = 5;</code>
        */
       public Builder setUint32Field(int value) {
         
@@ -1206,7 +1225,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional uint32 uint32_field = 5;</code>
+       * <code>uint32 uint32_field = 5;</code>
        */
       public Builder clearUint32Field() {
         
@@ -1217,13 +1236,13 @@ public final class Schemas {
 
       private long uint64Field_ ;
       /**
-       * <code>optional uint64 uint64_field = 6;</code>
+       * <code>uint64 uint64_field = 6;</code>
        */
       public long getUint64Field() {
         return uint64Field_;
       }
       /**
-       * <code>optional uint64 uint64_field = 6;</code>
+       * <code>uint64 uint64_field = 6;</code>
        */
       public Builder setUint64Field(long value) {
         
@@ -1232,7 +1251,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional uint64 uint64_field = 6;</code>
+       * <code>uint64 uint64_field = 6;</code>
        */
       public Builder clearUint64Field() {
         
@@ -1243,13 +1262,13 @@ public final class Schemas {
 
       private int sint32Field_ ;
       /**
-       * <code>optional sint32 sint32_field = 7;</code>
+       * <code>sint32 sint32_field = 7;</code>
        */
       public int getSint32Field() {
         return sint32Field_;
       }
       /**
-       * <code>optional sint32 sint32_field = 7;</code>
+       * <code>sint32 sint32_field = 7;</code>
        */
       public Builder setSint32Field(int value) {
         
@@ -1258,7 +1277,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional sint32 sint32_field = 7;</code>
+       * <code>sint32 sint32_field = 7;</code>
        */
       public Builder clearSint32Field() {
         
@@ -1269,13 +1288,13 @@ public final class Schemas {
 
       private long sint64Field_ ;
       /**
-       * <code>optional sint64 sint64_field = 8;</code>
+       * <code>sint64 sint64_field = 8;</code>
        */
       public long getSint64Field() {
         return sint64Field_;
       }
       /**
-       * <code>optional sint64 sint64_field = 8;</code>
+       * <code>sint64 sint64_field = 8;</code>
        */
       public Builder setSint64Field(long value) {
         
@@ -1284,7 +1303,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional sint64 sint64_field = 8;</code>
+       * <code>sint64 sint64_field = 8;</code>
        */
       public Builder clearSint64Field() {
         
@@ -1295,13 +1314,13 @@ public final class Schemas {
 
       private int fixed32Field_ ;
       /**
-       * <code>optional fixed32 fixed32_field = 9;</code>
+       * <code>fixed32 fixed32_field = 9;</code>
        */
       public int getFixed32Field() {
         return fixed32Field_;
       }
       /**
-       * <code>optional fixed32 fixed32_field = 9;</code>
+       * <code>fixed32 fixed32_field = 9;</code>
        */
       public Builder setFixed32Field(int value) {
         
@@ -1310,7 +1329,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional fixed32 fixed32_field = 9;</code>
+       * <code>fixed32 fixed32_field = 9;</code>
        */
       public Builder clearFixed32Field() {
         
@@ -1321,13 +1340,13 @@ public final class Schemas {
 
       private long fixed64Field_ ;
       /**
-       * <code>optional fixed64 fixed64_field = 10;</code>
+       * <code>fixed64 fixed64_field = 10;</code>
        */
       public long getFixed64Field() {
         return fixed64Field_;
       }
       /**
-       * <code>optional fixed64 fixed64_field = 10;</code>
+       * <code>fixed64 fixed64_field = 10;</code>
        */
       public Builder setFixed64Field(long value) {
         
@@ -1336,7 +1355,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional fixed64 fixed64_field = 10;</code>
+       * <code>fixed64 fixed64_field = 10;</code>
        */
       public Builder clearFixed64Field() {
         
@@ -1347,13 +1366,13 @@ public final class Schemas {
 
       private int sfixed32Field_ ;
       /**
-       * <code>optional sfixed32 sfixed32_field = 11;</code>
+       * <code>sfixed32 sfixed32_field = 11;</code>
        */
       public int getSfixed32Field() {
         return sfixed32Field_;
       }
       /**
-       * <code>optional sfixed32 sfixed32_field = 11;</code>
+       * <code>sfixed32 sfixed32_field = 11;</code>
        */
       public Builder setSfixed32Field(int value) {
         
@@ -1362,7 +1381,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional sfixed32 sfixed32_field = 11;</code>
+       * <code>sfixed32 sfixed32_field = 11;</code>
        */
       public Builder clearSfixed32Field() {
         
@@ -1373,13 +1392,13 @@ public final class Schemas {
 
       private long sfixed64Field_ ;
       /**
-       * <code>optional sfixed64 sfixed64_field = 12;</code>
+       * <code>sfixed64 sfixed64_field = 12;</code>
        */
       public long getSfixed64Field() {
         return sfixed64Field_;
       }
       /**
-       * <code>optional sfixed64 sfixed64_field = 12;</code>
+       * <code>sfixed64 sfixed64_field = 12;</code>
        */
       public Builder setSfixed64Field(long value) {
         
@@ -1388,7 +1407,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional sfixed64 sfixed64_field = 12;</code>
+       * <code>sfixed64 sfixed64_field = 12;</code>
        */
       public Builder clearSfixed64Field() {
         
@@ -1399,13 +1418,13 @@ public final class Schemas {
 
       private boolean boolField_ ;
       /**
-       * <code>optional bool bool_field = 13;</code>
+       * <code>bool bool_field = 13;</code>
        */
       public boolean getBoolField() {
         return boolField_;
       }
       /**
-       * <code>optional bool bool_field = 13;</code>
+       * <code>bool bool_field = 13;</code>
        */
       public Builder setBoolField(boolean value) {
         
@@ -1414,7 +1433,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional bool bool_field = 13;</code>
+       * <code>bool bool_field = 13;</code>
        */
       public Builder clearBoolField() {
         
@@ -1425,7 +1444,7 @@ public final class Schemas {
 
       private java.lang.Object stringField_ = "";
       /**
-       * <code>optional string string_field = 14;</code>
+       * <code>string string_field = 14;</code>
        */
       public java.lang.String getStringField() {
         java.lang.Object ref = stringField_;
@@ -1440,7 +1459,7 @@ public final class Schemas {
         }
       }
       /**
-       * <code>optional string string_field = 14;</code>
+       * <code>string string_field = 14;</code>
        */
       public com.google.protobuf.ByteString
           getStringFieldBytes() {
@@ -1456,7 +1475,7 @@ public final class Schemas {
         }
       }
       /**
-       * <code>optional string string_field = 14;</code>
+       * <code>string string_field = 14;</code>
        */
       public Builder setStringField(
           java.lang.String value) {
@@ -1469,7 +1488,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional string string_field = 14;</code>
+       * <code>string string_field = 14;</code>
        */
       public Builder clearStringField() {
         
@@ -1478,7 +1497,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional string string_field = 14;</code>
+       * <code>string string_field = 14;</code>
        */
       public Builder setStringFieldBytes(
           com.google.protobuf.ByteString value) {
@@ -1494,13 +1513,13 @@ public final class Schemas {
 
       private com.google.protobuf.ByteString bytesField_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>optional bytes bytes_field = 15;</code>
+       * <code>bytes bytes_field = 15;</code>
        */
       public com.google.protobuf.ByteString getBytesField() {
         return bytesField_;
       }
       /**
-       * <code>optional bytes bytes_field = 15;</code>
+       * <code>bytes bytes_field = 15;</code>
        */
       public Builder setBytesField(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -1512,7 +1531,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional bytes bytes_field = 15;</code>
+       * <code>bytes bytes_field = 15;</code>
        */
       public Builder clearBytesField() {
         
@@ -1523,13 +1542,13 @@ public final class Schemas {
 
       private int colorField_ = 0;
       /**
-       * <code>optional .io.protoless.tests.samples.Color color_field = 16;</code>
+       * <code>.io.protoless.tests.samples.Color color_field = 16;</code>
        */
       public int getColorFieldValue() {
         return colorField_;
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Color color_field = 16;</code>
+       * <code>.io.protoless.tests.samples.Color color_field = 16;</code>
        */
       public Builder setColorFieldValue(int value) {
         colorField_ = value;
@@ -1537,14 +1556,14 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Color color_field = 16;</code>
+       * <code>.io.protoless.tests.samples.Color color_field = 16;</code>
        */
       public io.protoless.tests.samples.Schemas.Color getColorField() {
         io.protoless.tests.samples.Schemas.Color result = io.protoless.tests.samples.Schemas.Color.valueOf(colorField_);
         return result == null ? io.protoless.tests.samples.Schemas.Color.UNRECOGNIZED : result;
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Color color_field = 16;</code>
+       * <code>.io.protoless.tests.samples.Color color_field = 16;</code>
        */
       public Builder setColorField(io.protoless.tests.samples.Schemas.Color value) {
         if (value == null) {
@@ -1556,7 +1575,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Color color_field = 16;</code>
+       * <code>.io.protoless.tests.samples.Color color_field = 16;</code>
        */
       public Builder clearColorField() {
         
@@ -1566,12 +1585,12 @@ public final class Schemas {
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1847,6 +1866,7 @@ public final class Schemas {
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:io.protoless.tests.samples.Repeated)
       RepeatedOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Repeated.newBuilder() to construct.
     private Repeated(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -1873,7 +1893,7 @@ public final class Schemas {
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private Repeated(
         com.google.protobuf.CodedInputStream input,
@@ -1881,6 +1901,8 @@ public final class Schemas {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -1890,7 +1912,8 @@ public final class Schemas {
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -2264,6 +2287,7 @@ public final class Schemas {
         if (((mutable_bitField0_ & 0x00008000) == 0x00008000)) {
           colorField_ = java.util.Collections.unmodifiableList(colorField_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -2791,6 +2815,7 @@ public final class Schemas {
       for (int i = 0; i < colorField_.size(); i++) {
         output.writeEnumNoTag(colorField_.get(i));
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -2988,11 +3013,11 @@ public final class Schemas {
             .computeUInt32SizeNoTag(dataSize);
         }colorFieldMemoizedSerializedSize = dataSize;
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -3035,6 +3060,7 @@ public final class Schemas {
       result = result && getBytesFieldList()
           .equals(other.getBytesFieldList());
       result = result && colorField_.equals(other.colorField_);
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -3044,7 +3070,7 @@ public final class Schemas {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       if (getDoubleFieldCount() > 0) {
         hash = (37 * hash) + DOUBLE_FIELD_FIELD_NUMBER;
         hash = (53 * hash) + getDoubleFieldList().hashCode();
@@ -3114,6 +3140,17 @@ public final class Schemas {
       return hash;
     }
 
+    public static io.protoless.tests.samples.Schemas.Repeated parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.protoless.tests.samples.Schemas.Repeated parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static io.protoless.tests.samples.Schemas.Repeated parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3371,7 +3408,7 @@ public final class Schemas {
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -3384,12 +3421,12 @@ public final class Schemas {
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -3563,6 +3600,7 @@ public final class Schemas {
           }
           onChanged();
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -4733,12 +4771,12 @@ public final class Schemas {
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -4785,91 +4823,91 @@ public final class Schemas {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional double double_field = 1;</code>
+     * <code>double double_field = 1;</code>
      */
     double getDoubleField();
 
     /**
-     * <code>optional float float_field = 2;</code>
+     * <code>float float_field = 2;</code>
      */
     float getFloatField();
 
     /**
-     * <code>optional int32 int32_field = 3;</code>
+     * <code>int32 int32_field = 3;</code>
      */
     int getInt32Field();
 
     /**
-     * <code>optional int64 int64_field = 4;</code>
+     * <code>int64 int64_field = 4;</code>
      */
     long getInt64Field();
 
     /**
-     * <code>optional uint32 uint32_field = 5;</code>
+     * <code>uint32 uint32_field = 5;</code>
      */
     int getUint32Field();
 
     /**
-     * <code>optional uint64 uint64_field = 6;</code>
+     * <code>uint64 uint64_field = 6;</code>
      */
     long getUint64Field();
 
     /**
-     * <code>optional sint32 sint32_field = 7;</code>
+     * <code>sint32 sint32_field = 7;</code>
      */
     int getSint32Field();
 
     /**
-     * <code>optional sint64 sint64_field = 8;</code>
+     * <code>sint64 sint64_field = 8;</code>
      */
     long getSint64Field();
 
     /**
-     * <code>optional fixed32 fixed32_field = 9;</code>
+     * <code>fixed32 fixed32_field = 9;</code>
      */
     int getFixed32Field();
 
     /**
-     * <code>optional fixed64 fixed64_field = 10;</code>
+     * <code>fixed64 fixed64_field = 10;</code>
      */
     long getFixed64Field();
 
     /**
-     * <code>optional sfixed32 sfixed32_field = 11;</code>
+     * <code>sfixed32 sfixed32_field = 11;</code>
      */
     int getSfixed32Field();
 
     /**
-     * <code>optional sfixed64 sfixed64_field = 12;</code>
+     * <code>sfixed64 sfixed64_field = 12;</code>
      */
     long getSfixed64Field();
 
     /**
-     * <code>optional bool bool_field = 13;</code>
+     * <code>bool bool_field = 13;</code>
      */
     boolean getBoolField();
 
     /**
-     * <code>optional string string_field = 14;</code>
+     * <code>string string_field = 14;</code>
      */
     java.lang.String getStringField();
     /**
-     * <code>optional string string_field = 14;</code>
+     * <code>string string_field = 14;</code>
      */
     com.google.protobuf.ByteString
         getStringFieldBytes();
 
     /**
-     * <code>optional bytes bytes_field = 15;</code>
+     * <code>bytes bytes_field = 15;</code>
      */
     com.google.protobuf.ByteString getBytesField();
 
     /**
-     * <code>optional .io.protoless.tests.samples.Color color_field = 16;</code>
+     * <code>.io.protoless.tests.samples.Color color_field = 16;</code>
      */
     int getColorFieldValue();
     /**
-     * <code>optional .io.protoless.tests.samples.Color color_field = 16;</code>
+     * <code>.io.protoless.tests.samples.Color color_field = 16;</code>
      */
     io.protoless.tests.samples.Schemas.Color getColorField();
 
@@ -4882,6 +4920,7 @@ public final class Schemas {
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:io.protoless.tests.samples.OneOf)
       OneOfOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use OneOf.newBuilder() to construct.
     private OneOf(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -4892,7 +4931,7 @@ public final class Schemas {
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private OneOf(
         com.google.protobuf.CodedInputStream input,
@@ -4900,6 +4939,8 @@ public final class Schemas {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -4909,7 +4950,8 @@ public final class Schemas {
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -5004,6 +5046,7 @@ public final class Schemas {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -5087,7 +5130,7 @@ public final class Schemas {
 
     public static final int DOUBLE_FIELD_FIELD_NUMBER = 1;
     /**
-     * <code>optional double double_field = 1;</code>
+     * <code>double double_field = 1;</code>
      */
     public double getDoubleField() {
       if (fieldCase_ == 1) {
@@ -5098,7 +5141,7 @@ public final class Schemas {
 
     public static final int FLOAT_FIELD_FIELD_NUMBER = 2;
     /**
-     * <code>optional float float_field = 2;</code>
+     * <code>float float_field = 2;</code>
      */
     public float getFloatField() {
       if (fieldCase_ == 2) {
@@ -5109,7 +5152,7 @@ public final class Schemas {
 
     public static final int INT32_FIELD_FIELD_NUMBER = 3;
     /**
-     * <code>optional int32 int32_field = 3;</code>
+     * <code>int32 int32_field = 3;</code>
      */
     public int getInt32Field() {
       if (fieldCase_ == 3) {
@@ -5120,7 +5163,7 @@ public final class Schemas {
 
     public static final int INT64_FIELD_FIELD_NUMBER = 4;
     /**
-     * <code>optional int64 int64_field = 4;</code>
+     * <code>int64 int64_field = 4;</code>
      */
     public long getInt64Field() {
       if (fieldCase_ == 4) {
@@ -5131,7 +5174,7 @@ public final class Schemas {
 
     public static final int UINT32_FIELD_FIELD_NUMBER = 5;
     /**
-     * <code>optional uint32 uint32_field = 5;</code>
+     * <code>uint32 uint32_field = 5;</code>
      */
     public int getUint32Field() {
       if (fieldCase_ == 5) {
@@ -5142,7 +5185,7 @@ public final class Schemas {
 
     public static final int UINT64_FIELD_FIELD_NUMBER = 6;
     /**
-     * <code>optional uint64 uint64_field = 6;</code>
+     * <code>uint64 uint64_field = 6;</code>
      */
     public long getUint64Field() {
       if (fieldCase_ == 6) {
@@ -5153,7 +5196,7 @@ public final class Schemas {
 
     public static final int SINT32_FIELD_FIELD_NUMBER = 7;
     /**
-     * <code>optional sint32 sint32_field = 7;</code>
+     * <code>sint32 sint32_field = 7;</code>
      */
     public int getSint32Field() {
       if (fieldCase_ == 7) {
@@ -5164,7 +5207,7 @@ public final class Schemas {
 
     public static final int SINT64_FIELD_FIELD_NUMBER = 8;
     /**
-     * <code>optional sint64 sint64_field = 8;</code>
+     * <code>sint64 sint64_field = 8;</code>
      */
     public long getSint64Field() {
       if (fieldCase_ == 8) {
@@ -5175,7 +5218,7 @@ public final class Schemas {
 
     public static final int FIXED32_FIELD_FIELD_NUMBER = 9;
     /**
-     * <code>optional fixed32 fixed32_field = 9;</code>
+     * <code>fixed32 fixed32_field = 9;</code>
      */
     public int getFixed32Field() {
       if (fieldCase_ == 9) {
@@ -5186,7 +5229,7 @@ public final class Schemas {
 
     public static final int FIXED64_FIELD_FIELD_NUMBER = 10;
     /**
-     * <code>optional fixed64 fixed64_field = 10;</code>
+     * <code>fixed64 fixed64_field = 10;</code>
      */
     public long getFixed64Field() {
       if (fieldCase_ == 10) {
@@ -5197,7 +5240,7 @@ public final class Schemas {
 
     public static final int SFIXED32_FIELD_FIELD_NUMBER = 11;
     /**
-     * <code>optional sfixed32 sfixed32_field = 11;</code>
+     * <code>sfixed32 sfixed32_field = 11;</code>
      */
     public int getSfixed32Field() {
       if (fieldCase_ == 11) {
@@ -5208,7 +5251,7 @@ public final class Schemas {
 
     public static final int SFIXED64_FIELD_FIELD_NUMBER = 12;
     /**
-     * <code>optional sfixed64 sfixed64_field = 12;</code>
+     * <code>sfixed64 sfixed64_field = 12;</code>
      */
     public long getSfixed64Field() {
       if (fieldCase_ == 12) {
@@ -5219,7 +5262,7 @@ public final class Schemas {
 
     public static final int BOOL_FIELD_FIELD_NUMBER = 13;
     /**
-     * <code>optional bool bool_field = 13;</code>
+     * <code>bool bool_field = 13;</code>
      */
     public boolean getBoolField() {
       if (fieldCase_ == 13) {
@@ -5230,7 +5273,7 @@ public final class Schemas {
 
     public static final int STRING_FIELD_FIELD_NUMBER = 14;
     /**
-     * <code>optional string string_field = 14;</code>
+     * <code>string string_field = 14;</code>
      */
     public java.lang.String getStringField() {
       java.lang.Object ref = "";
@@ -5250,7 +5293,7 @@ public final class Schemas {
       }
     }
     /**
-     * <code>optional string string_field = 14;</code>
+     * <code>string string_field = 14;</code>
      */
     public com.google.protobuf.ByteString
         getStringFieldBytes() {
@@ -5273,7 +5316,7 @@ public final class Schemas {
 
     public static final int BYTES_FIELD_FIELD_NUMBER = 15;
     /**
-     * <code>optional bytes bytes_field = 15;</code>
+     * <code>bytes bytes_field = 15;</code>
      */
     public com.google.protobuf.ByteString getBytesField() {
       if (fieldCase_ == 15) {
@@ -5284,7 +5327,7 @@ public final class Schemas {
 
     public static final int COLOR_FIELD_FIELD_NUMBER = 16;
     /**
-     * <code>optional .io.protoless.tests.samples.Color color_field = 16;</code>
+     * <code>.io.protoless.tests.samples.Color color_field = 16;</code>
      */
     public int getColorFieldValue() {
       if (fieldCase_ == 16) {
@@ -5293,7 +5336,7 @@ public final class Schemas {
       return 0;
     }
     /**
-     * <code>optional .io.protoless.tests.samples.Color color_field = 16;</code>
+     * <code>.io.protoless.tests.samples.Color color_field = 16;</code>
      */
     public io.protoless.tests.samples.Schemas.Color getColorField() {
       if (fieldCase_ == 16) {
@@ -5373,11 +5416,12 @@ public final class Schemas {
       }
       if (fieldCase_ == 15) {
         output.writeBytes(
-            15, (com.google.protobuf.ByteString)((com.google.protobuf.ByteString) field_));
+            15, (com.google.protobuf.ByteString) field_);
       }
       if (fieldCase_ == 16) {
         output.writeEnum(16, ((java.lang.Integer) field_));
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -5456,17 +5500,17 @@ public final class Schemas {
       if (fieldCase_ == 15) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(
-              15, (com.google.protobuf.ByteString)((com.google.protobuf.ByteString) field_));
+              15, (com.google.protobuf.ByteString) field_);
       }
       if (fieldCase_ == 16) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(16, ((java.lang.Integer) field_));
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -5553,6 +5597,7 @@ public final class Schemas {
         case 0:
         default:
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -5562,7 +5607,7 @@ public final class Schemas {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       switch (fieldCase_) {
         case 1:
           hash = (37 * hash) + DOUBLE_FIELD_FIELD_NUMBER;
@@ -5644,6 +5689,17 @@ public final class Schemas {
       return hash;
     }
 
+    public static io.protoless.tests.samples.Schemas.OneOf parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.protoless.tests.samples.Schemas.OneOf parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static io.protoless.tests.samples.Schemas.OneOf parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -5839,7 +5895,7 @@ public final class Schemas {
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -5852,12 +5908,12 @@ public final class Schemas {
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -5942,6 +5998,7 @@ public final class Schemas {
             break;
           }
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -5984,7 +6041,7 @@ public final class Schemas {
 
 
       /**
-       * <code>optional double double_field = 1;</code>
+       * <code>double double_field = 1;</code>
        */
       public double getDoubleField() {
         if (fieldCase_ == 1) {
@@ -5993,7 +6050,7 @@ public final class Schemas {
         return 0D;
       }
       /**
-       * <code>optional double double_field = 1;</code>
+       * <code>double double_field = 1;</code>
        */
       public Builder setDoubleField(double value) {
         fieldCase_ = 1;
@@ -6002,7 +6059,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional double double_field = 1;</code>
+       * <code>double double_field = 1;</code>
        */
       public Builder clearDoubleField() {
         if (fieldCase_ == 1) {
@@ -6014,7 +6071,7 @@ public final class Schemas {
       }
 
       /**
-       * <code>optional float float_field = 2;</code>
+       * <code>float float_field = 2;</code>
        */
       public float getFloatField() {
         if (fieldCase_ == 2) {
@@ -6023,7 +6080,7 @@ public final class Schemas {
         return 0F;
       }
       /**
-       * <code>optional float float_field = 2;</code>
+       * <code>float float_field = 2;</code>
        */
       public Builder setFloatField(float value) {
         fieldCase_ = 2;
@@ -6032,7 +6089,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional float float_field = 2;</code>
+       * <code>float float_field = 2;</code>
        */
       public Builder clearFloatField() {
         if (fieldCase_ == 2) {
@@ -6044,7 +6101,7 @@ public final class Schemas {
       }
 
       /**
-       * <code>optional int32 int32_field = 3;</code>
+       * <code>int32 int32_field = 3;</code>
        */
       public int getInt32Field() {
         if (fieldCase_ == 3) {
@@ -6053,7 +6110,7 @@ public final class Schemas {
         return 0;
       }
       /**
-       * <code>optional int32 int32_field = 3;</code>
+       * <code>int32 int32_field = 3;</code>
        */
       public Builder setInt32Field(int value) {
         fieldCase_ = 3;
@@ -6062,7 +6119,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional int32 int32_field = 3;</code>
+       * <code>int32 int32_field = 3;</code>
        */
       public Builder clearInt32Field() {
         if (fieldCase_ == 3) {
@@ -6074,7 +6131,7 @@ public final class Schemas {
       }
 
       /**
-       * <code>optional int64 int64_field = 4;</code>
+       * <code>int64 int64_field = 4;</code>
        */
       public long getInt64Field() {
         if (fieldCase_ == 4) {
@@ -6083,7 +6140,7 @@ public final class Schemas {
         return 0L;
       }
       /**
-       * <code>optional int64 int64_field = 4;</code>
+       * <code>int64 int64_field = 4;</code>
        */
       public Builder setInt64Field(long value) {
         fieldCase_ = 4;
@@ -6092,7 +6149,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional int64 int64_field = 4;</code>
+       * <code>int64 int64_field = 4;</code>
        */
       public Builder clearInt64Field() {
         if (fieldCase_ == 4) {
@@ -6104,7 +6161,7 @@ public final class Schemas {
       }
 
       /**
-       * <code>optional uint32 uint32_field = 5;</code>
+       * <code>uint32 uint32_field = 5;</code>
        */
       public int getUint32Field() {
         if (fieldCase_ == 5) {
@@ -6113,7 +6170,7 @@ public final class Schemas {
         return 0;
       }
       /**
-       * <code>optional uint32 uint32_field = 5;</code>
+       * <code>uint32 uint32_field = 5;</code>
        */
       public Builder setUint32Field(int value) {
         fieldCase_ = 5;
@@ -6122,7 +6179,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional uint32 uint32_field = 5;</code>
+       * <code>uint32 uint32_field = 5;</code>
        */
       public Builder clearUint32Field() {
         if (fieldCase_ == 5) {
@@ -6134,7 +6191,7 @@ public final class Schemas {
       }
 
       /**
-       * <code>optional uint64 uint64_field = 6;</code>
+       * <code>uint64 uint64_field = 6;</code>
        */
       public long getUint64Field() {
         if (fieldCase_ == 6) {
@@ -6143,7 +6200,7 @@ public final class Schemas {
         return 0L;
       }
       /**
-       * <code>optional uint64 uint64_field = 6;</code>
+       * <code>uint64 uint64_field = 6;</code>
        */
       public Builder setUint64Field(long value) {
         fieldCase_ = 6;
@@ -6152,7 +6209,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional uint64 uint64_field = 6;</code>
+       * <code>uint64 uint64_field = 6;</code>
        */
       public Builder clearUint64Field() {
         if (fieldCase_ == 6) {
@@ -6164,7 +6221,7 @@ public final class Schemas {
       }
 
       /**
-       * <code>optional sint32 sint32_field = 7;</code>
+       * <code>sint32 sint32_field = 7;</code>
        */
       public int getSint32Field() {
         if (fieldCase_ == 7) {
@@ -6173,7 +6230,7 @@ public final class Schemas {
         return 0;
       }
       /**
-       * <code>optional sint32 sint32_field = 7;</code>
+       * <code>sint32 sint32_field = 7;</code>
        */
       public Builder setSint32Field(int value) {
         fieldCase_ = 7;
@@ -6182,7 +6239,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional sint32 sint32_field = 7;</code>
+       * <code>sint32 sint32_field = 7;</code>
        */
       public Builder clearSint32Field() {
         if (fieldCase_ == 7) {
@@ -6194,7 +6251,7 @@ public final class Schemas {
       }
 
       /**
-       * <code>optional sint64 sint64_field = 8;</code>
+       * <code>sint64 sint64_field = 8;</code>
        */
       public long getSint64Field() {
         if (fieldCase_ == 8) {
@@ -6203,7 +6260,7 @@ public final class Schemas {
         return 0L;
       }
       /**
-       * <code>optional sint64 sint64_field = 8;</code>
+       * <code>sint64 sint64_field = 8;</code>
        */
       public Builder setSint64Field(long value) {
         fieldCase_ = 8;
@@ -6212,7 +6269,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional sint64 sint64_field = 8;</code>
+       * <code>sint64 sint64_field = 8;</code>
        */
       public Builder clearSint64Field() {
         if (fieldCase_ == 8) {
@@ -6224,7 +6281,7 @@ public final class Schemas {
       }
 
       /**
-       * <code>optional fixed32 fixed32_field = 9;</code>
+       * <code>fixed32 fixed32_field = 9;</code>
        */
       public int getFixed32Field() {
         if (fieldCase_ == 9) {
@@ -6233,7 +6290,7 @@ public final class Schemas {
         return 0;
       }
       /**
-       * <code>optional fixed32 fixed32_field = 9;</code>
+       * <code>fixed32 fixed32_field = 9;</code>
        */
       public Builder setFixed32Field(int value) {
         fieldCase_ = 9;
@@ -6242,7 +6299,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional fixed32 fixed32_field = 9;</code>
+       * <code>fixed32 fixed32_field = 9;</code>
        */
       public Builder clearFixed32Field() {
         if (fieldCase_ == 9) {
@@ -6254,7 +6311,7 @@ public final class Schemas {
       }
 
       /**
-       * <code>optional fixed64 fixed64_field = 10;</code>
+       * <code>fixed64 fixed64_field = 10;</code>
        */
       public long getFixed64Field() {
         if (fieldCase_ == 10) {
@@ -6263,7 +6320,7 @@ public final class Schemas {
         return 0L;
       }
       /**
-       * <code>optional fixed64 fixed64_field = 10;</code>
+       * <code>fixed64 fixed64_field = 10;</code>
        */
       public Builder setFixed64Field(long value) {
         fieldCase_ = 10;
@@ -6272,7 +6329,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional fixed64 fixed64_field = 10;</code>
+       * <code>fixed64 fixed64_field = 10;</code>
        */
       public Builder clearFixed64Field() {
         if (fieldCase_ == 10) {
@@ -6284,7 +6341,7 @@ public final class Schemas {
       }
 
       /**
-       * <code>optional sfixed32 sfixed32_field = 11;</code>
+       * <code>sfixed32 sfixed32_field = 11;</code>
        */
       public int getSfixed32Field() {
         if (fieldCase_ == 11) {
@@ -6293,7 +6350,7 @@ public final class Schemas {
         return 0;
       }
       /**
-       * <code>optional sfixed32 sfixed32_field = 11;</code>
+       * <code>sfixed32 sfixed32_field = 11;</code>
        */
       public Builder setSfixed32Field(int value) {
         fieldCase_ = 11;
@@ -6302,7 +6359,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional sfixed32 sfixed32_field = 11;</code>
+       * <code>sfixed32 sfixed32_field = 11;</code>
        */
       public Builder clearSfixed32Field() {
         if (fieldCase_ == 11) {
@@ -6314,7 +6371,7 @@ public final class Schemas {
       }
 
       /**
-       * <code>optional sfixed64 sfixed64_field = 12;</code>
+       * <code>sfixed64 sfixed64_field = 12;</code>
        */
       public long getSfixed64Field() {
         if (fieldCase_ == 12) {
@@ -6323,7 +6380,7 @@ public final class Schemas {
         return 0L;
       }
       /**
-       * <code>optional sfixed64 sfixed64_field = 12;</code>
+       * <code>sfixed64 sfixed64_field = 12;</code>
        */
       public Builder setSfixed64Field(long value) {
         fieldCase_ = 12;
@@ -6332,7 +6389,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional sfixed64 sfixed64_field = 12;</code>
+       * <code>sfixed64 sfixed64_field = 12;</code>
        */
       public Builder clearSfixed64Field() {
         if (fieldCase_ == 12) {
@@ -6344,7 +6401,7 @@ public final class Schemas {
       }
 
       /**
-       * <code>optional bool bool_field = 13;</code>
+       * <code>bool bool_field = 13;</code>
        */
       public boolean getBoolField() {
         if (fieldCase_ == 13) {
@@ -6353,7 +6410,7 @@ public final class Schemas {
         return false;
       }
       /**
-       * <code>optional bool bool_field = 13;</code>
+       * <code>bool bool_field = 13;</code>
        */
       public Builder setBoolField(boolean value) {
         fieldCase_ = 13;
@@ -6362,7 +6419,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional bool bool_field = 13;</code>
+       * <code>bool bool_field = 13;</code>
        */
       public Builder clearBoolField() {
         if (fieldCase_ == 13) {
@@ -6374,7 +6431,7 @@ public final class Schemas {
       }
 
       /**
-       * <code>optional string string_field = 14;</code>
+       * <code>string string_field = 14;</code>
        */
       public java.lang.String getStringField() {
         java.lang.Object ref = "";
@@ -6394,7 +6451,7 @@ public final class Schemas {
         }
       }
       /**
-       * <code>optional string string_field = 14;</code>
+       * <code>string string_field = 14;</code>
        */
       public com.google.protobuf.ByteString
           getStringFieldBytes() {
@@ -6415,7 +6472,7 @@ public final class Schemas {
         }
       }
       /**
-       * <code>optional string string_field = 14;</code>
+       * <code>string string_field = 14;</code>
        */
       public Builder setStringField(
           java.lang.String value) {
@@ -6428,7 +6485,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional string string_field = 14;</code>
+       * <code>string string_field = 14;</code>
        */
       public Builder clearStringField() {
         if (fieldCase_ == 14) {
@@ -6439,7 +6496,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional string string_field = 14;</code>
+       * <code>string string_field = 14;</code>
        */
       public Builder setStringFieldBytes(
           com.google.protobuf.ByteString value) {
@@ -6454,7 +6511,7 @@ public final class Schemas {
       }
 
       /**
-       * <code>optional bytes bytes_field = 15;</code>
+       * <code>bytes bytes_field = 15;</code>
        */
       public com.google.protobuf.ByteString getBytesField() {
         if (fieldCase_ == 15) {
@@ -6463,7 +6520,7 @@ public final class Schemas {
         return com.google.protobuf.ByteString.EMPTY;
       }
       /**
-       * <code>optional bytes bytes_field = 15;</code>
+       * <code>bytes bytes_field = 15;</code>
        */
       public Builder setBytesField(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -6475,7 +6532,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional bytes bytes_field = 15;</code>
+       * <code>bytes bytes_field = 15;</code>
        */
       public Builder clearBytesField() {
         if (fieldCase_ == 15) {
@@ -6487,7 +6544,7 @@ public final class Schemas {
       }
 
       /**
-       * <code>optional .io.protoless.tests.samples.Color color_field = 16;</code>
+       * <code>.io.protoless.tests.samples.Color color_field = 16;</code>
        */
       public int getColorFieldValue() {
         if (fieldCase_ == 16) {
@@ -6496,7 +6553,7 @@ public final class Schemas {
         return 0;
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Color color_field = 16;</code>
+       * <code>.io.protoless.tests.samples.Color color_field = 16;</code>
        */
       public Builder setColorFieldValue(int value) {
         fieldCase_ = 16;
@@ -6505,7 +6562,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Color color_field = 16;</code>
+       * <code>.io.protoless.tests.samples.Color color_field = 16;</code>
        */
       public io.protoless.tests.samples.Schemas.Color getColorField() {
         if (fieldCase_ == 16) {
@@ -6516,7 +6573,7 @@ public final class Schemas {
         return io.protoless.tests.samples.Schemas.Color.BLACK;
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Color color_field = 16;</code>
+       * <code>.io.protoless.tests.samples.Color color_field = 16;</code>
        */
       public Builder setColorField(io.protoless.tests.samples.Schemas.Color value) {
         if (value == null) {
@@ -6528,7 +6585,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Color color_field = 16;</code>
+       * <code>.io.protoless.tests.samples.Color color_field = 16;</code>
        */
       public Builder clearColorField() {
         if (fieldCase_ == 16) {
@@ -6540,12 +6597,12 @@ public final class Schemas {
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -6592,21 +6649,21 @@ public final class Schemas {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string bigdecimal = 1;</code>
+     * <code>string bigdecimal = 1;</code>
      */
     java.lang.String getBigdecimal();
     /**
-     * <code>optional string bigdecimal = 1;</code>
+     * <code>string bigdecimal = 1;</code>
      */
     com.google.protobuf.ByteString
         getBigdecimalBytes();
 
     /**
-     * <code>optional string bigint = 2;</code>
+     * <code>string bigint = 2;</code>
      */
     java.lang.String getBigint();
     /**
-     * <code>optional string bigint = 2;</code>
+     * <code>string bigint = 2;</code>
      */
     com.google.protobuf.ByteString
         getBigintBytes();
@@ -6625,12 +6682,12 @@ public final class Schemas {
     long getUuid(int index);
 
     /**
-     * <code>optional int32 short = 4;</code>
+     * <code>int32 short = 4;</code>
      */
     int getShort();
 
     /**
-     * <code>optional int32 char = 5;</code>
+     * <code>int32 char = 5;</code>
      */
     int getChar();
   }
@@ -6641,6 +6698,7 @@ public final class Schemas {
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:io.protoless.tests.samples.Custom)
       CustomOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Custom.newBuilder() to construct.
     private Custom(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -6656,7 +6714,7 @@ public final class Schemas {
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private Custom(
         com.google.protobuf.CodedInputStream input,
@@ -6664,6 +6722,8 @@ public final class Schemas {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -6673,7 +6733,8 @@ public final class Schemas {
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -6732,6 +6793,7 @@ public final class Schemas {
         if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
           uuid_ = java.util.Collections.unmodifiableList(uuid_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -6751,7 +6813,7 @@ public final class Schemas {
     public static final int BIGDECIMAL_FIELD_NUMBER = 1;
     private volatile java.lang.Object bigdecimal_;
     /**
-     * <code>optional string bigdecimal = 1;</code>
+     * <code>string bigdecimal = 1;</code>
      */
     public java.lang.String getBigdecimal() {
       java.lang.Object ref = bigdecimal_;
@@ -6766,7 +6828,7 @@ public final class Schemas {
       }
     }
     /**
-     * <code>optional string bigdecimal = 1;</code>
+     * <code>string bigdecimal = 1;</code>
      */
     public com.google.protobuf.ByteString
         getBigdecimalBytes() {
@@ -6785,7 +6847,7 @@ public final class Schemas {
     public static final int BIGINT_FIELD_NUMBER = 2;
     private volatile java.lang.Object bigint_;
     /**
-     * <code>optional string bigint = 2;</code>
+     * <code>string bigint = 2;</code>
      */
     public java.lang.String getBigint() {
       java.lang.Object ref = bigint_;
@@ -6800,7 +6862,7 @@ public final class Schemas {
       }
     }
     /**
-     * <code>optional string bigint = 2;</code>
+     * <code>string bigint = 2;</code>
      */
     public com.google.protobuf.ByteString
         getBigintBytes() {
@@ -6842,7 +6904,7 @@ public final class Schemas {
     public static final int SHORT_FIELD_NUMBER = 4;
     private int short_;
     /**
-     * <code>optional int32 short = 4;</code>
+     * <code>int32 short = 4;</code>
      */
     public int getShort() {
       return short_;
@@ -6851,7 +6913,7 @@ public final class Schemas {
     public static final int CHAR_FIELD_NUMBER = 5;
     private int char_;
     /**
-     * <code>optional int32 char = 5;</code>
+     * <code>int32 char = 5;</code>
      */
     public int getChar() {
       return char_;
@@ -6889,6 +6951,7 @@ public final class Schemas {
       if (char_ != 0) {
         output.writeInt32(5, char_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -6924,11 +6987,11 @@ public final class Schemas {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(5, char_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -6950,6 +7013,7 @@ public final class Schemas {
           == other.getShort());
       result = result && (getChar()
           == other.getChar());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -6959,7 +7023,7 @@ public final class Schemas {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + BIGDECIMAL_FIELD_NUMBER;
       hash = (53 * hash) + getBigdecimal().hashCode();
       hash = (37 * hash) + BIGINT_FIELD_NUMBER;
@@ -6977,6 +7041,17 @@ public final class Schemas {
       return hash;
     }
 
+    public static io.protoless.tests.samples.Schemas.Custom parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.protoless.tests.samples.Schemas.Custom parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static io.protoless.tests.samples.Schemas.Custom parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -7143,7 +7218,7 @@ public final class Schemas {
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -7156,12 +7231,12 @@ public final class Schemas {
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -7199,6 +7274,7 @@ public final class Schemas {
         if (other.getChar() != 0) {
           setChar(other.getChar());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -7228,7 +7304,7 @@ public final class Schemas {
 
       private java.lang.Object bigdecimal_ = "";
       /**
-       * <code>optional string bigdecimal = 1;</code>
+       * <code>string bigdecimal = 1;</code>
        */
       public java.lang.String getBigdecimal() {
         java.lang.Object ref = bigdecimal_;
@@ -7243,7 +7319,7 @@ public final class Schemas {
         }
       }
       /**
-       * <code>optional string bigdecimal = 1;</code>
+       * <code>string bigdecimal = 1;</code>
        */
       public com.google.protobuf.ByteString
           getBigdecimalBytes() {
@@ -7259,7 +7335,7 @@ public final class Schemas {
         }
       }
       /**
-       * <code>optional string bigdecimal = 1;</code>
+       * <code>string bigdecimal = 1;</code>
        */
       public Builder setBigdecimal(
           java.lang.String value) {
@@ -7272,7 +7348,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional string bigdecimal = 1;</code>
+       * <code>string bigdecimal = 1;</code>
        */
       public Builder clearBigdecimal() {
         
@@ -7281,7 +7357,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional string bigdecimal = 1;</code>
+       * <code>string bigdecimal = 1;</code>
        */
       public Builder setBigdecimalBytes(
           com.google.protobuf.ByteString value) {
@@ -7297,7 +7373,7 @@ public final class Schemas {
 
       private java.lang.Object bigint_ = "";
       /**
-       * <code>optional string bigint = 2;</code>
+       * <code>string bigint = 2;</code>
        */
       public java.lang.String getBigint() {
         java.lang.Object ref = bigint_;
@@ -7312,7 +7388,7 @@ public final class Schemas {
         }
       }
       /**
-       * <code>optional string bigint = 2;</code>
+       * <code>string bigint = 2;</code>
        */
       public com.google.protobuf.ByteString
           getBigintBytes() {
@@ -7328,7 +7404,7 @@ public final class Schemas {
         }
       }
       /**
-       * <code>optional string bigint = 2;</code>
+       * <code>string bigint = 2;</code>
        */
       public Builder setBigint(
           java.lang.String value) {
@@ -7341,7 +7417,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional string bigint = 2;</code>
+       * <code>string bigint = 2;</code>
        */
       public Builder clearBigint() {
         
@@ -7350,7 +7426,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional string bigint = 2;</code>
+       * <code>string bigint = 2;</code>
        */
       public Builder setBigintBytes(
           com.google.protobuf.ByteString value) {
@@ -7432,13 +7508,13 @@ public final class Schemas {
 
       private int short_ ;
       /**
-       * <code>optional int32 short = 4;</code>
+       * <code>int32 short = 4;</code>
        */
       public int getShort() {
         return short_;
       }
       /**
-       * <code>optional int32 short = 4;</code>
+       * <code>int32 short = 4;</code>
        */
       public Builder setShort(int value) {
         
@@ -7447,7 +7523,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional int32 short = 4;</code>
+       * <code>int32 short = 4;</code>
        */
       public Builder clearShort() {
         
@@ -7458,13 +7534,13 @@ public final class Schemas {
 
       private int char_ ;
       /**
-       * <code>optional int32 char = 5;</code>
+       * <code>int32 char = 5;</code>
        */
       public int getChar() {
         return char_;
       }
       /**
-       * <code>optional int32 char = 5;</code>
+       * <code>int32 char = 5;</code>
        */
       public Builder setChar(int value) {
         
@@ -7473,7 +7549,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional int32 char = 5;</code>
+       * <code>int32 char = 5;</code>
        */
       public Builder clearChar() {
         
@@ -7483,12 +7559,12 @@ public final class Schemas {
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -7535,33 +7611,33 @@ public final class Schemas {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional double d = 1;</code>
+     * <code>double d = 1;</code>
      */
     double getD();
 
     /**
-     * <code>optional .io.protoless.tests.samples.Custom m1 = 2;</code>
+     * <code>.io.protoless.tests.samples.Custom m1 = 2;</code>
      */
     boolean hasM1();
     /**
-     * <code>optional .io.protoless.tests.samples.Custom m1 = 2;</code>
+     * <code>.io.protoless.tests.samples.Custom m1 = 2;</code>
      */
     io.protoless.tests.samples.Schemas.Custom getM1();
     /**
-     * <code>optional .io.protoless.tests.samples.Custom m1 = 2;</code>
+     * <code>.io.protoless.tests.samples.Custom m1 = 2;</code>
      */
     io.protoless.tests.samples.Schemas.CustomOrBuilder getM1OrBuilder();
 
     /**
-     * <code>optional .io.protoless.tests.samples.Custom m2 = 3;</code>
+     * <code>.io.protoless.tests.samples.Custom m2 = 3;</code>
      */
     boolean hasM2();
     /**
-     * <code>optional .io.protoless.tests.samples.Custom m2 = 3;</code>
+     * <code>.io.protoless.tests.samples.Custom m2 = 3;</code>
      */
     io.protoless.tests.samples.Schemas.Custom getM2();
     /**
-     * <code>optional .io.protoless.tests.samples.Custom m2 = 3;</code>
+     * <code>.io.protoless.tests.samples.Custom m2 = 3;</code>
      */
     io.protoless.tests.samples.Schemas.CustomOrBuilder getM2OrBuilder();
 
@@ -7596,6 +7672,7 @@ public final class Schemas {
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:io.protoless.tests.samples.Nested)
       NestedOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Nested.newBuilder() to construct.
     private Nested(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -7608,7 +7685,7 @@ public final class Schemas {
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private Nested(
         com.google.protobuf.CodedInputStream input,
@@ -7616,6 +7693,8 @@ public final class Schemas {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -7625,7 +7704,8 @@ public final class Schemas {
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -7681,6 +7761,7 @@ public final class Schemas {
         if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
           rm_ = java.util.Collections.unmodifiableList(rm_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -7700,7 +7781,7 @@ public final class Schemas {
     public static final int D_FIELD_NUMBER = 1;
     private double d_;
     /**
-     * <code>optional double d = 1;</code>
+     * <code>double d = 1;</code>
      */
     public double getD() {
       return d_;
@@ -7709,19 +7790,19 @@ public final class Schemas {
     public static final int M1_FIELD_NUMBER = 2;
     private io.protoless.tests.samples.Schemas.Custom m1_;
     /**
-     * <code>optional .io.protoless.tests.samples.Custom m1 = 2;</code>
+     * <code>.io.protoless.tests.samples.Custom m1 = 2;</code>
      */
     public boolean hasM1() {
       return m1_ != null;
     }
     /**
-     * <code>optional .io.protoless.tests.samples.Custom m1 = 2;</code>
+     * <code>.io.protoless.tests.samples.Custom m1 = 2;</code>
      */
     public io.protoless.tests.samples.Schemas.Custom getM1() {
       return m1_ == null ? io.protoless.tests.samples.Schemas.Custom.getDefaultInstance() : m1_;
     }
     /**
-     * <code>optional .io.protoless.tests.samples.Custom m1 = 2;</code>
+     * <code>.io.protoless.tests.samples.Custom m1 = 2;</code>
      */
     public io.protoless.tests.samples.Schemas.CustomOrBuilder getM1OrBuilder() {
       return getM1();
@@ -7730,19 +7811,19 @@ public final class Schemas {
     public static final int M2_FIELD_NUMBER = 3;
     private io.protoless.tests.samples.Schemas.Custom m2_;
     /**
-     * <code>optional .io.protoless.tests.samples.Custom m2 = 3;</code>
+     * <code>.io.protoless.tests.samples.Custom m2 = 3;</code>
      */
     public boolean hasM2() {
       return m2_ != null;
     }
     /**
-     * <code>optional .io.protoless.tests.samples.Custom m2 = 3;</code>
+     * <code>.io.protoless.tests.samples.Custom m2 = 3;</code>
      */
     public io.protoless.tests.samples.Schemas.Custom getM2() {
       return m2_ == null ? io.protoless.tests.samples.Schemas.Custom.getDefaultInstance() : m2_;
     }
     /**
-     * <code>optional .io.protoless.tests.samples.Custom m2 = 3;</code>
+     * <code>.io.protoless.tests.samples.Custom m2 = 3;</code>
      */
     public io.protoless.tests.samples.Schemas.CustomOrBuilder getM2OrBuilder() {
       return getM2();
@@ -7807,6 +7888,7 @@ public final class Schemas {
       for (int i = 0; i < rm_.size(); i++) {
         output.writeMessage(4, rm_.get(i));
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -7830,11 +7912,11 @@ public final class Schemas {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, rm_.get(i));
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -7862,6 +7944,7 @@ public final class Schemas {
       }
       result = result && getRmList()
           .equals(other.getRmList());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -7871,7 +7954,7 @@ public final class Schemas {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + D_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getD()));
@@ -7892,6 +7975,17 @@ public final class Schemas {
       return hash;
     }
 
+    public static io.protoless.tests.samples.Schemas.Nested parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.protoless.tests.samples.Schemas.Nested parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static io.protoless.tests.samples.Schemas.Nested parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -8080,7 +8174,7 @@ public final class Schemas {
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -8093,12 +8187,12 @@ public final class Schemas {
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -8147,6 +8241,7 @@ public final class Schemas {
             }
           }
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -8176,13 +8271,13 @@ public final class Schemas {
 
       private double d_ ;
       /**
-       * <code>optional double d = 1;</code>
+       * <code>double d = 1;</code>
        */
       public double getD() {
         return d_;
       }
       /**
-       * <code>optional double d = 1;</code>
+       * <code>double d = 1;</code>
        */
       public Builder setD(double value) {
         
@@ -8191,7 +8286,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional double d = 1;</code>
+       * <code>double d = 1;</code>
        */
       public Builder clearD() {
         
@@ -8204,13 +8299,13 @@ public final class Schemas {
       private com.google.protobuf.SingleFieldBuilderV3<
           io.protoless.tests.samples.Schemas.Custom, io.protoless.tests.samples.Schemas.Custom.Builder, io.protoless.tests.samples.Schemas.CustomOrBuilder> m1Builder_;
       /**
-       * <code>optional .io.protoless.tests.samples.Custom m1 = 2;</code>
+       * <code>.io.protoless.tests.samples.Custom m1 = 2;</code>
        */
       public boolean hasM1() {
         return m1Builder_ != null || m1_ != null;
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Custom m1 = 2;</code>
+       * <code>.io.protoless.tests.samples.Custom m1 = 2;</code>
        */
       public io.protoless.tests.samples.Schemas.Custom getM1() {
         if (m1Builder_ == null) {
@@ -8220,7 +8315,7 @@ public final class Schemas {
         }
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Custom m1 = 2;</code>
+       * <code>.io.protoless.tests.samples.Custom m1 = 2;</code>
        */
       public Builder setM1(io.protoless.tests.samples.Schemas.Custom value) {
         if (m1Builder_ == null) {
@@ -8236,7 +8331,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Custom m1 = 2;</code>
+       * <code>.io.protoless.tests.samples.Custom m1 = 2;</code>
        */
       public Builder setM1(
           io.protoless.tests.samples.Schemas.Custom.Builder builderForValue) {
@@ -8250,7 +8345,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Custom m1 = 2;</code>
+       * <code>.io.protoless.tests.samples.Custom m1 = 2;</code>
        */
       public Builder mergeM1(io.protoless.tests.samples.Schemas.Custom value) {
         if (m1Builder_ == null) {
@@ -8268,7 +8363,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Custom m1 = 2;</code>
+       * <code>.io.protoless.tests.samples.Custom m1 = 2;</code>
        */
       public Builder clearM1() {
         if (m1Builder_ == null) {
@@ -8282,7 +8377,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Custom m1 = 2;</code>
+       * <code>.io.protoless.tests.samples.Custom m1 = 2;</code>
        */
       public io.protoless.tests.samples.Schemas.Custom.Builder getM1Builder() {
         
@@ -8290,7 +8385,7 @@ public final class Schemas {
         return getM1FieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Custom m1 = 2;</code>
+       * <code>.io.protoless.tests.samples.Custom m1 = 2;</code>
        */
       public io.protoless.tests.samples.Schemas.CustomOrBuilder getM1OrBuilder() {
         if (m1Builder_ != null) {
@@ -8301,7 +8396,7 @@ public final class Schemas {
         }
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Custom m1 = 2;</code>
+       * <code>.io.protoless.tests.samples.Custom m1 = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           io.protoless.tests.samples.Schemas.Custom, io.protoless.tests.samples.Schemas.Custom.Builder, io.protoless.tests.samples.Schemas.CustomOrBuilder> 
@@ -8321,13 +8416,13 @@ public final class Schemas {
       private com.google.protobuf.SingleFieldBuilderV3<
           io.protoless.tests.samples.Schemas.Custom, io.protoless.tests.samples.Schemas.Custom.Builder, io.protoless.tests.samples.Schemas.CustomOrBuilder> m2Builder_;
       /**
-       * <code>optional .io.protoless.tests.samples.Custom m2 = 3;</code>
+       * <code>.io.protoless.tests.samples.Custom m2 = 3;</code>
        */
       public boolean hasM2() {
         return m2Builder_ != null || m2_ != null;
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Custom m2 = 3;</code>
+       * <code>.io.protoless.tests.samples.Custom m2 = 3;</code>
        */
       public io.protoless.tests.samples.Schemas.Custom getM2() {
         if (m2Builder_ == null) {
@@ -8337,7 +8432,7 @@ public final class Schemas {
         }
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Custom m2 = 3;</code>
+       * <code>.io.protoless.tests.samples.Custom m2 = 3;</code>
        */
       public Builder setM2(io.protoless.tests.samples.Schemas.Custom value) {
         if (m2Builder_ == null) {
@@ -8353,7 +8448,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Custom m2 = 3;</code>
+       * <code>.io.protoless.tests.samples.Custom m2 = 3;</code>
        */
       public Builder setM2(
           io.protoless.tests.samples.Schemas.Custom.Builder builderForValue) {
@@ -8367,7 +8462,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Custom m2 = 3;</code>
+       * <code>.io.protoless.tests.samples.Custom m2 = 3;</code>
        */
       public Builder mergeM2(io.protoless.tests.samples.Schemas.Custom value) {
         if (m2Builder_ == null) {
@@ -8385,7 +8480,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Custom m2 = 3;</code>
+       * <code>.io.protoless.tests.samples.Custom m2 = 3;</code>
        */
       public Builder clearM2() {
         if (m2Builder_ == null) {
@@ -8399,7 +8494,7 @@ public final class Schemas {
         return this;
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Custom m2 = 3;</code>
+       * <code>.io.protoless.tests.samples.Custom m2 = 3;</code>
        */
       public io.protoless.tests.samples.Schemas.Custom.Builder getM2Builder() {
         
@@ -8407,7 +8502,7 @@ public final class Schemas {
         return getM2FieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Custom m2 = 3;</code>
+       * <code>.io.protoless.tests.samples.Custom m2 = 3;</code>
        */
       public io.protoless.tests.samples.Schemas.CustomOrBuilder getM2OrBuilder() {
         if (m2Builder_ != null) {
@@ -8418,7 +8513,7 @@ public final class Schemas {
         }
       }
       /**
-       * <code>optional .io.protoless.tests.samples.Custom m2 = 3;</code>
+       * <code>.io.protoless.tests.samples.Custom m2 = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           io.protoless.tests.samples.Schemas.Custom, io.protoless.tests.samples.Schemas.Custom.Builder, io.protoless.tests.samples.Schemas.CustomOrBuilder> 
@@ -8675,12 +8770,12 @@ public final class Schemas {
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
