@@ -1,6 +1,7 @@
 # protoless
 
-[![GitHub tag](https://img.shields.io/github/tag/julien-lafont/protoless.svg)]()
+[![Travis](https://img.shields.io/travis/julien-lafont/protoless.svg)](https://travis-ci.org/julien-lafont/protoless)
+[![GitHub tag](https://img.shields.io/github/tag/julien-lafont/protoless.svg)](https://github.com/julien-lafont/protoless/releases)
 [![Gitter](https://img.shields.io/gitter/room/julien-lafont/protoless.js.svg)](https://gitter.im/protoless/Lobby)
 
 protoless is a [Protobuf 3](https://developers.google.com/protocol-buffers/docs/proto3) serialization
