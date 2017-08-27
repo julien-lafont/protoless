@@ -6,12 +6,34 @@ inThisBuild(Seq(
   releaseCrossBuild := true
 ))
 
+// Dependencies
 lazy val catsVersion = "1.0.0-MF"
 lazy val shapelessVersion = "2.3.2"
 lazy val protobufJavaVersion = "3.4.0"
 lazy val scalaTestVersion = "3.0.3"
 lazy val scalaticVersion = "3.0.3"
 lazy val scalaCheckVersion = "1.13.5"
+
+lazy val cats = Seq(
+  "org.typelevel" %% "cats-core" % catsVersion
+)
+
+lazy val shapeless = Seq(
+  "com.chuusai" %% "shapeless" % shapelessVersion
+)
+
+lazy val protobuf = Seq(
+  "com.google.protobuf" % "protobuf-java" % protobufJavaVersion
+)
+
+lazy val scalatest = Seq(
+  "org.scalatest" %% "scalatest" % scalaTestVersion,
+  "org.scalactic" %% "scalactic" % scalaticVersion
+)
+
+lazy val scalacheck = Seq(
+  "org.scalacheck" %% "scalacheck" % scalaCheckVersion % "test"
+)
 
 // Scalac 2.12 flags: https://tpolecat.github.io/2017/04/25/scalac-flags.html
 val `compilerOptions-Scala-2.12` = Seq(
@@ -120,12 +142,7 @@ lazy val settings = Seq(
     Resolver.sonatypeRepo("snapshots")
   ),
 
-  libraryDependencies ++= Seq(
-    "org.typelevel" %% "cats-core" % catsVersion,
-    "org.scalacheck" %% "scalacheck" % scalaCheckVersion % "test",
-    "org.scalatest" %% "scalatest" % scalaTestVersion % "test",
-    "org.scalactic" %% "scalactic" % scalaticVersion % "test"
-  )
+  libraryDependencies ++= cats ++ scalatest.map(_ % "test") ++ scalacheck
 )
 
 lazy val protoless = project.in(file("."))
@@ -149,11 +166,7 @@ lazy val core = project.in(file("modules/core"))
   .settings(publishSettings)
   .settings(
     name := "Protoless core",
-    libraryDependencies ++= Seq(
-      "com.google.protobuf" % "protobuf-java" % protobufJavaVersion,
-      "com.chuusai" %% "shapeless" % shapelessVersion,
-      "org.typelevel" %% "cats-core" % catsVersion
-    )
+    libraryDependencies ++= protobuf ++ shapeless ++cats
   )
   .dependsOn(tag, testing % Test)
 
@@ -162,11 +175,7 @@ lazy val testing = project.in(file("modules/testing"))
   .settings(noPublishSettings)
   .settings(
     name := "Protoless testing",
-    libraryDependencies ++= Seq(
-      "com.google.protobuf" % "protobuf-java" % protobufJavaVersion,
-      "org.scalatest" %% "scalatest" % scalaTestVersion,
-      "org.scalactic" %% "scalactic" % scalaticVersion
-    )
+    libraryDependencies ++= protobuf ++ scalatest
   )
   .dependsOn(tag)
 
@@ -175,9 +184,7 @@ lazy val generic = project.in(file("modules/generic"))
   .settings(publishSettings)
   .settings(
     name := "Protoless generic",
-    libraryDependencies ++= Seq(
-      "com.chuusai" %% "shapeless" % shapelessVersion
-    )
+    libraryDependencies ++= shapeless
   )
   .dependsOn(core % "test->test;compile->compile", tag, testing % Test)
 
@@ -186,9 +193,7 @@ lazy val tag = project.in(file("modules/tag"))
   .settings(noPublishSettings)
   .settings(
     name := "Protoless tag",
-    libraryDependencies ++= Seq(
-      "com.chuusai" %% "shapeless" % shapelessVersion
-    )
+    libraryDependencies ++= shapeless
   )
 
 lazy val docs = project.dependsOn(core, generic)
