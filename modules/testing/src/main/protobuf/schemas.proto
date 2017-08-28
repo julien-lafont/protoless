@@ -82,3 +82,17 @@ message Nested {
   Custom m2 = 3;
   repeated Custom rm = 4;
 }
+
+
+message Input {
+  string msg = 1;
+}
+
+message Output  {
+  string response = 2;
+}
+
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (Input) returns (Output) {}
+}

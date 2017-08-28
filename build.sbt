@@ -10,6 +10,7 @@ inThisBuild(Seq(
 lazy val catsVersion = "1.0.0-MF"
 lazy val shapelessVersion = "2.3.2"
 lazy val protobufJavaVersion = "3.4.0"
+lazy val grpcVersion = "1.5.0"
 lazy val scalaTestVersion = "3.0.3"
 lazy val scalaticVersion = "3.0.3"
 lazy val scalaCheckVersion = "1.13.5"
@@ -24,6 +25,12 @@ lazy val shapeless = Seq(
 
 lazy val protobuf = Seq(
   "com.google.protobuf" % "protobuf-java" % protobufJavaVersion
+)
+
+lazy val iogrpc = Seq(
+  "io.grpc" % "grpc-netty" % grpcVersion,
+  "io.grpc" % "grpc-protobuf" % grpcVersion,
+  "io.grpc" % "grpc-stub" % grpcVersion
 )
 
 lazy val scalatest = Seq(
@@ -157,8 +164,8 @@ lazy val protoless = project.in(file("."))
         |import io.protoless.syntax._
       """.stripMargin
     )
-  .dependsOn(core, tag, generic)
-  .aggregate(core, tag, generic, docs)
+  .dependsOn(core, tag, generic, grpcClient, grpcServer)
+  .aggregate(core, tag, generic, grpcClient, grpcServer, docs)
 
 
 lazy val core = project.in(file("modules/core"))
@@ -175,7 +182,7 @@ lazy val testing = project.in(file("modules/testing"))
   .settings(noPublishSettings)
   .settings(
     name := "Protoless testing",
-    libraryDependencies ++= protobuf ++ scalatest
+    libraryDependencies ++= protobuf ++ iogrpc ++ scalatest
   )
   .dependsOn(tag)
 
@@ -195,6 +202,21 @@ lazy val tag = project.in(file("modules/tag"))
     name := "Protoless tag",
     libraryDependencies ++= shapeless
   )
+
+lazy val grpcServer = project.in(file("modules/grpc-server"))
+  .settings(settings)
+  .settings(
+    name := "Protoless GRPC",
+    libraryDependencies ++= protobuf ++ iogrpc
+  ).dependsOn(core % "test->test;compile->compile", testing % Test)
+
+lazy val grpcClient = project.in(file("modules/grpc-client"))
+  .settings(settings)
+  .settings(
+    name := "Protoless GRPC",
+    libraryDependencies ++= protobuf ++ iogrpc
+  ).dependsOn(core % "test->test;compile->compile", testing % Test)
+
 
 lazy val docs = project.dependsOn(core, generic)
   .enablePlugins(ScalaUnidocPlugin)
