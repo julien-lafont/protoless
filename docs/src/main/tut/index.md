@@ -4,7 +4,7 @@ title:  "Home"
 section: "home"
 ---
 
-[![Travis](https://img.shields.io/travis/julien-lafont/protoless.svg)](https://travis-ci.org/julien-lafont/protoless)
+[![Travis](https://img.shields.io/travis/julien-lafont/protoless/master.svg)](https://travis-ci.org/julien-lafont/protoless)
 [![GitHub tag](https://img.shields.io/github/tag/julien-lafont/protoless.svg)](https://github.com/julien-lafont/protoless/releases)
 [![Gitter](https://img.shields.io/gitter/room/julien-lafont/protoless.js.svg)](https://gitter.im/protoless/Lobby)
 
