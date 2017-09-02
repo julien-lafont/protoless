@@ -14,6 +14,8 @@ class GenericBase extends io.grpc.BindableService {
 class HelloWorldServer extends GreeterGrpc.GreeterImplBase {
 
   override def sayHello(request: Schemas.Input, responseObserver: StreamObserver[Schemas.Output]): Unit = {
+    println("< " + request.getMsg)
+
     val reply = Output.newBuilder().setResponse(request.getMsg + "world").build()
     responseObserver.onNext(reply)
     responseObserver.onCompleted()

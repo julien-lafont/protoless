@@ -208,14 +208,14 @@ lazy val grpcServer = project.in(file("modules/grpc-server"))
   .settings(
     name := "Protoless GRPC",
     libraryDependencies ++= protobuf ++ iogrpc
-  ).dependsOn(core % "test->test;compile->compile", testing % Test)
+  ).dependsOn(core % "test->test;compile->compile", generic, testing % Test)
 
 lazy val grpcClient = project.in(file("modules/grpc-client"))
   .settings(settings)
   .settings(
     name := "Protoless GRPC",
     libraryDependencies ++= protobuf ++ iogrpc
-  ).dependsOn(core % "test->test;compile->compile", testing % Test)
+  ).dependsOn(core % "test->test;compile->compile", generic, testing % Test)
 
 
 lazy val docs = project.dependsOn(core, generic)
