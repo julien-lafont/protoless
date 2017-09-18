@@ -3,6 +3,7 @@ package io.protoless.fields
 import scala.annotation.implicitNotFound
 import scala.collection.mutable
 import scala.collection.generic.CanBuildFrom
+import scala.reflect.ClassTag
 import scala.util.{Failure, Success, Try}
 
 import com.google.protobuf.{ByteString, WireFormat, CodedInputStream => CIS}
@@ -406,11 +407,12 @@ trait MidPriorityFieldDecoder extends LowPriorityFieldDecoder {
 trait LowPriorityFieldDecoder {
 
   /**
-    * Decode a repeating field of type `A` into a collection of high-kind type `C`.
+    * Decode a repeating field of type `A` into a Traversable collection `C`.
     *
     * @group Collection
     */
-  implicit final def decodeCanBuildFrom[A, C[_]](implicit dec: RepeatableFieldDecoder[A], cbf: CanBuildFrom[Nothing, A, C[A]]): RepeatableFieldDecoder[C[A]] = new RepeatableFieldDecoder[C[A]] {
+  implicit final def decodeTraversable[A, C[A] <: Traversable[A]](implicit dec: RepeatableFieldDecoder[A], cbf: CanBuildFrom[Nothing, A, C[A]])
+      : RepeatableFieldDecoder[C[A]] = new RepeatableFieldDecoder[C[A]] {
 
     @scala.annotation.tailrec
     private def readUntilFieldNumberEquals(index: Int, input: CIS, cbf: mutable.Builder[A, C[A]]): Either[DecodingFailure, C[A]] = {
@@ -459,6 +461,20 @@ trait LowPriorityFieldDecoder {
     }
 
     override def fieldType: FieldType = dec.fieldType
+  }
+
+  /**
+    * Decode a repeating field of type `A` into an Array.
+    *
+    * TODO: Improve performance by not depending on `decodeTraversable`
+    *
+    * @group Collection
+    */
+  implicit final def decodeArray[A](implicit
+      dec: RepeatableFieldDecoder[A],
+      cbf: CanBuildFrom[Nothing, A, Seq[A]],
+      tp: ClassTag[A]): RepeatableFieldDecoder[Array[A]] = {
+    decodeTraversable[A, Seq](dec, cbf).map(_.toArray)
   }
 
   /**
