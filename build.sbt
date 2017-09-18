@@ -206,8 +206,8 @@ lazy val docs = project.dependsOn(core, generic)
 
 
 lazy val noPublishSettings = Seq(
-  publish := (),
-  publishLocal := (),
+  publish := ((): Unit),
+  publishLocal := ((): Unit),
   publishArtifact := false
 )
 
