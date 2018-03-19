@@ -28,9 +28,9 @@ protoless is published to [bintray.com/julien-lafont](https://bintray.com/julien
 ```scala
 resolvers += Resolver.bintrayRepo("julien-lafont", "maven")
 
-libraryDependencies += Seq(
-  "io.protoless" %% "protoless-core" % "0.0.6",
-  "io.protoless" %% "protoless-generic" % "0.0.6"
+libraryDependencies ++= Seq(
+  "io.protoless" %% "protoless-core" % "0.0.7",
+  "io.protoless" %% "protoless-generic" % "0.0.7"
 )
 ```
 
