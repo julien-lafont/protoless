@@ -1,15 +1,15 @@
 inThisBuild(Seq(
   organization in ThisBuild := "io.protoless",
-  scalaVersion := "2.12.3-bin-typelevel-4",
-  crossScalaVersions := Seq("2.11.11-bin-typelevel-4", "2.12.3-bin-typelevel-4"),
+  scalaVersion := "2.12.4-bin-typelevel-4",
+  crossScalaVersions := Seq("2.11.11-bin-typelevel-4", "2.12.4-bin-typelevel-4"),
   scalaOrganization := "org.typelevel",
   releaseCrossBuild := true
 ))
 
 // Dependencies
-lazy val catsVersion = "1.0.0-MF"
-lazy val shapelessVersion = "2.3.2"
-lazy val protobufJavaVersion = "3.4.0"
+lazy val catsVersion = "1.0.0"
+lazy val shapelessVersion = "2.3.3"
+lazy val protobufJavaVersion = "3.5.1"
 lazy val scalaTestVersion = "3.0.3"
 lazy val scalaticVersion = "3.0.3"
 lazy val scalaCheckVersion = "1.13.5"
@@ -190,7 +190,7 @@ lazy val generic = project.in(file("modules/generic"))
 
 lazy val tag = project.in(file("modules/tag"))
   .settings(settings)
-  .settings(noPublishSettings)
+  .settings(publishSettings)
   .settings(
     name := "Protoless tag",
     libraryDependencies ++= shapeless
