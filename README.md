@@ -32,7 +32,7 @@ libraryDependencies ++= Seq(
 Type `sbt console` to start a REPL and then paste the following the following code:
 
 ```scala
-import io.protoless._, io.protoless.generic.auto._
+import io.protoless._, io.protoless.messages._, io.protoless.generic.auto._
 
 case class Person(firstname: String, lastname: String, age: Option[Int], locations: Seq[String])
 
