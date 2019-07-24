@@ -3,17 +3,14 @@ package io.protoless.generic.messages
 import shapeless.{::, HNil, Nat}
 
 import io.protoless.EncoderDecoderAssertions
-import io.protoless.fields.{FieldDecoder, RepeatableFieldDecoder}
 import io.protoless.messages.{Decoder, Encoder}
 import io.protoless.tests.ProtolessSuite
 import io.protoless.tests.instances.EqualityInstances
 import io.protoless.tests.samples._
 import io.protoless.tests.samples.TestCaseNestedCustomMapping.InnerNestedCustomMapping
+import io.protoless.generic.semiauto.{deriveEncoder, deriveDecoder}
 
-class CustomMappingEncoderDecoderSuite extends ProtolessSuite with EqualityInstances with EncoderDecoderAssertions {
-
-  object implicits {
-    import io.protoless.generic.semiauto._
+class CustomMappingEncoderDecoderSuite extends ProtolessSuite with SemiautoInstances with EqualityInstances with EncoderDecoderAssertions {
 
     // Fields number specified with Nat
     type IndexSimple = Nat._2 :: Nat._5 :: Nat._13 :: Nat._16 :: HNil
@@ -36,8 +33,6 @@ class CustomMappingEncoderDecoderSuite extends ProtolessSuite with EqualityInsta
     type IndexNestedInner = Nat._2 :: Nat._5 :: HNil
     type IndexNested = Nat._3 :: Nat._4 :: HNil
 
-    implicit val d: io.protoless.messages.decoders.CustomMappingDecoder[TestCaseNestedCustomMapping,IndexNested] = ???
-    implicit val e: io.protoless.messages.encoders.CustomMappingEncoder[TestCaseNestedCustomMapping,IndexNested] = ???
 
     implicit val decoderInnerNestedCustomMapping: Decoder[InnerNestedCustomMapping] =
       deriveDecoder[InnerNestedCustomMapping, IndexNestedInner]
@@ -52,8 +47,6 @@ class CustomMappingEncoderDecoderSuite extends ProtolessSuite with EqualityInsta
     implicit val encoderTestCaseNestedCustomMapping: Encoder[TestCaseNestedCustomMapping] =
       deriveEncoder[TestCaseNestedCustomMapping, IndexNested]
 
-  }
-  import implicits._
 
   "Encoder must convert case class to protobuf format for" - {
     "protobuf native fields type" in {

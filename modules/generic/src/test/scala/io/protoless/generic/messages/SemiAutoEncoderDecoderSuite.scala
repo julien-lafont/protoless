@@ -1,43 +1,31 @@
 package io.protoless.generic.messages
 
 import io.protoless.EncoderDecoderAssertions
-import io.protoless.fields.{FieldDecoder, RepeatableFieldDecoder}
-import io.protoless.generic.decoding.internal.SemiAutoDecoder
-import io.protoless.messages.decoders.CustomMappingDecoder
-import io.protoless.messages.encoders.IncrementalEncoder
 import io.protoless.messages.{Decoder, Encoder}
 import io.protoless.tests.ProtolessSuite
 import io.protoless.tests.instances.EqualityInstances
 import io.protoless.tests.samples._
-import shapeless.{Generic, Nat}
+import io.protoless.generic.semiauto.{deriveDecoder, deriveEncoder}
 
-class SemiAutoEncoderDecoderSuite extends ProtolessSuite with EqualityInstances with EncoderDecoderAssertions {
+class SemiAutoEncoderDecoderSuite extends ProtolessSuite with SemiautoInstances with EqualityInstances with EncoderDecoderAssertions {
 
-  object implicits {
-    implicit val d: io.protoless.generic.decoding.internal.SemiAutoDecoder[io.protoless.tests.samples.TestCaseNested] = throw new NotImplementedError()
-     implicit val e: io.protoless.generic.encoding.internal.SemiAutoEncoder[io.protoless.tests.samples.TestCaseNested] = throw new NotImplementedError()
-    import io.protoless.generic.semiauto._
+  implicit val decoderTestCaseAllFields: Decoder[TestCaseAllFields] = deriveDecoder[TestCaseAllFields]
+  implicit val decoderTestCaseOptionalFields: Decoder[TestCaseOptionalFields] = deriveDecoder[TestCaseOptionalFields]
+  implicit val decoderTestCaseRepeatedFields: Decoder[TestCaseRepeatedFields] = deriveDecoder[TestCaseRepeatedFields]
+  implicit val decoderTestCaseEmptyRepeated: Decoder[TestCaseEmptyRepeated] = deriveDecoder[TestCaseEmptyRepeated]
+  implicit val decoderTestCaseCollections: Decoder[TestCaseCollections] = deriveDecoder[TestCaseCollections]
+  implicit val decoderTestCaseCustomType: Decoder[TestCaseCustomType] = deriveDecoder[TestCaseCustomType]
+  implicit val decoderTestCaseNestedInner: Decoder[TestCaseNested.InnerNested] = deriveDecoder[TestCaseNested.InnerNested]
+  implicit val decoderTestCaseNested: Decoder[TestCaseNested] = deriveDecoder[TestCaseNested]
 
-    implicit val decoderTestCaseAllFields: Decoder[TestCaseAllFields] = deriveDecoder[TestCaseAllFields]
-    implicit val decoderTestCaseOptionalFields: Decoder[TestCaseOptionalFields] = deriveDecoder[TestCaseOptionalFields]
-    implicit val decoderTestCaseRepeatedFields: Decoder[TestCaseRepeatedFields] = deriveDecoder[TestCaseRepeatedFields]
-    implicit val decoderTestCaseEmptyRepeated: Decoder[TestCaseEmptyRepeated] = deriveDecoder[TestCaseEmptyRepeated]
-    implicit val decoderTestCaseCollections: Decoder[TestCaseCollections] = deriveDecoder[TestCaseCollections]
-    implicit val decoderTestCaseCustomType: Decoder[TestCaseCustomType] = deriveDecoder[TestCaseCustomType]
-    implicit val decoderTestCaseNestedInner: Decoder[TestCaseNested.InnerNested] = deriveDecoder[TestCaseNested.InnerNested]
-    implicit val decoderTestCaseNested: Decoder[TestCaseNested] = deriveDecoder[TestCaseNested]
-
-    implicit val encoderTestCaseAllFields: Encoder[TestCaseAllFields] = deriveEncoder[TestCaseAllFields]
-    implicit val encoderTestCaseOptionalFields: Encoder[TestCaseOptionalFields] = deriveEncoder[TestCaseOptionalFields]
-    implicit val encoderTestCaseRepeatedFields: Encoder[TestCaseRepeatedFields] = deriveEncoder[TestCaseRepeatedFields]
-    implicit val encoderTestCaseEmptyRepeated: Encoder[TestCaseEmptyRepeated] = deriveEncoder[TestCaseEmptyRepeated]
-    implicit val encoderTestCaseCollections: Encoder[TestCaseCollections] = deriveEncoder[TestCaseCollections]
-    implicit val encoderTestCaseCustomType: Encoder[TestCaseCustomType] = deriveEncoder[TestCaseCustomType]
-    implicit val encoderTestCaseNestedInner: Encoder[TestCaseNested.InnerNested] = deriveEncoder[TestCaseNested.InnerNested]
-    implicit val encoderTestCaseNested: Encoder[TestCaseNested] = deriveEncoder[TestCaseNested]
-  }
-  
-  import implicits._
+  implicit val encoderTestCaseAllFields: Encoder[TestCaseAllFields] = deriveEncoder[TestCaseAllFields]
+  implicit val encoderTestCaseOptionalFields: Encoder[TestCaseOptionalFields] = deriveEncoder[TestCaseOptionalFields]
+  implicit val encoderTestCaseRepeatedFields: Encoder[TestCaseRepeatedFields] = deriveEncoder[TestCaseRepeatedFields]
+  implicit val encoderTestCaseEmptyRepeated: Encoder[TestCaseEmptyRepeated] = deriveEncoder[TestCaseEmptyRepeated]
+  implicit val encoderTestCaseCollections: Encoder[TestCaseCollections] = deriveEncoder[TestCaseCollections]
+  implicit val encoderTestCaseCustomType: Encoder[TestCaseCustomType] = deriveEncoder[TestCaseCustomType]
+  implicit val encoderTestCaseNestedInner: Encoder[TestCaseNested.InnerNested] = deriveEncoder[TestCaseNested.InnerNested]
+  implicit val encoderTestCaseNested: Encoder[TestCaseNested] = deriveEncoder[TestCaseNested]
 
   "SemiAuto Encoders must convert case class to protobuf format for" - {
     "protobuf native fields type" in {
