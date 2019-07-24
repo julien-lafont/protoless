@@ -36,6 +36,9 @@ class CustomMappingEncoderDecoderSuite extends ProtolessSuite with EqualityInsta
     type IndexNestedInner = Nat._2 :: Nat._5 :: HNil
     type IndexNested = Nat._3 :: Nat._4 :: HNil
 
+    implicit val d: io.protoless.messages.decoders.CustomMappingDecoder[TestCaseNestedCustomMapping,IndexNested] = ???
+    implicit val e: io.protoless.messages.encoders.CustomMappingEncoder[TestCaseNestedCustomMapping,IndexNested] = ???
+
     implicit val decoderInnerNestedCustomMapping: Decoder[InnerNestedCustomMapping] =
       deriveDecoder[InnerNestedCustomMapping, IndexNestedInner]
 
@@ -48,6 +51,7 @@ class CustomMappingEncoderDecoderSuite extends ProtolessSuite with EqualityInsta
 
     implicit val encoderTestCaseNestedCustomMapping: Encoder[TestCaseNestedCustomMapping] =
       deriveEncoder[TestCaseNestedCustomMapping, IndexNested]
+
   }
   import implicits._
 

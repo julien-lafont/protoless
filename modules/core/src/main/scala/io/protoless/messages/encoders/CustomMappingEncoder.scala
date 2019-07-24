@@ -7,7 +7,6 @@ import shapeless.HList
 import io.protoless.messages.Encoder
 
 @implicitNotFound("No CustomMappingEncoder found for type ${A} and ${L}.")
-@annotation.inductive
 trait CustomMappingEncoder[A, L <: HList] extends Encoder[A]
 
 /**

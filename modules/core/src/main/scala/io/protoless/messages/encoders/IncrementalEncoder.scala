@@ -7,7 +7,6 @@ import shapeless.Nat
 import io.protoless.messages.Encoder
 
 @implicitNotFound("No IncrementalEncoder found for type ${A} and ${N}.")
-@annotation.inductive
 trait IncrementalEncoder[A, N <: Nat] extends Encoder[A]
 
 /**
