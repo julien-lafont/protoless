@@ -12,41 +12,38 @@ import io.protoless.generic.semiauto.{deriveEncoder, deriveDecoder}
 
 class CustomMappingEncoderDecoderSuite extends ProtolessSuite with SemiautoInstances with EqualityInstances with EncoderDecoderAssertions {
 
-    // Fields number specified with Nat
-    type IndexSimple = Nat._2 :: Nat._5 :: Nat._13 :: Nat._16 :: HNil
+  // Fields number specified with Nat
+  type IndexSimple = Nat._2 :: Nat._5 :: Nat._13 :: Nat._16 :: HNil
 
-    implicit val decoderTestCaseCustomMappingSimple: Decoder[TestCaseCustomMappingSimple] =
-      deriveDecoder[TestCaseCustomMappingSimple, IndexSimple]
+  implicit val decoderTestCaseCustomMappingSimple: Decoder[TestCaseCustomMappingSimple] =
+    deriveDecoder[TestCaseCustomMappingSimple, IndexSimple]
 
-    implicit val encoderTestCaseCustomMappingSimple: Encoder[TestCaseCustomMappingSimple] =
-      deriveEncoder[TestCaseCustomMappingSimple, IndexSimple]
+  implicit val encoderTestCaseCustomMappingSimple: Encoder[TestCaseCustomMappingSimple] =
+    deriveEncoder[TestCaseCustomMappingSimple, IndexSimple]
 
-    // Fields number specified by Literal types
-    type IndexRepeated = 3 :: 8 :: 13 :: 14 :: 16 :: HNil
+  // Fields number specified by Literal types
+  type IndexRepeated = 3 :: 8 :: 13 :: 14 :: 16 :: HNil
 
-    implicit val decoderTestCaseCustomMappingRepeated: Decoder[TestCaseCustomMappingRepeated] =
-      deriveDecoder[TestCaseCustomMappingRepeated, IndexRepeated]
+  implicit val decoderTestCaseCustomMappingRepeated: Decoder[TestCaseCustomMappingRepeated] =
+    deriveDecoder[TestCaseCustomMappingRepeated, IndexRepeated]
 
-    implicit val encoderTestCaseCustomMappingRepeated: Encoder[TestCaseCustomMappingRepeated] =
-      deriveEncoder[TestCaseCustomMappingRepeated, IndexRepeated]
+  implicit val encoderTestCaseCustomMappingRepeated: Encoder[TestCaseCustomMappingRepeated] =
+    deriveEncoder[TestCaseCustomMappingRepeated, IndexRepeated]
 
-    type IndexNestedInner = Nat._2 :: Nat._5 :: HNil
-    type IndexNested = Nat._3 :: Nat._4 :: HNil
+  type IndexNestedInner = Nat._2 :: Nat._5 :: HNil
+  type IndexNested = Nat._3 :: Nat._4 :: HNil
 
+  implicit val decoderInnerNestedCustomMapping: Decoder[InnerNestedCustomMapping] =
+    deriveDecoder[InnerNestedCustomMapping, IndexNestedInner]
 
-    implicit val decoderInnerNestedCustomMapping: Decoder[InnerNestedCustomMapping] =
-      deriveDecoder[InnerNestedCustomMapping, IndexNestedInner]
+  implicit val decoderTestCaseNestedCustomMapping: Decoder[TestCaseNestedCustomMapping] =
+    deriveDecoder[TestCaseNestedCustomMapping, IndexNested]
 
-    implicit val decoderTestCaseNestedCustomMapping: Decoder[TestCaseNestedCustomMapping] =
-      deriveDecoder[TestCaseNestedCustomMapping, IndexNested]
+  implicit val encoderInnerNestedCustomMapping: Encoder[InnerNestedCustomMapping] =
+    deriveEncoder[InnerNestedCustomMapping, IndexNestedInner]
 
-
-    implicit val encoderInnerNestedCustomMapping: Encoder[InnerNestedCustomMapping] =
-      deriveEncoder[InnerNestedCustomMapping, IndexNestedInner]
-
-    implicit val encoderTestCaseNestedCustomMapping: Encoder[TestCaseNestedCustomMapping] =
-      deriveEncoder[TestCaseNestedCustomMapping, IndexNested]
-
+  implicit val encoderTestCaseNestedCustomMapping: Encoder[TestCaseNestedCustomMapping] =
+    deriveEncoder[TestCaseNestedCustomMapping, IndexNested]
 
   "Encoder must convert case class to protobuf format for" - {
     "protobuf native fields type" in {
