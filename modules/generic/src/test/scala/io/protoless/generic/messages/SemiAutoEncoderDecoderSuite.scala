@@ -2,16 +2,20 @@ package io.protoless.generic.messages
 
 import io.protoless.EncoderDecoderAssertions
 import io.protoless.fields.{FieldDecoder, RepeatableFieldDecoder}
+import io.protoless.generic.decoding.internal.SemiAutoDecoder
+import io.protoless.messages.decoders.CustomMappingDecoder
+import io.protoless.messages.encoders.IncrementalEncoder
 import io.protoless.messages.{Decoder, Encoder}
 import io.protoless.tests.ProtolessSuite
 import io.protoless.tests.instances.EqualityInstances
 import io.protoless.tests.samples._
+import shapeless.{Generic, Nat}
 
 class SemiAutoEncoderDecoderSuite extends ProtolessSuite with EqualityInstances with EncoderDecoderAssertions {
 
   object implicits {
     implicit val d: io.protoless.generic.decoding.internal.SemiAutoDecoder[io.protoless.tests.samples.TestCaseNested] = throw new NotImplementedError()
-    implicit val e: io.protoless.generic.encoding.internal.SemiAutoEncoder[io.protoless.tests.samples.TestCaseNested] = throw new NotImplementedError()
+     implicit val e: io.protoless.generic.encoding.internal.SemiAutoEncoder[io.protoless.tests.samples.TestCaseNested] = throw new NotImplementedError()
     import io.protoless.generic.semiauto._
 
     implicit val decoderTestCaseAllFields: Decoder[TestCaseAllFields] = deriveDecoder[TestCaseAllFields]
@@ -30,7 +34,7 @@ class SemiAutoEncoderDecoderSuite extends ProtolessSuite with EqualityInstances 
     implicit val encoderTestCaseCollections: Encoder[TestCaseCollections] = deriveEncoder[TestCaseCollections]
     implicit val encoderTestCaseCustomType: Encoder[TestCaseCustomType] = deriveEncoder[TestCaseCustomType]
     implicit val encoderTestCaseNestedInner: Encoder[TestCaseNested.InnerNested] = deriveEncoder[TestCaseNested.InnerNested]
-    implicit val encoderTestCaseNesteInner: Encoder[TestCaseNested] = deriveEncoder[TestCaseNested]
+    implicit val encoderTestCaseNested: Encoder[TestCaseNested] = deriveEncoder[TestCaseNested]
   }
   
   import implicits._

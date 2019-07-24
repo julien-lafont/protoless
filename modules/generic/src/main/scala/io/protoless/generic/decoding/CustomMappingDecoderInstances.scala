@@ -9,7 +9,7 @@ import io.protoless.messages.decoders.CustomMappingDecoder
 import io.protoless.fields.FieldDecoder
 import io.protoless.messages.Decoder.Result
 
-trait CustomMappingDecoderInstances {
+trait CustomMappingDecoderInstances extends IncrementalDecoderInstances {
 
   implicit val decodeCustomMappingHNil: CustomMappingDecoder[HNil, HNil] = new CustomMappingDecoder[HNil, HNil] {
     override def decode(input: CodedInputStream): Result[HNil] = Right(HNil)

@@ -8,7 +8,7 @@ import shapeless.ops.nat.ToInt
 import io.protoless.messages.encoders.CustomMappingEncoder
 import io.protoless.fields.FieldEncoder
 
-trait CustomMappingEncoderInstances {
+trait CustomMappingEncoderInstances extends IncrementalEncoderInstances {
 
   implicit val encodeCustomMappingHNil: CustomMappingEncoder[HNil, HNil] = new CustomMappingEncoder[HNil, HNil] {
     override def encode(a: HNil, output: CodedOutputStream): Unit = {}
