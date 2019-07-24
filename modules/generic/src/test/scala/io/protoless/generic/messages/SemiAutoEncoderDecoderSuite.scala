@@ -9,6 +9,7 @@ import io.protoless.tests.samples._
 
 class SemiAutoEncoderDecoderSuite extends ProtolessSuite with EqualityInstances with EncoderDecoderAssertions {
 
+  object implicits {
   import io.protoless.generic.semiauto._
 
   implicit val decoderTestCaseAllFields: Decoder[TestCaseAllFields] = deriveDecoder[TestCaseAllFields]
@@ -28,6 +29,8 @@ class SemiAutoEncoderDecoderSuite extends ProtolessSuite with EqualityInstances 
   implicit val encoderTestCaseCustomType: Encoder[TestCaseCustomType] = deriveEncoder[TestCaseCustomType]
   implicit val encoderTestCaseNestedInner: Encoder[TestCaseNested.InnerNested] = deriveEncoder[TestCaseNested.InnerNested]
   implicit val encoderTestCaseNesteInner: Encoder[TestCaseNested] = deriveEncoder[TestCaseNested]
+  }
+  import implicits._
 
   "SemiAuto Encoders must convert case class to protobuf format for" - {
     "protobuf native fields type" in {
