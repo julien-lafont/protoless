@@ -16,6 +16,7 @@ import io.protoless.messages.Decoder
   * This allows to decode protobuf message with non successive fields number.
   */
 @implicitNotFound("No CustomMappingDecoder found for type ${A} and ${L}.")
+@annotation.inductive
 trait CustomMappingDecoder[A, L <: HList] extends Decoder[A]
 
 /**

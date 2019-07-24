@@ -44,7 +44,7 @@ val `compilerOptions-Scala-2.12` = Seq(
   "-language:higherKinds",             // Allow higher-kinded types
   "-unchecked",                        // Enable additional warnings where generated code depends on assumptions.
   "-Xcheckinit",                       // Wrap field accessors to throw an exception on uninitialized access.
-  // "-Xfatal-warnings",                  // Fail the compilation if there are any warnings.
+  "-Xfatal-warnings",                  // Fail the compilation if there are any warnings.
   "-Xfuture",                          // Turn on future language features.
   "-Xlint:adapted-args",               // Warn if an argument list is modified to match the receiver.
   "-Xlint:by-name-right-associative",  // By-name parameter of right associative operator.
@@ -65,7 +65,7 @@ val `compilerOptions-Scala-2.12` = Seq(
   "-Xlint:unsound-match",              // Pattern match may not be typesafe.
   "-Yno-adapted-args",                 // Do not adapt an argument list (either by inserting () or creating a tuple) to match the receiver.
   "-Ypartial-unification",             // Enable partial unification in type constructor inference
-  // "-Ywarn-dead-code",                  // Warn when dead code is identified.
+  "-Ywarn-dead-code",                  // Warn when dead code is identified.
   "-Ywarn-inaccessible",               // Warn about inaccessible types in method signatures.
   "-Ywarn-infer-any",                  // Warn when a type argument is inferred to be `Any`.
   "-Ywarn-nullary-override",           // Warn when non-nullary `def f()' overrides nullary `def f'.
@@ -86,7 +86,7 @@ lazy val `compilerOptions-Scala-2.11` = Seq(
   "-unchecked",
   "-language:higherKinds",
   "-Yno-adapted-args",
-  // "-Ywarn-dead-code",
+  "-Ywarn-dead-code",
   "-Ywarn-numeric-widen",
   "-Xfuture",
   "-Ywarn-unused-import"
@@ -102,7 +102,7 @@ lazy val settings = Seq(
 
   // Typelevel-4 scala options
   scalacOptions ++= Seq(
-    //"-Yinduction-heuristics",       // speeds up the compilation of inductive implicit resolution
+    "-Yinduction-heuristics",       // speeds up the compilation of inductive implicit resolution
     "-Yliteral-types",              // literals can appear in type position
     "-Xstrict-patmat-analysis",     // more accurate reporting of failures of match exhaustivity
     "-Xlint:strict-unsealed-patmat" // warn on inexhaustive matches against unsealed traits
@@ -112,7 +112,7 @@ lazy val settings = Seq(
   scalacOptions in (Compile, console) ~= (_.filterNot(Set(
     "-Ywarn-unused:imports",  // 2.12
     "-Ywarn-unused-import",   // 2.11
-    // "-Xfatal-warnings"
+    "-Xfatal-warnings"
   ))),
 
   // Test source code contains `import cats.syntax.either._` for scala 2.11 compatibility, but it is
@@ -123,7 +123,7 @@ lazy val settings = Seq(
 
   // Warnings in scaladoc must not fail the build
   scalacOptions in (Compile, doc)  ~= (_.filterNot(Set(
-    // "-Xfatal-warnings"
+    "-Xfatal-warnings"
   ))),
 
   // scalastyle task should run on all source file

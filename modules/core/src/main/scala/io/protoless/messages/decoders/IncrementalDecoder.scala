@@ -13,6 +13,7 @@ import io.protoless.messages.Decoder
   * representing the protobuf field index.
   */
 @implicitNotFound("No IncrementalDecoder found for type ${A} and ${N}.")
+@annotation.inductive
 trait IncrementalDecoder[A, N <: Nat] extends Decoder[A]
 
 /**

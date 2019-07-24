@@ -11,6 +11,7 @@ import io.protoless.messages.Decoder
   * The decoder is implicitly transformed into an [[IncrementalDecoder]][A, Nat._1] after the first induction step.
   */
 @implicitNotFound("No AutoDecoder found for type ${A}.")
+@annotation.inductive
 trait AutoDecoder[A] extends Decoder[A]
 
 /**

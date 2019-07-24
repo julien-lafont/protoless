@@ -1,7 +1,7 @@
 package io.protoless.generic.encoding.internal
 
 import shapeless.Nat
-import io.protoless.generic.encoding.{CustomMappingEncoderInstances, IncrementalEncoderInstances}
+import io.protoless.generic.encoding.CustomMappingEncoderInstances
 import io.protoless.messages.Encoder
 import io.protoless.messages.encoders.IncrementalEncoder
 

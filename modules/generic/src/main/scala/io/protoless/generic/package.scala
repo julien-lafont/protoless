@@ -3,9 +3,9 @@ package io.protoless
 import shapeless.HList
 import io.protoless.messages.decoders.CustomMappingDecoder
 import io.protoless.messages.encoders.CustomMappingEncoder
-import io.protoless.generic.decoding.{AutoDecoderInstances, CustomMappingDecoderInstances, IncrementalDecoderInstances}
+import io.protoless.generic.decoding.AutoDecoderInstances
 import io.protoless.generic.decoding.internal.{SemiAutoDecoder, SemiAutoDecoderInstances}
-import io.protoless.generic.encoding.{AutoEncoderInstances, CustomMappingEncoderInstances, IncrementalEncoderInstances}
+import io.protoless.generic.encoding.AutoEncoderInstances
 import io.protoless.generic.encoding.internal.{SemiAutoEncoder, SemiAutoEncoderInstances}
 import io.protoless.messages.{Decoder, Encoder}
 

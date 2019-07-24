@@ -1,7 +1,7 @@
 package io.protoless.generic.decoding.internal
 
 import shapeless.Nat
-import io.protoless.generic.decoding.{CustomMappingDecoderInstances, IncrementalDecoderInstances}
+import io.protoless.generic.decoding.CustomMappingDecoderInstances
 import io.protoless.messages.Decoder
 import io.protoless.messages.decoders.IncrementalDecoder
 
