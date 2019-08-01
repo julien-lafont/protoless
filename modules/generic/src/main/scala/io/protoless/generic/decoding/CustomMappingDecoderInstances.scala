@@ -5,13 +5,12 @@ import com.google.protobuf.CodedInputStream
 import shapeless.ops.nat.ToInt
 import shapeless.{::, Generic, HList, HNil, Nat}
 
-import io.protoless.messages.decoders.CustomMappingDecoder
 import io.protoless.fields.FieldDecoder
 import io.protoless.messages.Decoder.Result
 
-trait CustomMappingDecoderInstances {
+trait CustomMappingDecoderInstances extends IncrementalDecoderInstances {
 
-  implicit val decodeCustomMappingHNil: CustomMappingDecoder[HNil, HNil] = new CustomMappingDecoder[HNil, HNil] {
+  implicit val decodeCustomMappingHNil: DerivedCustomMappingDecoder[HNil, HNil] = new DerivedCustomMappingDecoder[HNil, HNil] {
     override def decode(input: CodedInputStream): Result[HNil] = Right(HNil)
   }
 
@@ -19,8 +18,8 @@ trait CustomMappingDecoderInstances {
   implicit def decodeCustomMappingHList[H, T <: HList, L <: Nat, TN <: HList](implicit
     hDecoder: FieldDecoder[H],
     index: ToInt[L],
-    tDecoder: CustomMappingDecoder[T, TN]
-  ): CustomMappingDecoder[H :: T, L :: TN] = new CustomMappingDecoder[H :: T, L :: TN] {
+    tDecoder: DerivedCustomMappingDecoder[T, TN]
+  ): DerivedCustomMappingDecoder[H :: T, L :: TN] = new DerivedCustomMappingDecoder[H :: T, L :: TN] {
     override def decode(input: CodedInputStream): Result[H :: T] = {
       for {
         h <- hDecoder.read(input, index()).right
@@ -33,8 +32,8 @@ trait CustomMappingDecoderInstances {
   implicit def decodeCustomMappingHListLiteral[H, T <: HList, L <: Int, TN <: HList](implicit
     hDecoder: FieldDecoder[H],
     index: ValueOf[L],
-    tDecoder: CustomMappingDecoder[T, TN]
-  ): CustomMappingDecoder[H :: T, L :: TN] = new CustomMappingDecoder[H :: T, L :: TN] {
+    tDecoder: DerivedCustomMappingDecoder[T, TN]
+  ): DerivedCustomMappingDecoder[H :: T, L :: TN] = new DerivedCustomMappingDecoder[H :: T, L :: TN] {
     override def decode(input: CodedInputStream): Result[H :: T] = {
       for {
         h <- hDecoder.read(input, valueOf[L]).right
@@ -45,8 +44,8 @@ trait CustomMappingDecoderInstances {
 
   implicit def decodeCustomMapping[A, L <: HList, R <: HList](implicit
     gen: Generic.Aux[A, R],
-    decoder: CustomMappingDecoder[R, L]
-  ): CustomMappingDecoder[A, L] = new CustomMappingDecoder[A, L] {
+    decoder: DerivedCustomMappingDecoder[R, L]
+  ): DerivedCustomMappingDecoder[A, L] = new DerivedCustomMappingDecoder[A, L] {
     override def decode(input: CodedInputStream): Result[A] = {
       decoder.decode(input) match {
         case Right(repr) => Right(gen.from(repr))

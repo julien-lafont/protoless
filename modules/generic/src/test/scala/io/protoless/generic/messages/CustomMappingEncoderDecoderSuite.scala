@@ -3,16 +3,14 @@ package io.protoless.generic.messages
 import shapeless.{::, HNil, Nat}
 
 import io.protoless.EncoderDecoderAssertions
-import io.protoless.fields.{FieldDecoder, RepeatableFieldDecoder}
 import io.protoless.messages.{Decoder, Encoder}
 import io.protoless.tests.ProtolessSuite
 import io.protoless.tests.instances.EqualityInstances
 import io.protoless.tests.samples._
 import io.protoless.tests.samples.TestCaseNestedCustomMapping.InnerNestedCustomMapping
+import io.protoless.generic.semiauto._
 
 class CustomMappingEncoderDecoderSuite extends ProtolessSuite with EqualityInstances with EncoderDecoderAssertions {
-
-  import io.protoless.generic.semiauto._
 
   // Fields number specified with Nat
   type IndexSimple = Nat._2 :: Nat._5 :: Nat._13 :: Nat._16 :: HNil
@@ -40,7 +38,6 @@ class CustomMappingEncoderDecoderSuite extends ProtolessSuite with EqualityInsta
 
   implicit val decoderTestCaseNestedCustomMapping: Decoder[TestCaseNestedCustomMapping] =
     deriveDecoder[TestCaseNestedCustomMapping, IndexNested]
-
 
   implicit val encoderInnerNestedCustomMapping: Encoder[InnerNestedCustomMapping] =
     deriveEncoder[InnerNestedCustomMapping, IndexNestedInner]

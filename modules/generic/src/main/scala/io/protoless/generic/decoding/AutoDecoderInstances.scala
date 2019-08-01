@@ -6,7 +6,7 @@ import shapeless.{Generic, HList, Nat}
 import io.protoless.messages.Decoder.Result
 import io.protoless.messages.decoders.{AutoDecoder, IncrementalDecoder}
 
-trait AutoDecoderInstances extends IncrementalDecoderInstances {
+trait AutoDecoderInstances extends IncrementalDecoderInstances with CustomMappingDecoderInstances {
 
   implicit def decodeAuto[A, R <: HList](implicit
     gen: Generic.Aux[A, R],

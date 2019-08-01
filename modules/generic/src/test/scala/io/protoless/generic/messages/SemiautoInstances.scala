@@ -1,0 +1,6 @@
+package io.protoless.generic.messages
+
+import io.protoless.generic.decoding.internal.SemiAutoDecoderInstances
+import io.protoless.generic.encoding.internal.SemiAutoEncoderInstances
+
+trait SemiautoInstances extends SemiAutoDecoderInstances with SemiAutoEncoderInstances
