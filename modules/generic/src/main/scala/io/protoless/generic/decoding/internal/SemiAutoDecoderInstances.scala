@@ -1,9 +1,8 @@
 package io.protoless.generic.decoding.internal
 
 import shapeless.Nat
-import io.protoless.generic.decoding.CustomMappingDecoderInstances
+import io.protoless.generic.decoding.DerivedIncrementalDecoder
 import io.protoless.messages.Decoder
-import io.protoless.messages.decoders.IncrementalDecoder
 
 /**
   * Internal class allowing to restrict automatic derivation of type `A`.
@@ -12,10 +11,12 @@ import io.protoless.messages.decoders.IncrementalDecoder
   */
 private[protoless] class SemiAutoDecoder[A](val underlying: Decoder[A])
 
-private[protoless] trait SemiAutoDecoderInstances extends CustomMappingDecoderInstances {
+private[protoless] trait SemiAutoDecoderInstances {
 
-  implicit def decodeSemiAutoInstance[A](implicit decoder: IncrementalDecoder[A, Nat._1]): SemiAutoDecoder[A] = {
+  implicit def decodeSemiAutoIncrementalInstance[A](implicit decoder: DerivedIncrementalDecoder[A, Nat._1]): SemiAutoDecoder[A] = {
     new SemiAutoDecoder[A](decoder)
   }
 
 }
+
+object SemiAutoDecoder extends SemiAutoDecoderInstances

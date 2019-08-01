@@ -7,7 +7,7 @@ import io.protoless.tests.instances.EqualityInstances
 import io.protoless.tests.samples._
 import io.protoless.generic.semiauto.{deriveDecoder, deriveEncoder}
 
-class SemiAutoEncoderDecoderSuite extends ProtolessSuite with SemiautoInstances with EqualityInstances with EncoderDecoderAssertions {
+class SemiAutoEncoderDecoderSuite extends ProtolessSuite with EqualityInstances with EncoderDecoderAssertions {
 
   implicit val decoderTestCaseAllFields: Decoder[TestCaseAllFields] = deriveDecoder[TestCaseAllFields]
   implicit val decoderTestCaseOptionalFields: Decoder[TestCaseOptionalFields] = deriveDecoder[TestCaseOptionalFields]
